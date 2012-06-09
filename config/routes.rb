@@ -1,4 +1,57 @@
 Bookies::Application.routes.draw do
+  # root of site, set to bookmarks index page
+  root :to => 'bookmarks#index'
+
+  # resources creates CRUD routes for these models
+  resources :users, :bookmarks, :tags
+
+  # get "tag/:id" => "tag#show"
+
+  # # 1. returns a form with a single textfield labeled "new name" 
+  # get "tag/:id/rename" => "tag#rename"
+
+  # # 2. rename tag with id to name 
+  # get "tag/:id/rename/:name" => "tag#update"
+
+  # get "tag/:id/delete" => "tag#delete"
+
+  # get "tag/:name/search" => "tag#search"
+
+  # get "user/login" => "user#login"
+
+  # # return an html form for a new user
+  # get "user/register" => "user#new"
+
+  # post "users" => "user#create"
+
+  # get "user/:id/delete" => "user#destroy"
+
+  # get "user/:id/edit" => "user#edit"
+
+  # get "user/:id" => "user#show"
+
+  # get "user/:name/search" => "user#search"
+
+  # get "user/:id/change_password" => "user#update"
+
+  # # TODO set up action emailer for password reset
+  # get "user/reset_password" => "user#update"
+  
+
+
+  # # return html form for new bookmark
+  # get "bookmark/new" => "bookmark#new"
+
+  # post "bookmark" => "bookmark#create"
+
+  # get "bookmark/:id" => "bookmark#show"
+
+  # get "bookmark/:id/edit" => "bookmark#new"
+
+  # get "bookmark/:id/delete" => "bookmark#destroy"
+
+  # get "bookmark/:name/search" => "bookmark#search"
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

@@ -1,0 +1,38 @@
+<h2>Welcome <%= session[:username] %> </h2>
+
+<div class="messages-wrapper">
+    <% flash.each do |name, msg| %>
+      <%= content_tag :div, msg, :id => "flash_#{name}" %>
+    <% end %>
+    <%= yield %>
+</div>
+
+
+<p />
+<div class="main-wrapper">
+
+ <% 
+  @bookmarks.each do |b|
+     tags=[] 
+     b.tags.each do |t| 
+       tags << t.name
+     end
+ %>
+ <div class="bookmark-wrapper">
+  <div class="bookmark-title"><a href="<%= b.url %>"><%= b.title %></a></div>
+  <div class="bookmark-desc">
+    <%= b.desc %>
+  </div>
+  <div class="bookmark-details">
+    <span class="created">Created on: <%= nice_date_form(b.created_at) %></span>
+      <span class="bookmark-tags"><span class=tag-name>Tags: </span>
+        <%= tags.join(', ') %>
+      </span>
+    </span>
+  </div>
+ </div>
+ <% 
+   end
+ %>
+
+</div>

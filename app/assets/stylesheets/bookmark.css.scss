@@ -1,3 +1,80 @@
 // Place all the styles related to the Bookmark controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+$base-font-size:   16px;                                                                                                                    
+$base-line-height: 24px;                                                                                                                    
+                                                                                                                                            
+$h1-font-size: 2    * $base-font-size;                                                                                                      
+$h2-font-size: 1.5  * $base-font-size;                                                                                                      
+$h3-font-size: 1.17 * $base-font-size;                                                                                                      
+$h4-font-size: 1    * $base-font-size;                                                                                                      
+$h5-font-size: 0.83 * $base-font-size;                                                                                                      
+$h6-font-size: 0.75 * $base-font-size;
+
+$times-new-roman: "Times New Roman", Times, Georgia, "DejaVu Serif", serif;
+$times:           Times, "Times New Roman", Georgia, "DejaVu Serif", serif;                                                                 
+$georgia:         Georgia, "Times New Roman", "DejaVu Serif", serif;                                                            
+$verdana:         Verdana, Tahoma, "DejaVu Sans", sans-serif;                                                                               
+$tahoma:          Tahoma, Verdana, "DejaVu Sans", sans-serif;                                                                               
+$helvetica:       Helvetica, Arial, "Nimbus Sans L", sans-serif;                                                                            
+$arial:           Arial, Helvetica, "Nimbus Sans L", sans-serif;                                                                            
+$lucinda:         "Lucida Grande","DejaVu Sans","Bitstream Vera Sans",Verdana,Arial,sans-serif;                                             
+$neue:            "Helvetica Neue",Helvetica,Arial,sans-serif;   
+$header-color: #300A24;
+$border-color: adjust_hue($header-color, -10);
+
+$main-color: #efefef;
+h1, h2, h3, h4 {                                                                                                                            
+  font-family: $neue;
+}                                                                                                                                           
+body, caption, th, td, input, textarea, select, option, legend, fieldset {                                                                  
+  font-family: $arial;
+}                                                                                                                                           
+    
+.bookmark-wrapper {
+   padding-bottom: 1em;
+   border-bottom: 1px #777 dashed;
+   .bookmark-title {
+      font-size: $h3-font-size;
+   }
+   .bookmark-details {
+      font-size: $h5-font-size;
+   }
+   .bookmark-desc {
+      font-size: $h5-font-size;
+   }
+}
+
+body {
+   $font-family: $helvetica;
+   font-size: $base-font-size;
+   margin: 0 0 0 0;
+   background: $main-color;
+   margin-top: 0px;
+}
+.site-header {
+   color: white;
+   margin-top: 0px;
+   border: 1px $border-color solid;
+   margin: 0 0 0 0;
+   background: $header-color;
+   #logo {
+      padding: 10px 10px 10px 10px;
+      float: left;
+   }
+}
+.main-content {
+   width: 70%;
+   background: #eee;
+   padding: 1em;
+   margin-left: 2em;
+   margin-right: 2em;
+   header {
+      p {
+         font-family: $neue;
+         font-size: $h1-font-size;
+      }
+   }
+}

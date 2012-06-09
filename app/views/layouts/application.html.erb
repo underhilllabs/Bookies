@@ -2,13 +2,18 @@
 <html>
 <head>
   <title>Bookies</title>
-  <%= stylesheet_link_tag    "application", :media => "all" %>
-  <%= javascript_include_tag "application" %>
-  <%= csrf_meta_tags %>
+  <%= render :partial => 'shared/includes' %>
 </head>
 <body>
+<div class="site-header">
+  <span id="logo"><img src="http://bookmarks.denvertech.org/crows.jpg"></span>
+  <span id="sitename"><h2>Bookmarks</h2></span>
+  <br clear=all />
+</div>
+<div class="main-content">
 
 <%= yield %>
 
+</div>
 </body>
 </html>

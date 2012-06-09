@@ -2,6 +2,15 @@ class UsersController < ApplicationController
 
   respond_to :html, :json
 
+  #before_filter :check_authentication
+  def check_authentication
+    unless session[:user_id]
+      session[:intended_action] = action_name
+      session[:intended_controller] = controller_name
+      redirect_to new_session_url
+    end
+  end
+
   # GET /users
   # GET /users.xml
   def index
@@ -15,7 +24,9 @@ class UsersController < ApplicationController
 
   # GET /user/login
   def login
-    
+    respond_to do |format|
+      format.html { redirect_to(users_url) }
+    end    
   end
 
   # GET /users/new
@@ -30,19 +41,15 @@ class UsersController < ApplicationController
   end
 
 
-  # POST /user
-  # POST /user.xml
+  # POST /users
+  # POST /users.xml
   def create
     @user = User.new(params[:user])
-
-    respond_to do |format|
-      if @user.save
-        format.html { redirect_to(@user, :notice => 'User was successfully created.') }
-        format.xml  { render :xml => @user, :status => :created, :location => @user }
-      else
-        format.html { render :action => "new", :notice => 'User save unsuccessful, please tryu again.' }
-        format.xml  { render :xml => @user.errors, :status => :unprocessable_entity }
-      end
+    
+    if @user.save
+      redirect_to root_url, :notice => 'Successfully signed up!'
+    else
+      render "new"
     end
   end
 

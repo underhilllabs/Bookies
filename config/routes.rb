@@ -3,8 +3,13 @@ Bookies::Application.routes.draw do
   root :to => 'bookmarks#index'
 
   # resources creates CRUD routes for these models
-  resources :users, :bookmarks, :tags
+  resources :users, :bookmarks, :tags, :sessions
 
+  get "logout" => "sessions#destroy", :as => "logout"
+  get "login" => "sessions#new", :as => "login"
+  get "signup" => "users#new", :as => "signup"
+
+  get "my_bookmarks" => "bookmarks#user_bookmarks", :as => "my_bookmarks"
   # get "tag/:id" => "tag#show"
 
   # # 1. returns a form with a single textfield labeled "new name" 
@@ -17,10 +22,13 @@ Bookies::Application.routes.draw do
 
   # get "tag/:name/search" => "tag#search"
 
-  # get "user/login" => "user#login"
+  # get "user/login" => "users#login"
 
   # # return an html form for a new user
-  # get "user/register" => "user#new"
+  # get "user/register" => "users#new"
+
+  # get "user/logout" => "users#logout"
+
 
   # post "users" => "user#create"
 

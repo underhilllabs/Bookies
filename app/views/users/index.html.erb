@@ -2,6 +2,7 @@
 <% @users.each do |u| %> 
 
 <div id="user-div">
+<span><%= image_tag avatar_url(u) %>
 <span><%= u.username %></span>
 <span><%= u.email %></span>
 <span><%= u.fullname %></span>

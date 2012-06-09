@@ -1,4 +1,6 @@
 class BookmarksController < ApplicationController
+  respond_to :html, :json
+
   # GET /bookmarks
   # GET /bookmarks.xml
   def index
@@ -7,6 +9,17 @@ class BookmarksController < ApplicationController
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @bookmarks }
+      format.json  { render :json => @bookmarks }
+    end
+  end
+  
+  def user_bookmarks
+    @bookmarks = Bookmark.find(:all, :conditions => {:user_id => session[:user_id]} )
+
+    respond_to do |format|
+      format.html # user_bookmarks.html.erb
+      format.xml  { render :xml => @bookmarks }
+      format.json  { render :json => @bookmarks }
     end
   end
 
@@ -14,7 +27,7 @@ class BookmarksController < ApplicationController
   # POST /bookmarks.xml
   def create
     @bookmark = Bookmark.new(params[:bookmark])
-
+    
     respond_to do |format|
       if @bookmark.save
         format.html { redirect_to(@bookmark, :notice => 'Bookmark was successfully created.') }

@@ -1,0 +1,12 @@
+<h1>Hello from all the users</h1>
+<% @users.each do |u| %> 
+
+<div id="user-div">
+<span><%= u.username %></span>
+<span><%= u.email %></span>
+<span><%= u.fullname %></span>
+<span><a href="<%=u.id %>/edit">edit</a></span> 
+</div>
+
+
+<% end %>

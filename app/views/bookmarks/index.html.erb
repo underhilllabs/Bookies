@@ -1,0 +1,12 @@
+<h1>Look at all these bookmarks!</h1>
+<%= @bookmarks.each do |b| %> 
+
+<div class="bookmark-wrapper">
+  <div><a href="<%= b.url %>"><%= b.title %></a></div>
+  <div>
+    <span class="created">Created on: <%= b.created %></span>
+    <span>Tags: <%= b.tags.join(', ')  %> </span>
+  </div>
+</div>
+
+<% end %>

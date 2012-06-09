@@ -1,0 +1,138 @@
+
+body {
+  width: 600px;
+  margin: 20px auto;
+  background-color: #333; 
+  color: #333;
+}
+
+body, p, ol, ul, td {
+  font-family: 'Helvetica Neue', Helvetica, sans-serif;
+  font-size:   16px;
+  line-height: 24px;
+  color: white;
+}
+
+a { 
+  color: #ccc;
+  border-bottom: 1px solid #888;
+  text-decoration: none;
+}
+a:visited { color: #999; }
+a:hover { color: #fff; }
+
+a.icon {
+  opacity: 0.4;
+  border-bottom: none;
+}
+
+a.icon:hover {
+  opacity: 1.0;
+  background-color: transparent;
+}
+
+a.icon img {
+  border: none;
+}
+
+header p {
+  padding-left: 6px;
+  color: #eee;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-size: 16px;
+  font-weight: normal;
+}
+h1 {
+  color: #ffc;
+  font-size: 32px;
+  padding-left: 6px;
+}
+
+label {
+  color: #ccc;
+}
+
+.odd {
+  background-color: #373737;
+}
+
+.project .role {
+  position: relative;
+  border-bottom: 1px solid #666;
+}
+.project .role.first {
+  border-top: 1px solid #666;
+}
+
+.project .role .person-name {
+  font-weight: bold;
+  font-size: 24px;
+  display: block;
+  padding: 6px 0 4px 6px;
+  color: #ccc;
+}
+.project .role .role-title {
+  display: block;
+  color: #999;
+  padding: 0 0 4px 6px;
+}
+.project .role .status-title {
+  text-transform: uppercase;
+  font-size: 10px;
+  font-weight: bold;
+  letter-spacing: 1px;
+  position: absolute;
+  right: 60px;
+  bottom: 2px;
+}
+.project .role .status-title.status_1 { color: #669; }
+.project .role .status-title.status_2 { color: #966; }
+.project .role .status-title.status_3 { color: #969; }
+.project .role .status-title.status_4 { color: #996; }
+
+.project .role .time {
+  position: absolute;
+  font-size: 12px;
+  color: #555;
+  top: 11px;
+  right: 60px;
+}
+
+.project .role a {
+  position: absolute;
+  top: 10px;
+}
+.project .role a.edit {
+  right: 30px;
+}
+.project .role a.destroy {
+  right: 10px;
+}
+
+
+
+.role {
+  display: block;
+}
+
+
+fieldset {
+  border: none;
+}
+
+fieldset legend {
+  font-weight: bold;
+}
+
+p {
+  padding-left: 6px;
+}
+
+p.addlink {
+  text-align: right;
+}
+
+#alert {
+  color: red;
+}

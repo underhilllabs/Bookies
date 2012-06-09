@@ -1,0 +1,9 @@
+<h1>Profile of <%= @user.username %></h1>
+<div id=user-wrapper>
+  <div id=username-wrapper><span class=username>Full Name</spon><span><%= @user.fullname %></span></div>
+  <div id=useremail-wrapper><span class=email>Email</span><span><%= @user.email %></span></div>
+  <div id=userweb-wrapper><span class=userweb>Website</spon><span><a href="<%= @user.website %>">website</a></span></div>
+</div>
+
+<%= link_to 'Edit', edit_user_path(@user) %> |
+<%= link_to 'Back', users_path %>

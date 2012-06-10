@@ -40,3 +40,5 @@ gem 'bcrypt-ruby', '~> 3.0.0'
 
 # Gemfile for Rails 3, Sinatra, and Merb
 gem 'will_paginate', '~> 3.0'
+
+gem 'bourbon'

@@ -1,4 +1,6 @@
 class TagsController < ApplicationController
+  respond_to :html, :json
+
   def index
     @tags = Tag.all
 
@@ -9,8 +11,10 @@ class TagsController < ApplicationController
   end
   
   def bookmarks
-    t = Tag.find(:all, :id => params[:tag])
-    @bookmarks = t.bookmark
+    tag = Tag.find(params[:id])
+    @bookmarks = Tag.find_all_by_name(tag.name).map(&:bookmark)
+       
+    respond_with @bookmarks
   end
 
   # GET /tags/1

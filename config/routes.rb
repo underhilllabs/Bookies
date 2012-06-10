@@ -10,6 +10,7 @@ Bookies::Application.routes.draw do
   get "signup" => "users#new", :as => "signup"
 
   get "my_bookmarks" => "bookmarks#user_bookmarks", :as => "my_bookmarks"
+
   # get "tag/:id" => "tag#show"
 
   # # 1. returns a form with a single textfield labeled "new name" 

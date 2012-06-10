@@ -1,6 +1,27 @@
 class BookmarksController < ApplicationController
   respond_to :html, :json
 
+  def update
+    @bookmark = Bookmark.find(params[:id])
+    # ts = []
+    # tags = []
+    # # split tags parameter and create a new Tag for each
+    # ts = params[:bookmark][:tags].split(',')
+    # ts.each do |t| 
+    #   unless t.nil?
+    #     tags << Tag.new(:name => t.strip) 
+    #   end
+    # end
+    
+
+  end
+
+  def show
+    @bookmark = Bookmark.find(params[:id])
+    
+    respond_with @bookmark
+  end
+
   # GET /bookmarks
   # GET /bookmarks.xml
   def index
@@ -26,10 +47,23 @@ class BookmarksController < ApplicationController
   # POST /bookmarks
   # POST /bookmarks.xml
   def create
-    @bookmark = Bookmark.new(params[:bookmark])
+    ts = []
+    tags = []
+    # split tags parameter and create a new Tag for each
+    ts = params[:bookmark][:tags].split(',')
+    ts.each do |t| 
+      unless t.nil?
+        tags << Tag.new(:name => t.strip) 
+      end
+    end
+
+    @bookmark = Bookmark.new(:url => params[:bookmark][:url], :title => params[:bookmark][:title], :desc => params[:bookmark][:desc],
+                             :private => params[:bookmark][:private])
     
     respond_to do |format|
       if @bookmark.save
+        # add bookmark id to each tag we created
+        tags.each { |t| t.bookmark_id = @bookmark.id; t.save}
         format.html { redirect_to(@bookmark, :notice => 'Bookmark was successfully created.') }
         format.xml  { render :xml => @bookmark, :status => :created, :location => @bookmark }
       else
@@ -45,16 +79,13 @@ class BookmarksController < ApplicationController
     @bookmark = Bookmark.find(params[:id])
     @bookmark.destroy
 
-    respond_to do |format|
-      format.html { redirect_to(bookmarks_url) }
-      format.xml  { head :ok }
-    end
+    redirect_to root_url, :notice => "#{@bookmark.title} was deleted!"
   end
 
   # GET /bookmarks/new
   # GET /bookmarks/new.xml
   def new
-    @bookmark = Bookmark.new
+    @bookmark = Bookmark.new(:tags => [Tag.new])
 
     respond_to do |format|
       format.html # new.html.erb
@@ -70,5 +101,9 @@ class BookmarksController < ApplicationController
       format.html # new.html.erb
       format.xml  { render :xml => @bookmark }
     end
+  end
+  
+  def edit
+    @bookmark = Bookmark.find(params[:id])
   end
 end

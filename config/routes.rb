@@ -57,7 +57,7 @@ Bookies::Application.routes.draw do
 
   # get "bookmark/:id/edit" => "bookmark#new"
 
-  # get "bookmark/:id/delete" => "bookmark#destroy"
+  get "bookmarks/:id/delete" => "bookmarks#destroy"
 
   # get "bookmark/:name/search" => "bookmark#search"
 

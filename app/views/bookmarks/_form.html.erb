@@ -13,10 +13,12 @@
     <%= f.label :desc %><br />
     <%= f.text_field :desc %>
   </div>
-  <div class="field">
+  
+  <div class="field_tags">
     <%= f.label :tags %><br />
-    <%= f.text_field :tags %>
+    <%= f.text_field :tags, :value => @bookmark.tags.join(", ") %>
   </div>
+  
   <div class="field">
     <%= f.label :private %><br />
     <%= f.check_box :private %>

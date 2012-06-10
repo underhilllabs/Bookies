@@ -28,8 +28,8 @@
   <div class="bookmark-details">
     <span class="bookmark-created"><%= nice_date_form(b.created_at) %></span>
       <span class="bookmark-ops">
-        <span class="bookmark-edit"><a href="">Edit</a></span>
-        <span class="bookmark-delete"><a href="">Delete</a></span>
+        <span class="bookmark-edit"> <%= link_to "Edit", edit_bookmark_path(b) %> </span>
+        <span class="bookmark-delete"><a href="/bookmarks/<%= b.id %>/delete">Delete</a></span>
       </span>
     </span>
   </div>

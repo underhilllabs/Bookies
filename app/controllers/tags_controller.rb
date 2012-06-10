@@ -7,6 +7,11 @@ class TagsController < ApplicationController
       format.xml  { render :xml => @tags }
     end
   end
+  
+  def bookmarks
+    t = Tag.find(:all, :id => params[:tag])
+    @bookmarks = t.bookmark
+  end
 
   # GET /tags/1
   # GET /tags1.xml

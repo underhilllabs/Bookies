@@ -39,15 +39,25 @@ body {
    margin: 0px 0px 0px 0px;
 }
 .site-header {
+   /* span { */
+   /*    border: 1px orange dotted; */
+   /* } */
    /* @include linear-gradient(50deg, $header-bgcolor, lighten($header-bgcolor,20%)); */
    color: darken($header-color, 20%);
-   margin-top: -5px;
+   /* margin-top: -5px; */
    border: 1px $border-color solid;
    margin: 0 0 0 0;
    /* background: $header-bgcolor; */
    #logo {
-      padding: 10px 10px 10px 10px;
-      float: left;
+      padding: 20px 10px 10px 10px;
+      /* float: left; */
+   }
+   #sitename {
+      font-size: $h1-font-size;
+      /* float: left; */
+   }
+   #user-info {
+      padding: 20px 10px 10px 10px;
    }
    a {
       text-decoration: none;

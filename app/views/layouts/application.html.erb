@@ -7,7 +7,14 @@
 <body>
 <div class="site-header">
   <span id="logo"><a href=/><img src="http://bookmarks.denvertech.org/crows.jpg"></a></span>
-  <span id="sitename"><h1><a href=/>Bookmarks</a></h1></span>
+  <span id="sitename"><a href=/>Bookmarks</a></span>
+  <span id="user-info">
+    <% if session[:user_id] %>
+    Logged in as <%= session[:username] %>
+    <% else %>
+    <a href="/login">Log in</a> or <a href="/register">Register an Account</a>
+    <% end %>
+         
   <br clear=all />
 </div>
 <div class=navbar>

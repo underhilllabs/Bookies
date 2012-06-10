@@ -1,7 +1,7 @@
 // Place all the styles related to the Bookmark controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
-
+@import "bourbon";
 
 $base-font-size:   16px;                                                                                                                    
 $base-line-height: 24px;                                                                                                                    
@@ -23,9 +23,39 @@ $arial:           Arial, Helvetica, "Nimbus Sans L", sans-serif;
 $lucinda:         "Lucida Grande","DejaVu Sans","Bitstream Vera Sans",Verdana,Arial,sans-serif;                                             
 $neue:            "Helvetica Neue",Helvetica,Arial,sans-serif;   
 $header-color: #300A24;
+$header-bgcolor: darken(#f4ff6f,40%);
+$header-color: adjust_hue($header-bgcolor, -180);
 $border-color: adjust_hue($header-color, -10);
 
+
 $main-color: #efefef;
+
+body {
+   $font-family: $helvetica;
+   font-size: $base-font-size;
+   margin: 0 0 0 0;
+   background: $main-color;
+   margin-top: 0px;
+   margin: 0px 0px 0px 0px;
+}
+.site-header {
+   /* @include linear-gradient(50deg, $header-bgcolor, lighten($header-bgcolor,20%)); */
+   color: darken($header-color, 20%);
+   margin-top: -5px;
+   border: 1px $border-color solid;
+   margin: 0 0 0 0;
+   /* background: $header-bgcolor; */
+   #logo {
+      padding: 10px 10px 10px 10px;
+      float: left;
+   }
+   @include linear-gradient(50deg, #1e5799 0%, #2989d8 50%, #207cca 51%, #7db9e8 100%);
+}
+.navbar {
+ background-color: #666;
+ color: white;
+ padding: .3em 0 .3em 3em;
+}
 h1, h2, h3, h4 {                                                                                                                            
   font-family: $neue;
 }                                                                                                                                           
@@ -39,33 +69,29 @@ body, caption, th, td, input, textarea, select, option, legend, fieldset {
    .bookmark-title {
       font-size: $h3-font-size;
    }
+   .bookmark-tags {
+      font-size: $h5-font-size;
+   }
    .bookmark-details {
       font-size: $h5-font-size;
    }
    .bookmark-desc {
       font-size: $h5-font-size;
    }
-}
-
-body {
-   $font-family: $helvetica;
-   font-size: $base-font-size;
-   margin: 0 0 0 0;
-   background: $main-color;
-   margin-top: 0px;
-}
-.site-header {
-   color: white;
-   margin-top: 0px;
-   border: 1px $border-color solid;
-   margin: 0 0 0 0;
-   background: $header-color;
-   #logo {
-      padding: 10px 10px 10px 10px;
-      float: left;
+   .bookmark-ops {
+      a {
+         padding-left: 0.7em;
+         color: #555;
+         text-decoration: none;
+         &:hover {
+            text-decoration: underline;
+         }
+      }
    }
 }
+
 .main-content {
+   margin-top: 1em;
    width: 70%;
    background: #eee;
    padding: 1em;

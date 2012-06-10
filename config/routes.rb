@@ -5,8 +5,10 @@ Bookies::Application.routes.draw do
   # resources creates CRUD routes for these models
   resources :users, :bookmarks, :tags, :sessions
 
+
   get "logout" => "sessions#destroy", :as => "logout"
   get "login" => "sessions#new", :as => "login"
+  get "register" => "users#new", :as => "register"
   get "signup" => "users#new", :as => "signup"
 
   get "my_bookmarks" => "bookmarks#user_bookmarks", :as => "my_bookmarks"

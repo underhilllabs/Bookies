@@ -52,7 +52,17 @@
 <div class=row>
   <div class="span9"><%= yield %></div>
   <div class="span3 aside">
-    About: <%= session[:username] %>
+
+
+    <% if session[:username].nil? %>
+        Hi, Newby!
+    <% elsif @user.nil? %>
+        About: <%= session[:username] %>
+        <div class=user-pic><%= image_tag avatar_url_from_id(session[:user_id]) %></div>
+    <% else %>
+      About: <%= @user.username %>
+      <div class=user-pic><%= image_tag avatar_url(@user) %></div>
+    <% end %>
   </div>
 </div>
 

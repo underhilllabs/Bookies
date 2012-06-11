@@ -1,11 +1,25 @@
 <h1>Profile of <%= @user.username %></h1>
 <div id=user-wrapper>
   <div id=userpic-wrapper><span><%= image_tag avatar_url(@user) %></span></div>
-  <div id=username-wrapper><span class=username>Full Name</spon><span><%= @user.fullname %></span></div>
-  <div id=useremail-wrapper><span class=email>Email</span><span><%= @user.email %></span></div>
-  <div id=userweb-wrapper><span class=userweb>Website</spon><span><a href="<%= @user.website %>">website</a></span></div>
+  <div id=username-wrapper><span class=username>Full Name: </spon><span><%= @user.fullname %></span></div>
+  <div id=view-bookmarks><span class="profile-fullname"><a href="/bookmarks/user/<%= @user.id %>">View bookmarks</a></span></div>
+  <div id=userweb-wrapper><span class=userweb>Primary website: </spon><span><a href="<%= @user.website %>">website</a></span></div>
 </div>
+<p />
+<hr />
+<p />
+
+
+
+<h2>Recent Public Bookmarks</h2>
+<% @user.bookmarks.first(10).each do |b| %>
+  <a href="b.url"><%= b.title %></a><br />
+
+<% end %>
 <% if @user.id == session[:user_id] %>
   <%= link_to 'Edit', edit_user_path(@user) %> |
 <% end %>
+<p />
+<hr />
+<p />
 <%= link_to 'Back', users_path %>

@@ -2,10 +2,10 @@
 <% @users.each do |u| %> 
 
 <div id="user-div">
-<span><%= image_tag avatar_url(u) %>
-<span><%= u.username %></span>
-<span><%= u.email %></span>
-<span><%= u.fullname %></span>
+<span class="profile-avatar"><a href="/users/<%= u.id %>"><%= image_tag avatar_url(u) %></a></span>
+<span class="profile-username"><a href="/users/<%= u.id %>"><%= u.username %></a></span>
+<span class="profile-fullname"><%= u.fullname %></span>
+<span class="profile-fullname"><a href="/bookmarks/user/<%= u.id %>">View bookmarks</a></span>
 <% if u.id == session[:user_id] %>
   <span><a href="/users/<%= u.id %>/edit">edit</a></span> 
 <% end %>

@@ -1,4 +1,4 @@
-<h2>Welcome <%= session[:username] %> </h2>
+<h2>Welcome <%= session[:username] ? session[:username] : "Visitor" %> </h2>
 
 <div class="messages-wrapper">
     <% flash.each do |name, msg| %>

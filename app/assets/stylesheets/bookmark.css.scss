@@ -89,6 +89,9 @@ body, caption, th, td, input, textarea, select, option, legend, fieldset {
    }
    .bookmark-tags {
       font-size: $h5-font-size;
+      a {
+         color: #CC4900;
+      }
    }
    .bookmark-details {
       font-size: $h5-font-size;

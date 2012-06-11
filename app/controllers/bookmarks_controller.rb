@@ -40,8 +40,12 @@ class BookmarksController < ApplicationController
 
   def user
     @user = User.find(params[:id])
-    @bookmarks = Bookmark.where(:user_id => params[:id]).page(params[:page]).per_page(10)
-
+    # FIXME TODO
+    if session[:user_id] == params[:id] 
+      @bookmarks = Bookmark.where(:user_id => params[:id]).page(params[:page]).per_page(10)
+    else
+      @bookmarks = Bookmark.where(:user_id => params[:id]).where(:private => false).page(params[:page]).per_page(10)
+    end
     respond_with @bookmarks
   end
 

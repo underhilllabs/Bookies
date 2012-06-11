@@ -25,19 +25,29 @@
 
     <% end %>
   </div>
-  <div class="bookmark-details">
+
+  <div class="bookmark-details"> 
     <span class="bookmark-created"><%= nice_date_form(b.created_at) %></span>
+  <% if session[:user_id] == b.user_id %>
       <span class="bookmark-ops">
         <span class="bookmark-edit"> <%= link_to "Edit", edit_bookmark_path(b) %> </span>
         <span class="bookmark-delete"><a href="/bookmarks/<%= b.id %>/delete">Delete</a></span>
       </span>
     </span>
+  <% end %>
   </div>
+
  </div>
  <% 
    end
  %>
 
- <%= will_paginate @bookmarks %>
+<div class="flickr_pagination">
+  <div clas="page_info">
+    <%= page_entries_info @posts %>
+  </div>
+  <%= will_paginate @posts, :container => false %>
+</div>
+
 
 </div>

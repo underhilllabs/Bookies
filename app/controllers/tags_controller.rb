@@ -2,14 +2,27 @@ class TagsController < ApplicationController
   respond_to :html, :json
 
   def index
-    @tags = Tag.all
-
-    respond_to do |format|
-      format.html # index.html.erb
-      format.xml  { render :xml => @tags }
-    end
+    # @tags = Tag.all
+    # select name, count(1) from tags GROUP BY name;
+    @tags = Tag.count(:all, :group => 'name', :order => 'count_all DESC')
+    respond_with @tags
   end
-  
+
+  def user
+    # @tags = Tag.all
+    # select name, count(1) from tags GROUP BY name;
+    @user = User.find(params[:id])
+    @tags = Tag.where(:user_id => params[:id]).count(:all, :group => 'name', :order => 'count_all DESC')
+    respond_with @tags
+  end
+
+
+  def name
+    @bookmarks = Tag.find_all_by_name(params[:name]).map(&:bookmark)
+    @name = params[:name]
+    respond_with @bookmarks
+  end
+
   def bookmarks
     tag = Tag.find(params[:id])
     @bookmarks = Tag.find_all_by_name(tag.name).map(&:bookmark)

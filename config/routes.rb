@@ -17,6 +17,10 @@ Bookies::Application.routes.draw do
 
   # show stream of bookmarks for specific tag
   get "tags/:id/bookmarks" => "tags#bookmarks"
+  get "tags/name/:name" => "tags#name"
+  get "tags/user/:id" => "tags#user"
+
+  get "bookmarks/user/:id" => "bookmarks#user"
 
   # # 1. returns a form with a single textfield labeled "new name" 
   # get "tag/:id/rename" => "tag#rename"

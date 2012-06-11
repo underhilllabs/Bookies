@@ -18,14 +18,14 @@ class TagsController < ApplicationController
 
 
   def name
-    @bookmarks = Tag.find_all_by_name(params[:name]).map(&:bookmark)
+    @bookmarks = Tag.where("name = ?",params[:name]).order("updated_at DESC").page(params[:page]).per_page(30).map(&:bookmark)
     @name = params[:name]
     respond_with @bookmarks
   end
 
   def bookmarks
     tag = Tag.find(params[:id])
-    @bookmarks = Tag.find_all_by_name(tag.name).map(&:bookmark)
+    @bookmarks = Tag.find_all_by_name(tag.name).map(&:bookmark).order("updated_at DESC")
        
     respond_with @bookmarks
   end

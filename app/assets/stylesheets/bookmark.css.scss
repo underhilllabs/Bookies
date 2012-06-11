@@ -68,11 +68,11 @@ body {
    }
    @include linear-gradient(50deg, #1e5799 0%, #2989d8 50%, #207cca 51%, #7db9e8 100%);
 }
-.navbar {
- background-color: #666;
- color: white;
- padding: .3em 0 .3em 3em;
-}
+/* .navbar { */
+/*  background-color: #666; */
+/*  color: white; */
+/*  padding: .3em 0 .3em 3em; */
+/* } */
 h1, h2, h3, h4 {                                                                                                                            
   font-family: $neue;
 }                                                                                                                                           
@@ -82,6 +82,7 @@ body, caption, th, td, input, textarea, select, option, legend, fieldset {
     
 .bookmark-wrapper {
    padding-bottom: 1em;
+   padding-top: 1em;
    border-bottom: 1px #777 dashed;
    .bookmark-title {
       font-size: $h3-font-size;
@@ -120,4 +121,45 @@ body, caption, th, td, input, textarea, select, option, legend, fieldset {
          font-size: $h1-font-size;
       }
    }
+}
+
+.flickr_pagination {
+   
+   text-align: center;
+   padding: 1.3em;
+   cursor: default;
+   a, span, em {
+      padding: 0.2em 0.5em;
+   }
+   .disabled {
+      color: #aaaaaa;
+   }
+   .current {
+      font-style: normal;
+      font-weight: bold;
+      color: #ff0084;
+   }
+   a {
+      border: 1px solid #dddddd;
+      color: #0063dc;
+      text-decoration: none;
+      &:hover, &:focus {
+         border-color: #003366;
+         background: #0063dc;
+         color: white;
+      }
+   }
+   .page_info {
+      color: #aaaaaa;
+      padding-top: 0.8em;
+   }
+   .previous_page, .next_page {
+    border-width: 2px;
+   }
+  .previous_page {
+     margin-right: 1em;
+  }
+  .next_page {
+     margin-left: 1em;
+  }
 }

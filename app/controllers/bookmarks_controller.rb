@@ -10,7 +10,6 @@ class BookmarksController < ApplicationController
     # remove whitespace
     tag_s.map!(&:strip)
     # for each tag, if there isn't a tag that is associated with bookmark, then create it.
-    # TODO need to loop thru and remove tags that are not in this list
     tag_s.each do |t| 
       unless t.nil?
         tag = Tag.where("name = ?", t).where("bookmark_id = ?", params[:id]).first
@@ -24,16 +23,12 @@ class BookmarksController < ApplicationController
         end
       end
     end
-    
-    # @bookmark = Bookmark.new(
-    # @bookmark = Bookmark.update_attributes(params[:bookmark])
-    
 
-
-    if @bookmark.update_attributes(:url => params[:bookmark][:url], :title => params[:bookmark][:title], :desc => params[:bookmark][:desc], :private => params[:bookmark][:private])
+    if @bookmark.update_attributes(:url => params[:bookmark][:url], :title => params[:bookmark][:title], 
+                                   :desc => params[:bookmark][:desc], :private => params[:bookmark][:private])
       tags.each {|t| t.bookmark_id = @bookmark.id }
       # now delete tags not passed in
-      t_missing = Tag.where("name not in (?)", tag_s)
+      t_missing = Tag.where("bookmark_id = ?", @bookmark.id).where("name not in (?)", tag_s)
       Tag.destroy(t_missing.map(&:id))
       
       flash[:notice] = "Bookmark was successfully updated."
@@ -41,6 +36,15 @@ class BookmarksController < ApplicationController
 
     respond_with @bookmark
   end
+
+
+  def user
+    @user = User.find(params[:id])
+    @bookmarks = Bookmark.where(:user_id => params[:id]).page(params[:page]).per_page(10)
+
+    respond_with @bookmarks
+  end
+
 
   def show
     @bookmark = Bookmark.find(params[:id])
@@ -51,13 +55,9 @@ class BookmarksController < ApplicationController
   # GET /bookmarks
   # GET /bookmarks.xml
   def index
-    @bookmarks = Bookmark.all
+    @bookmarks = Bookmark.order("updated_at DESC").page(params[:page]).per_page(10)
 
-    respond_to do |format|
-      format.html # index.html.erb
-      format.xml  { render :xml => @bookmarks }
-      format.json  { render :json => @bookmarks }
-    end
+    respond_with @bookmarks
   end
   
   def user_bookmarks

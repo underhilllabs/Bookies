@@ -5,6 +5,7 @@
   <div id=useremail-wrapper><span class=email>Email</span><span><%= @user.email %></span></div>
   <div id=userweb-wrapper><span class=userweb>Website</spon><span><a href="<%= @user.website %>">website</a></span></div>
 </div>
-
-<%= link_to 'Edit', edit_user_path(@user) %> |
+<% if @user.id == session[:user_id] %>
+  <%= link_to 'Edit', edit_user_path(@user) %> |
+<% end %>
 <%= link_to 'Back', users_path %>

@@ -6,7 +6,9 @@
 <span><%= u.username %></span>
 <span><%= u.email %></span>
 <span><%= u.fullname %></span>
-<span><a href="/users/<%= u.id %>/edit">edit</a></span> 
+<% if u.id == session[:user_id] %>
+  <span><a href="/users/<%= u.id %>/edit">edit</a></span> 
+<% end %>
 </div>
 
 

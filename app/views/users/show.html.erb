@@ -16,10 +16,10 @@
   <a href="b.url"><%= b.title %></a><br />
 
 <% end %>
-<% if @user.id == session[:user_id] %>
-  <%= link_to 'Edit', edit_user_path(@user) %> |
-<% end %>
 <p />
 <hr />
 <p />
+<% if @user.id == session[:user_id] %>
+  <%= link_to 'Edit', edit_user_path(@user) %> |
+<% end %>
 <%= link_to 'Back', users_path %>

@@ -42,7 +42,7 @@ gem 'capistrano'
 # Gemfile for Rails 3, Sinatra, and Merb
 gem 'will_paginate', '~> 3.0'
 
-gem 'bourbon'
+# gem 'bourbon'
 
 # gem 'rspec-rails', :group => [:test, :development]
 

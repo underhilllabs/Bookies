@@ -1,7 +1,6 @@
 // Place all the styles related to the Bookmark controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
-@import "bourbon";
 
 $base-font-size:   16px;                                                                                                                    
 $base-line-height: 24px;                                                                                                                    
@@ -39,22 +38,14 @@ body {
    margin: 0px 0px 0px 0px;
 }
 .site-header {
-   /* span { */
-   /*    border: 1px orange dotted; */
-   /* } */
-   /* @include linear-gradient(50deg, $header-bgcolor, lighten($header-bgcolor,20%)); */
-   color: darken($header-color, 20%);
-   /* margin-top: -5px; */
+  color: darken($header-color, 20%);
    border: 1px $border-color solid;
    margin: 0 0 0 0;
-   /* background: $header-bgcolor; */
    #logo {
       padding: 20px 10px 10px 10px;
-      /* float: left; */
    }
    #sitename {
       font-size: $h1-font-size;
-      /* float: left; */
    }
    #user-info {
       padding: 20px 10px 10px 10px;
@@ -66,13 +57,8 @@ body {
       }
       color: white;
    }
-   @include linear-gradient(50deg, #1e5799 0%, #2989d8 50%, #207cca 51%, #7db9e8 100%);
 }
-/* .navbar { */
-/*  background-color: #666; */
-/*  color: white; */
-/*  padding: .3em 0 .3em 3em; */
-/* } */
+
 h1, h2, h3, h4 {                                                                                                                            
   font-family: $neue;
 }                                                                                                                                           

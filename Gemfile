@@ -44,6 +44,6 @@ gem 'will_paginate', '~> 3.0'
 
 # gem 'bourbon'
 
-# gem 'rspec-rails', :group => [:test, :development]
+gem 'rspec-rails', :group => [:test, :development]
 
 gem 'mysql2'

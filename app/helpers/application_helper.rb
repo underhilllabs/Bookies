@@ -1,17 +1,18 @@
 module ApplicationHelper
-  def avatar_url(user)
+  def avatar_url(user, img_size=80)
     gravatar_id = Digest::MD5::hexdigest(user.email).downcase
-    "http://gravatar.com/avatar/#{gravatar_id}.png?d=monsterid"
+    "http://gravatar.com/avatar/#{gravatar_id}.png?d=monsterid&s=#{img_size}"
   end
   
-  def avatar_url_from_id(user_id)
+  def avatar_url_from_id(user_id, img_size=80)
     if user_id.nil?
       return ""
     end
     @user = User.find(user_id)
     gravatar_id = Digest::MD5::hexdigest(@user.email).downcase
-    "http://gravatar.com/avatar/#{gravatar_id}.png?d=monsterid"
+    "http://gravatar.com/avatar/#{gravatar_id}.png?d=monsterid&s=#{img_size}"
   end
+
 
   def mark_required(object, attribute)
     "*" if object.class.validators_on(attribute).map(&:class).include? ActiveModel::Validations::PresenceValidator

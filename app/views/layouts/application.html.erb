@@ -26,6 +26,7 @@
         </ul>
         <ul class="nav pull-right">
           <% if session[:user_id] %>
+            <li><%= image_tag avatar_url_from_id(session[:user_id], 20) %> <li>
             <li><%= link_to session[:username], users_path %> </li>
             <li><%= link_to "Logout", "/logout" %></li>
           <% else %>
@@ -40,31 +41,21 @@
 </div>
 
 
-<!-- <div class="site-header"> -->
-<!--   <span id="logo"><a href=/><img src="http://bookmarks.denvertech.org/crows.jpg"></a></span> -->
-<!--   <span id="sitename"><a href=/>Bookmarks</a></span> -->
-<!--   <span id="user-info"> -->
-         
-<!--   <br clear=all /> -->
-<!-- </div> -->
-<!-- <div class=navbar> -->
-<!-- <span class=bookmarks-nav><%= session[:username] %>'s bookmarks</span> -->
-<!-- </div> -->
 <div class="container">
 <div class=row>
   <div class="span9"><%= yield %></div>
   <div class="span3 aside">
 
 
-    <% if session[:username].nil? %>
-        Hi, Newby!
-    <% elsif @user.nil? %>
-        About: <%= session[:username] %>
-        <div class=user-pic><%= image_tag avatar_url_from_id(session[:user_id]) %></div>
-    <% else %>
-      About: <%= @user.username %>
-      <div class=user-pic><%= image_tag avatar_url(@user) %></div>
-    <% end %>
+    <!-- <% if session[:username].nil? %> -->
+    <!--     Hi, Newby! -->
+    <!-- <% elsif @user.nil? %> -->
+    <!--     About: <%= session[:username] %> -->
+    <!--     <div class=user-pic><%= image_tag avatar_url_from_id(session[:user_id]) %></div> -->
+    <!-- <% else %> -->
+    <!--   About: <%= @user.username %> -->
+    <!--   <div class=user-pic><%= image_tag avatar_url(@user) %></div> -->
+    <!-- <% end %> -->
   </div>
 </div>
 

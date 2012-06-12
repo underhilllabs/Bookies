@@ -19,7 +19,8 @@ group :assets do
   # gem 'therubyracer', :platform => :ruby
 
   gem 'uglifier', '>= 1.0.3'
-  gem 'twitter-bootstrap-rails'
+  # use 2.0.8 because there is a bug in 2.0.9 and 2.1.0
+  gem 'twitter-bootstrap-rails', '2.0.8'
 end
 
 gem 'jquery-rails'
@@ -44,6 +45,6 @@ gem 'will_paginate', '~> 3.0'
 
 # gem 'bourbon'
 
-gem 'rspec-rails', :group => [:test, :development]
+# gem 'rspec-rails', :group => [:test, :development]
 
 gem 'mysql2'

@@ -16,6 +16,15 @@
   <a href="<%= b.url %>"><%= b.title %></a><br />
 
 <% end %>
+
+<p />
+<hr />
+<p />
+<h2>Popular Tags</h2>
+<% @tags.each do |k,v| %>
+<a href=""><%= "#{k} (#{v})" %></a><br />
+<% end %>
+
 <p />
 <hr />
 <p />
@@ -23,3 +32,4 @@
   <%= link_to 'Edit', edit_user_path(@user) %> |
 <% end %>
 <%= link_to 'Back', users_path %>
+

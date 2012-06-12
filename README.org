@@ -1,13 +1,13 @@
 * Bookies, a social bookmarking app built with Ruby on Rails
 
 ** try it out
-git clone https://github.com/underhilllabs/Bookies.git bookies
-cd bookies
-rake db:reset
-rails server
+1. git clone https://github.com/underhilllabs/Bookies.git bookies
+1. cd bookies
+1. rake db:reset
+1. rails server
 
 ** installation
-git clone https://github.com/underhilllabs/Bookies.git bookies
-(then add the bookies directory to your server configuration).
-+ see also [[http://www.modrails.com/install.html][How to Set up Phusion Passenger]]
+1. git clone https://github.com/underhilllabs/Bookies.git bookies
+1. (then add the bookies directory to your server configuration).
+   + see also [[http://www.modrails.com/install.html][How to Set up Phusion Passenger]]
 

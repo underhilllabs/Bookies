@@ -86,6 +86,7 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+    # FIXME -- This takes a lotta time, may scrap it
     @tags = @user.tags.count(:all, :group => 'name', :order => 'count_all DESC').first(10)
     respond_to do |format|
       format.html #show.html.haml

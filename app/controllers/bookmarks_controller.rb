@@ -88,7 +88,7 @@ class BookmarksController < ApplicationController
     end
 
     @bookmark = Bookmark.new(:url => params[:bookmark][:url], :title => params[:bookmark][:title], :desc => params[:bookmark][:desc],
-                             :private => params[:bookmark][:private])
+                             :private => params[:bookmark][:private], :user_id => params[:bookmark][:user_id])
     
     respond_to do |format|
       if @bookmark.save

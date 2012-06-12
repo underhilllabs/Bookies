@@ -46,4 +46,4 @@ gem 'bourbon'
 
 # gem 'rspec-rails', :group => [:test, :development]
 
-gem 'mysql'
+gem 'mysql2'

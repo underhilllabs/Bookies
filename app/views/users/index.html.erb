@@ -1,7 +1,7 @@
-<h1>Hello from all the users</h1>
+<h1>Users</h1>
 <% @users.each do |u| %> 
 
-<div id="user-div">
+<div class="user-div">
 <span class="profile-avatar"><a href="/users/<%= u.id %>"><%= image_tag avatar_url(u) %></a></span>
 <span class="profile-username"><a href="/users/<%= u.id %>"><%= u.username %></a></span>
 <span class="profile-fullname"><%= u.fullname %></span>

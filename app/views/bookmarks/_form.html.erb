@@ -2,25 +2,25 @@
 
   
   <div class="field">
-    <%= f.label :url %><br />
+    <%= f.label :url %>
     <%= f.text_field :url %>
   </div>
   <div class="field">
-    <%= f.label :title %><br />
+    <%= f.label :title %>
     <%= f.text_field :title %>
   </div>
   <div class="field">
-    <%= f.label :desc %><br />
+    <%= f.label :desc %>
     <%= f.text_field :desc %>
   </div>
   
   <div class="field_tags">
-    <%= f.label :tags %><br />
+    <%= f.label :tags %>
     <%= f.text_field :tags, :value => @bookmark.tags.join(", ") %>
   </div>
   
   <div class="field">
-    <%= f.label :private %><br />
+    <%= f.label :private %>
     <%= f.check_box :private %>
   </div>
   

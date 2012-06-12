@@ -13,7 +13,7 @@
 
 <h2>Recent Public Bookmarks</h2>
 <% @user.bookmarks.first(10).each do |b| %>
-  <a href="b.url"><%= b.title %></a><br />
+  <a href="<%= b.url %>"><%= b.title %></a><br />
 
 <% end %>
 <p />

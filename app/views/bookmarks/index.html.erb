@@ -28,7 +28,13 @@
     <% end %>
   </div>
   <div class="bookmark-details">
-    <span class="bookmark-created"><%= nice_date_form(b.created_at) %></span>
+    <% if b.updated_at != b.created_at %>
+      <span class="bookmark-updated">Updated: <%= nice_date_form(b.updated_at) %></span>
+      <span class="bookmark-created">Created: <%= nice_date_form(b.created_at) %></span>    
+    <% else %>
+      <span class="bookmark-created"><%= nice_date_form(b.created_at) %></span>
+    <% end %>
+
     <% if b.user_id == session[:user_id] %>
       <span class="bookmark-ops">
         <span class="bookmark-edit"> <%= link_to "Edit", edit_bookmark_path(b) %> </span>

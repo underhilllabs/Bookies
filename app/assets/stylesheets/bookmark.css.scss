@@ -94,6 +94,10 @@ body, caption, th, td, input, textarea, select, option, legend, fieldset {
          color: #CC4900;
       }
    }
+   .bookmark-updated {
+      background-color: #eee;
+      padding: 0.2em 0.4em 0.2em 0.4em;
+   }
    .bookmark-details {
       font-size: $h5-font-size;
    }

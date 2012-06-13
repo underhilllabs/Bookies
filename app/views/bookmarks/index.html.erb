@@ -16,7 +16,7 @@
     # this will make the number of bookmarks on page less than expected amount
     next if b.private == true and b.user_id != session[:user_id]
  %>
- <div class="bookmark-wrapper">
+ <div class="bookmark-wrapper<%= b.private ? " private" :"" %>">
   <div class="bookmark-title"><a href="<%= b.url %>"><%= b.title %></a></div>
   <div class="bookmark-desc">
     <%= b.desc %>

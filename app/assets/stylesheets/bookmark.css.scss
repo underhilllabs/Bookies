@@ -44,7 +44,10 @@ h1, h2, h3, h4 {
 body, caption, th, td, input, textarea, select, option, legend, fieldset {                                                                  
   font-family: $arial;
 }                                                                                                                                           
-    
+.private {
+   /* border-left: 2px red solid; */
+   background: #ffdcdc;
+}
 .bookmark-wrapper {
    padding-bottom: 1em;
    padding-top: 1em;
@@ -61,7 +64,7 @@ body, caption, th, td, input, textarea, select, option, legend, fieldset {
    }
    .bookmark-updated {
       background-color: #eee;
-      padding: 0.2em 0.4em 0.2em 0.4em;
+      padding: 0.05em 0.4em 0.2em 0.4em;
    }
    .bookmark-details {
       font-size: $h5-font-size;
@@ -95,6 +98,8 @@ body, caption, th, td, input, textarea, select, option, legend, fieldset {
       }
    }
 }
+
+
 
 .flickr_pagination {
    

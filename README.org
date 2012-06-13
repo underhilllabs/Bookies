@@ -1,13 +1,18 @@
 * Bookies, a social bookmarking app built with Ruby on Rails
 
 ** try it out
+*** Steps to Deploy the Bookies Web Application
 1. git clone https://github.com/underhilllabs/Bookies.git bookies
-1. cd bookies
-1. rake db:reset
-1. rails server
-
-** installation
-1. git clone https://github.com/underhilllabs/Bookies.git bookies
-1. (then add the bookies directory to your server configuration).
-   + see also [[http://www.modrails.com/install.html][How to Set up Phusion Passenger]]
+2. cd bookies
+3. bundle # run bundle to install required gems
+4. cp config/example.database.yml config/database.yml
+# set up your database
+5. vim config/database.yml 
+# if using sqlite3 or postgresql, update the Gemfile with correct gems and run 'bundle' again).
+5.b. vim Gemfile && bundle
+6. rake db:reset
+7. rails g bootstrap:install
+# to compile all of the assets for the assets pipeline.
+8. rake assets:precompile 
+9. rails server 
 

@@ -1,4 +1,13 @@
 <h1><%= @bookmark.title %></h1>
+
+<div class="messages-wrapper">
+    <% flash.each do |name, msg| %>
+      <%= content_tag :div, msg, :id => "flash_#{name}" %>
+    <% end %>
+    <%= yield %>
+</div>
+
+
 <div class=bookmark-desc>
   <a href="<%= @bookmark.url %>"><%= @bookmark.title %></a>
 </div>

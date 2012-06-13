@@ -5,14 +5,11 @@
 1. git clone https://github.com/underhilllabs/Bookies.git bookies
 2. cd bookies
 3. bundle # run bundle to install required gems
-4. cp config/example.database.yml config/database.yml
-# set up your database
-5. vim config/database.yml 
-# if using sqlite3 or postgresql, update the Gemfile with correct gems and run 'bundle' again).
+4. cp config/example.database.yml config/database.yml    # set up your database
+5. vim config/database.yml     # if using sqlite3 or postgresql, update the Gemfile with correct gems and run 'bundle' again).
 5.b. vim Gemfile && bundle
 6. rake db:reset
 7. rails g bootstrap:install
-# to compile all of the assets for the assets pipeline.
-8. rake assets:precompile 
+8. rake assets:precompile # to compile all of the assets for the assets pipeline.
 9. rails server 
 

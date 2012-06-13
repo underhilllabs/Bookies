@@ -1,4 +1,11 @@
 <h1><%= @bookmark.title %></h1>
+<% if params[:close_window] %>
+<script type="text/javascript">
+  $(function() {
+    window.close();
+  });
+</script>
+<% end %>
 
 <div class="messages-wrapper">
     <% flash.each do |name, msg| %>

@@ -94,8 +94,9 @@ class BookmarksController < ApplicationController
       if @bookmark.save
         # add bookmark id to each tag we created
         tags.each { |t| t.bookmark_id = @bookmark.id; t.save}
-        if params[:is_popup] 
-          render "show", :locals => {:close_window => 1}, :flash => "Close the window!"
+        if params[:is_popup]
+          flash[:notice] = "Close the Window!"
+          render "show", :locals => {:close_window => 1}
         end 
         format.html { redirect_to(@bookmark, :notice => 'Bookmark was successfully created.') }
         format.xml  { render :xml => @bookmark, :status => :created, :location => @bookmark }

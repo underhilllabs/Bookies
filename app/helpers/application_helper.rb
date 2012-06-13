@@ -10,7 +10,7 @@ module ApplicationHelper
     end
     @user = User.find(user_id)
     gravatar_id = Digest::MD5::hexdigest(@user.email).downcase
-    "http://gravatar.com/avatar/#{gravatar_id}.png?d=monsterid&s=#{img_size}"
+    "http://gravatar.com/avatar/#{gravatar_id}.png?d=#{APP_CONFIG["gravatar_type"]}&s=#{img_size}"
   end
 
 

@@ -44,10 +44,6 @@ h1, h2, h3, h4 {
 body, caption, th, td, input, textarea, select, option, legend, fieldset {                                                                  
   font-family: $arial;
 }                                                                                                                                           
-.private {
-   /* border-left: 2px red solid; */
-   background: #ffdcdc;
-}
 .bookmark-wrapper {
    padding-bottom: 1em;
    padding-top: 1em;
@@ -81,6 +77,14 @@ body, caption, th, td, input, textarea, select, option, legend, fieldset {
             text-decoration: underline;
          }
       }
+   }
+}
+.private {
+   /* border-left: 2px red solid; */
+   background: #ffdcdc;
+   .bookmark-updated {
+      background-color: #ffdcdc; /**/
+      padding-left: 0px;
    }
 }
 

@@ -123,6 +123,18 @@ class BookmarksController < ApplicationController
     end
   end
 
+  # GET /bookmarks/new
+  # GET /bookmarks/new.xml
+  def bookmarklet
+    @bookmark = Bookmark.new(:tags => [Tag.new])
+
+    respond_to do |format|
+      format.html # bookmarklet.html.erb
+      format.xml  { render :xml => @bookmark }
+    end
+  end
+
+
 
   def search
     @bookmarks = Bookmark.find(:all, "test")

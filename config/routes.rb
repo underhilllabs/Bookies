@@ -21,6 +21,7 @@ Bookies::Application.routes.draw do
   get "tags/user/:id" => "tags#user"
 
   get "bookmarks/user/:id" => "bookmarks#user"
+  get "bookmarklet" => "bookmarks#bookmarklet" 
 
   # # 1. returns a form with a single textfield labeled "new name" 
   # get "tag/:id/rename" => "tag#rename"

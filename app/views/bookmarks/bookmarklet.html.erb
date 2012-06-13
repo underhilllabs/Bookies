@@ -1,17 +1,18 @@
+<h1>New Bookmark</h1>
 <%= form_for(@bookmark) do |f| %>
-
-  
   <div class="field">
     <%= f.label :address %>
-    <%= f.text_field :url %>
+    <%= f.text_field :url, :value => params[:address] %>
   </div>
+ 
   <div class="field">
     <%= f.label :title %>
-    <%= f.text_field :title %>
+    <%= f.text_field :title, :value => params[:title] %>
   </div>
+
   <div class="field">
     <%= f.label :desc %>
-    <%= f.text_field :desc %>
+    <%= f.text_field :desc, :value => params[:description] %>
   </div>
   
   <div class="field_tags">
@@ -24,10 +25,12 @@
     <%= f.check_box :private %>
   </div>
   
-   <%= f.hidden_field :user_id, :value => session[:user_id] %>
-  
+  <%= f.hidden_field :user_id, :value => session[:user_id] %>
 
   <div class="actions">
     <%= f.submit %>
   </div>
 <% end %>
+ 
+
+ 

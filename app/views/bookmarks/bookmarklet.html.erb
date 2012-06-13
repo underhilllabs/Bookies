@@ -25,6 +25,7 @@
     <%= f.check_box :private %>
   </div>
   
+  <%= f=hidden_field :is_popup, :value => 1 %>
   <%= f.hidden_field :user_id, :value => session[:user_id] %>
 
   <div class="actions">

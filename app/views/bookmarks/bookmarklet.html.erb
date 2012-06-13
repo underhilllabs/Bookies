@@ -1,4 +1,9 @@
 <h1>New Bookmark</h1>
+<script type="text/javascript">
+$(function() {
+  $('#bookmark_tags').focus();
+});
+</script>
 <%= form_for(@bookmark) do |f| %>
   <div class="field">
     <%= f.label :address %>

@@ -94,7 +94,7 @@ class BookmarksController < ApplicationController
       if @bookmark.save
         # add bookmark id to each tag we created
         tags.each { |t| t.bookmark_id = @bookmark.id; t.save}
-        if params[:is_popup]
+        if params[:bookmarks][:is_popup]
           flash[:notice] = "Close the Window!"
           render "show", :locals => {:close_window => 1}
         end 

@@ -3,8 +3,12 @@ Bookies::Application.routes.draw do
   root :to => 'bookmarks#index'
 
   # resources creates CRUD routes for these models
-  resources :users, :bookmarks, :tags, :sessions
+  resources :users, :bookmarks, :tags, :sessions, :identities
 
+  # for omniauth
+  match 'auth/:provider/callback', to: 'sessions#create'
+  match 'auth/failure', to: redirect('/')
+  match 'signout', to: 'sessions#destroy', as: 'signout'
 
   get "logout" => "sessions#destroy", :as => "logout"
   get "login" => "sessions#new", :as => "login"

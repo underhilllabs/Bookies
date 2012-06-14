@@ -112,6 +112,10 @@ class BookmarksController < ApplicationController
   def destroy
     @bookmark = Bookmark.find(params[:id])
     @bookmark.destroy
+    # added these 2 lines because tags are not getting deleted!
+    # title = @bookmark.title
+    # Bookmark.destroy(params[:id])
+    # @bookmark.destroy
 
     redirect_to root_url, :notice => "#{@bookmark.title} was deleted!"
   end

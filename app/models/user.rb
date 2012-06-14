@@ -1,6 +1,6 @@
 class User < ActiveRecord::Base
   attr_accessible :desc, :email, :fullname, :password_digest, :pic_url, :username, :website, :website2, :website3, :password, :password_confirmation
-  has_secure_password
+  # has_secure_password
   has_many :bookmarks, :dependent => :destroy
   has_many :tags
   # validates_presence_of :password, :on => :create
@@ -16,7 +16,13 @@ class User < ActiveRecord::Base
       user.provider = auth["provider"]
       user.uid = auth["uid"]
       user.username = auth["info"]["nickname"]
-      user.email = auth["info"]["email"]
+      if user.provider == "twitter"
+        user.email = "fake@fail.edu"
+        user.pic_url = auth["info"]["image"]
+      else 
+        user.email = auth["info"]["email"]
+      end
+
     end
   end
 

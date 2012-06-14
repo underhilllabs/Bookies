@@ -9,8 +9,12 @@ module ApplicationHelper
       return ""
     end
     @user = User.find(user_id)
-    gravatar_id = Digest::MD5::hexdigest(@user.email).downcase
-    "http://gravatar.com/avatar/#{gravatar_id}.png?d=#{APP_CONFIG["gravatar_type"]}&s=#{img_size}"
+    if @user.provider == "twitter" 
+      @user.pic_url
+    else 
+      gravatar_id = Digest::MD5::hexdigest(@user.email).downcase
+      "http://gravatar.com/avatar/#{gravatar_id}.png?d=#{APP_CONFIG["gravatar_type"]}&s=#{img_size}"
+    end
   end
 
 

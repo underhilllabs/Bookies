@@ -34,7 +34,7 @@
     <% else %>
       <span class="bookmark-created"><%= nice_date_form(b.created_at) %></span>
     <% end %>
-
+    <span class="bookmark-owner">by <a href="users/<%= b.user_id %>"><%= b.user.username %></a>
     <% if b.user_id == session[:user_id] %>
       <span class="bookmark-ops">
         <span class="bookmark-edit"> <%= link_to "Edit", edit_bookmark_path(b) %> </span>

@@ -27,7 +27,8 @@
         <ul class="nav pull-right">
           <% if session[:user_id] %>
             <li><%= image_tag(avatar_url_from_id(session[:user_id],20), :size => '20x20') %> <li>
-            <li><%= link_to session[:username], users_path %> </li>
+            <li><a href="/users/<%= session[:user_id]%>"><%= session[:username]
+            %></a> </li>
             <li><%= link_to "Logout", "/logout" %></li>
           <% else %>
             <li><a href="/login">Login</a></li>

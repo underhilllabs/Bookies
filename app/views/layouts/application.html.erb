@@ -19,7 +19,7 @@
         <ul class="nav">
           <% if session[:user_id] %>          
             <li><%= link_to "My Bookmarks", "/bookmarks/user/#{session[:user_id]}" %></li> 
-          <%= end %>
+          <% end %>
           <li><%= link_to "Users", users_path %></li>
           <li><%= link_to "Tags", tags_path %></li>
           <% if session[:user_id] %>          
@@ -29,8 +29,7 @@
         <ul class="nav pull-right">
           <% if session[:user_id] %>
             <li><%= image_tag(avatar_url_from_id(session[:user_id],20), :size => '20x20') %> <li>
-            <li><a href="/users/<%= session[:user_id]%>"><%= session[:username]
-            %></a> </li>
+            <li><a href="/users/<%= session[:user_id]%>"><%= session[:username] %></a> </li>
             <li><%= link_to "Logout", "/logout" %></li>
           <% else %>
             <li><a href="/login">Login with twitter or github</a></li>

@@ -12,8 +12,8 @@
     </div>
   <% end %>
   <div class="field">
-    <%= label_tag :name %><br>
-    <%= text_field_tag :name, @identity.try(:name) %>
+    <%= label_tag :nickname %><br>
+    <%= text_field_tag :nickname, @identity.try(:username) %>
   </div>
   <div class="field">
     <%= label_tag :email %><br>

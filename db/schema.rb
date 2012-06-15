@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120614190610) do
+ActiveRecord::Schema.define(:version => 20120615015810) do
 
   create_table "bookmarks", :force => true do |t|
     t.string   "url"
@@ -31,6 +31,8 @@ ActiveRecord::Schema.define(:version => 20120614190610) do
     t.string   "password_digest"
     t.datetime "created_at",      :null => false
     t.datetime "updated_at",      :null => false
+    t.string   "username"
+    t.string   "nickname"
   end
 
   create_table "tags", :force => true do |t|

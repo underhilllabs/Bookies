@@ -86,9 +86,8 @@ class BookmarksController < ApplicationController
         tags << Tag.new(:name => t.strip) 
       end
     end
-
-    @bookmark = Bookmark.new(:url => params[:bookmark][:url], :title => params[:bookmark][:title], :desc => params[:bookmark][:desc],
-                             :private => params[:bookmark][:private], :user_id => params[:bookmark][:user_id])
+    # use find_or_create
+    @bookmark = Bookmark.find_or_create_by_user_id_and_url(:url => params[:bookmark][:url], :title => params[:bookmark][:title], :desc => params[:bookmark][:desc], :private => params[:bookmark][:private], :user_id => params[:bookmark][:user_id])
     
     respond_to do |format|
       if @bookmark.save

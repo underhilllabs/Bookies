@@ -3,6 +3,7 @@ class User < ActiveRecord::Base
   # has_secure_password
   has_many :bookmarks, :dependent => :destroy
   has_many :tags
+  has_many :followings, :dependent => :destroy 
   # validates_presence_of :password, :on => :create
   validates_presence_of :email, :presence => true, :uniqueness => true, :email_format => true
   validates_presence_of :username

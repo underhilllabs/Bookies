@@ -1,9 +1,16 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Bookies</title>
+  <title>Bookies: Social Bookmarking</title>
   <%= render :partial => 'shared/includes' %>
 </head>
+<script type="text/javascript">
+$(function() {
+  $('form.navbar-search input').focus(function() {
+    $(this).val('');
+  });
+});
+</script>
 <body>
 
 <div class="navbar navbar-fixed-top">
@@ -26,6 +33,9 @@
             <li><%= link_to "Add a Bookmark", "/bookmarks/new" %></li>
           <% end %>
         </ul>
+        <form class="navbar-search pull-left" action="/search/" name=navsearch>
+          <input type="text" class="span2 input-text" name="keywords" value="search">
+        </form>
         <ul class="nav pull-right">
           <% if session[:user_id] %>
             <li><%= image_tag(avatar_url_from_id(session[:user_id],20), :size => '20x20') %> <li>

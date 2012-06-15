@@ -158,4 +158,13 @@ body, caption, th, td, input, textarea, select, option, legend, fieldset {
          /* @include border-radius(3px); */
       }
    }
+   .navbar-search {
+      border: 1px solid #151515;
+      color: white;
+      .input-text {
+         background-color: #626262;
+         border: 1px #151515 solid;
+         color: white;
+      }
+   }
 }

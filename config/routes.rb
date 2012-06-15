@@ -19,6 +19,8 @@ Bookies::Application.routes.draw do
 
   get "tag/:id" => "tag#show"
 
+  match "search" => "search#index" 
+
   # show stream of bookmarks for specific tag
   get "tags/:id/bookmarks" => "tags#bookmarks"
   get "tags/name/:name" => "tags#name"

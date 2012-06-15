@@ -14,14 +14,16 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </a>
-      <a class="brand" href="/">Bookie</a>
+      <a class="brand" href="/">Bookies</a>
       <div class="nav-collapse">
         <ul class="nav">
+          <% if session[:user_id] %>          
+            <li><%= link_to "My Bookmarks", "/bookmarks/user/#{session[:user_id]}" %></li> 
+          <%= end %>
           <li><%= link_to "Users", users_path %></li>
           <li><%= link_to "Tags", tags_path %></li>
           <% if session[:user_id] %>          
-          <li><%= link_to "Add a Bookmark", "/bookmarks/new" %></li>
-          <li><%= link_to "My Bookmarks", "/bookmarks/user/#{session[:user_id]}" %></li> 
+            <li><%= link_to "Add a Bookmark", "/bookmarks/new" %></li>
           <% end %>
         </ul>
         <ul class="nav pull-right">

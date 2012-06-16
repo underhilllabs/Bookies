@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
-  attr_accessible :desc, :email, :fullname, :password_digest, :pic_url, :username, :website, :website2, :website3, :password, :password_confirmation
+  attr_accessible :desc, :email, :fullname, :pic_url, :username, :website, :website2, :website3, :password, :password_confirmation
   # has_secure_password
   has_many :bookmarks, :dependent => :destroy
   has_many :tags

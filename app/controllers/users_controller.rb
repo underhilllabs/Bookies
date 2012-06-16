@@ -82,6 +82,11 @@ class UsersController < ApplicationController
   # EDIT /users/1
   def edit
     @user = User.find(params[:id])
+    if session[:user_id] == @user.id
+      respond_with @user
+    else 
+      redirect_to root_url, :notice => "Sorry, you do not have permissions to edit that user!"
+    end
   end
 
   def show

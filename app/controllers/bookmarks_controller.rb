@@ -155,5 +155,10 @@ class BookmarksController < ApplicationController
 
   def edit
     @bookmark = Bookmark.find(params[:id])
+    if session[:user_id] == @bookmark.user_id
+      respond_with @bookmark
+    else 
+      redirect_to root_url, :notice => "Sorry, you do not have permissions to edit Bookmark!"
+    end
   end
 end

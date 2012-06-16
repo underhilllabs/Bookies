@@ -3,20 +3,20 @@
   
   <div class="field">
     <%= f.label :address %>
-    <%= f.text_field :url %>
+    <%= f.text_field :url, :size => 60 %>
   </div>
   <div class="field">
     <%= f.label :title %>
-    <%= f.text_field :title %>
+    <%= f.text_field :title, :size => 60 %>
   </div>
   <div class="field">
     <%= f.label :desc %>
-    <%= f.text_field :desc %>
+    <%= f.text_field :desc, :size => 60 %>
   </div>
   
   <div class="field_tags">
     <%= f.label :tags %>
-    <%= f.text_field :tags, :value => @bookmark.tags.join(", ") %>
+    <%= f.text_field :tags, :value => @bookmark.tags.join(", "), :size => 60 %>
   </div>
   
   <div class="field">

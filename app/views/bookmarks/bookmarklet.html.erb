@@ -7,22 +7,22 @@ $(function() {
 <%= form_for(@bookmark) do |f| %>
   <div class="field input-text">
     <%= f.label :address %>
-    <%= f.text_field :url, :value => params[:address] %>
+    <%= f.text_field :url, :value => params[:address], :size => 65 %>
   </div>
  
   <div class="field input-text">
     <%= f.label :title %>
-    <%= f.text_field :title, :value => params[:title] %>
+    <%= f.text_field :title, :value => params[:title], :size => 65 %>
   </div>
 
   <div class="field input-text">
     <%= f.label :desc %>
-    <%= f.text_field :desc, :value => params[:description] %>
+    <%= f.text_field :desc, :value => params[:description], :size => 65 %>
   </div>
   
   <div class="field_tags input-text">
     <%= f.label :tags %>
-    <%= f.text_field :tags, :value => @bookmark.tags.join(", ") %>
+    <%= f.text_field :tags, :value => @bookmark.tags.join(", "), :size => 65 %>
   </div>
   
   <div class="field">

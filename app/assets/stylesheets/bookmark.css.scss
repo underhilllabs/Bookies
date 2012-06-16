@@ -87,6 +87,11 @@ body, caption, th, td, input, textarea, select, option, legend, fieldset {
       padding-left: 0px;
    }
 }
+form.new_bookmark {
+   input {
+      width: 80%;
+   }
+}
 
 .main-content {
    margin-top: 1em;

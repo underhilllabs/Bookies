@@ -5,22 +5,22 @@ $(function() {
 });
 </script>
 <%= form_for(@bookmark) do |f| %>
-  <div class="field">
+  <div class="field input-text">
     <%= f.label :address %>
     <%= f.text_field :url, :value => params[:address] %>
   </div>
  
-  <div class="field">
+  <div class="field input-text">
     <%= f.label :title %>
     <%= f.text_field :title, :value => params[:title] %>
   </div>
 
-  <div class="field">
+  <div class="field input-text">
     <%= f.label :desc %>
     <%= f.text_field :desc, :value => params[:description] %>
   </div>
   
-  <div class="field_tags">
+  <div class="field_tags input-text">
     <%= f.label :tags %>
     <%= f.text_field :tags, :value => @bookmark.tags.join(", ") %>
   </div>

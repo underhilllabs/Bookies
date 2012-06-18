@@ -29,18 +29,18 @@
     </a>
   </div>
   
-  <p>
+  <p class="login-signin">
     <strong>Don't use these services?</strong>
     <%= link_to "Create an account", new_identity_path %> or login below.
   </p>
   
   <%= form_tag "/auth/identity/callback" do %>
     <div class="field">
-      <%= label_tag :auth_key, "Email" %><br>
+      <%= label_tag :auth_key, "Email" %>
       <%= text_field_tag :auth_key %>
     </div>
     <div class="field">
-      <%= label_tag :password %><br>
+      <%= label_tag :password %>
       <%= password_field_tag :password %>
     </div>
     <div class="actions"><%= submit_tag "Login" %></div>

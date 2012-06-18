@@ -108,7 +108,9 @@ form.new_bookmark {
    }
 }
 
-
+.login-signin {
+   margin-top: 2.5em;
+}
 
 .flickr_pagination {
    
@@ -172,4 +174,15 @@ form.new_bookmark {
          color: white;
       }
    }
+}
+
+.bookmarklet {
+  a {
+     text-decoration: none;
+     &:hover {
+        text-decoration: none;
+     }
+  }
+  border: 1px #ccc dashed;
+  padding: 0.3em;
 }

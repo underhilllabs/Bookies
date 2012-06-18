@@ -133,7 +133,7 @@ class BookmarksController < ApplicationController
   # GET /bookmarks/new.xml
   def bookmarklet
     # @bookmark = Bookmark.new(:tags => [Tag.new])
-    @bookmark = Bookmark.first_or_initialize(:url => params[:address], :tags => [Tag.new])
+    @bookmark = Bookmark.where(:url => params[:address], :user_id => session[:user_id]).first_or_initialize(:tags => [Tag.new])
     respond_to do |format|
       format.html # bookmarklet.html.erb
       format.xml  { render :xml => @bookmark }

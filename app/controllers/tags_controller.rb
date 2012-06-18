@@ -18,9 +18,9 @@ class TagsController < ApplicationController
 
 
   def name
-    # @bookmarks = Tag.where("name = ?",params[:name]).order("updated_at DESC").page(params[:page]).per_page(30).map(&:bookmark)
-    @tags = Tag.where("name = ?",params[:name]).order("updated_at DESC").includes(:bookmark)
-    @bookmarks = @tags.map(&:bookmark).paginate(:page => params[:page], :per_page => 30)
+    # use pluck instead of includes
+    bookmarks = Tag.where(:name => params[:name]).pluck(:bookmark_id)
+    @bookmarks = Bookmark.where(:id => bookmarks).order(:updated_at).reverse_order.page(params[:page]).per_page(30)
     @name = params[:name]
     respond_with @bookmarks
   end

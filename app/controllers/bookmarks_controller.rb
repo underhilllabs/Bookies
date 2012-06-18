@@ -1,9 +1,8 @@
 class BookmarksController < ApplicationController
-  respond_to :html, :json
+  respond_to :html, :json, :xml
 
   def update
     @bookmark = Bookmark.find(params[:id])
-    ts = []
     tags = []
     # split tags parameter and create a new Tag for each
     tag_s = params[:bookmark][:tags].split(',')
@@ -133,8 +132,8 @@ class BookmarksController < ApplicationController
   # GET /bookmarks/new
   # GET /bookmarks/new.xml
   def bookmarklet
-    @bookmark = Bookmark.new(:tags => [Tag.new])
-
+    # @bookmark = Bookmark.new(:tags => [Tag.new])
+    @bookmark = Bookmark.first_or_initialize(:url => params[:address], :tags => [Tag.new])
     respond_to do |format|
       format.html # bookmarklet.html.erb
       format.xml  { render :xml => @bookmark }

@@ -3,32 +3,18 @@ class BookmarksController < ApplicationController
 
   def update
     @bookmark = Bookmark.find(params[:id])
-    tags = []
-    # split tags parameter and create a new Tag for each
-    tag_s = params[:bookmark][:tags].split(',')
-    # remove whitespace
-    tag_s.map!(&:strip)
-    # for each tag, if there isn't a tag that is associated with bookmark, then create it.
-    tag_s.each do |t| 
-      unless t.nil?
-        tag = Tag.where("name = ?", t).where("bookmark_id = ?", params[:id]).first
-        if tag.nil?
-          tn =  Tag.new(:name => t)
-          tn.bookmark_id = params[:id]
-          tn.save
-          tags << tn
-        else 
-          tags << tag
-        end
-      end
+    tag_s = params[:bookmark][:tags].split(',').map do |tag|
+      tag.strip
+    end
+    tags = tag_s.each do |tag|
+      Tag.find_or_create_by_name_and_bookmark_id(:name => tag, :bookmark_id => params[:id])
     end
 
     if @bookmark.update_attributes(:url => params[:bookmark][:url], :title => params[:bookmark][:title], 
                                    :desc => params[:bookmark][:desc], :private => params[:bookmark][:private])
-      tags.each {|t| t.bookmark_id = @bookmark.id }
       # now delete tags not passed in
-      t_missing = Tag.where("bookmark_id = ?", @bookmark.id).where("name not in (?)", tag_s)
-      Tag.destroy(t_missing.map(&:id))
+      t_missing = Tag.where("bookmark_id = ?", @bookmark.id).where("name not in (?)", tag_s).pluck(:id)
+      Tag.destroy(t_missing)
       
       flash[:notice] = "Bookmark was successfully updated."
     end
@@ -76,14 +62,8 @@ class BookmarksController < ApplicationController
   # POST /bookmarks
   # POST /bookmarks.xml
   def create
-    ts = []
-    tags = []
-    # split tags parameter and create a new Tag for each
-    ts = params[:bookmark][:tags].split(',')
-    ts.each do |t| 
-      unless t.nil?
-        tags << Tag.new(:name => t.strip) 
-      end
+    tags = params[:bookmark][:tags].split(',').map do |tag|
+      Tag.new(:name => tag.strip)
     end
     # use find_or_create
     @bookmark = Bookmark.find_or_create_by_user_id_and_url(:url => params[:bookmark][:url], :title => params[:bookmark][:title], :desc => params[:bookmark][:desc], :private => params[:bookmark][:private], :user_id => params[:bookmark][:user_id])

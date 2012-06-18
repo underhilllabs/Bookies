@@ -11,10 +11,24 @@
 <hr />
 <p />
 
+<h2>Add a bookmarklet to browser</h2>
+<p>
+Drag the following shortcut to your browser bookmark bar for a shortcut to
+bookmark the current page:
+<p />
 
+<span class=bookmarklet>
+<a href="javascript:x=document;a=encodeURIComponent(x.location.href);t=encodeURIComponent(x.title);d=encodeURIComponent(window.getSelection());open('http://www.bkmark.me/bookmarklet?action=add&popup=1&address='+a+'&title='+t+'&description='+d,'Scuttle%20Bookmarks','modal=1,status=0,scrollbars=1,toolbar=0,resizable=1,width=730,height=465,left='+(screen.width-730)/2+',top='+(screen.height-425)/2);void%200;">Post
+  to Bookmarks</a>
+</span>
+
+
+<p />
+<hr />
+<p />
 
 <h2>Recent Public Bookmarks</h2>
-<% @user.bookmarks.first(10).each do |b| %>
+<% @bookmarks.each do |b| %>
   <a href="<%= b.url %>"><%= b.title %></a><br />
 
 <% end %>

@@ -92,6 +92,7 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     # FIXME -- This takes a lotta time, may scrap it
+    @bookmarks = @user.bookmarks.order(:updated_at).reverse_order.first(10)
     @tags = @user.tags.count(:all, :group => 'name', :order => 'count_all DESC').first(10)
     respond_to do |format|
       format.html #show.html.haml

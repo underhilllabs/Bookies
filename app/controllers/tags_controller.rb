@@ -1,10 +1,13 @@
 class TagsController < ApplicationController
+  # caches_page :index
   respond_to :html, :json
 
   def index
+    cutoff = 20
     # @tags = Tag.all
     # select name, count(1) from tags GROUP BY name;
-    @tags = Tag.count(:all, :group => 'name', :order => 'count_all DESC')
+    # @tags = Tag.count(:all, :group => 'name', :order => 'count_all DESC')
+    @tags = Tag.count(:all, :group => 'name', :order => 'count_all DESC').reject! {|k,v| v < cutoff }
     respond_with @tags
   end
 

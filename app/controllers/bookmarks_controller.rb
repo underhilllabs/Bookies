@@ -1,5 +1,5 @@
 class BookmarksController < ApplicationController
-  respond_to :html, :json, :xml
+  respond_to :html, :json, :xml, :rss
 
   def update
     @bookmark = Bookmark.find(params[:id])

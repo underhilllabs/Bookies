@@ -2,14 +2,6 @@
 
 <h2>Welcome <%= session[:username] ? session[:username] : "Visitor" %> </h2>
 
-<div class="messages-wrapper">
-    <% flash.each do |name, msg| %>
-      <%= content_tag :div, msg, :id => "flash_#{name}" %>
-    <% end %>
-    <%= yield %>
-</div>
-
-
 <p />
 <div class="main-wrapper">
 

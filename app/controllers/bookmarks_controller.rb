@@ -16,10 +16,10 @@ class BookmarksController < ApplicationController
       t_missing = Tag.where("bookmark_id = ?", @bookmark.id).where("name not in (?)", tag_s).pluck(:id)
       Tag.destroy(t_missing)
       
-      flash[:notice] = "Bookmark was successfully updated."
+      flash[:notice] = "\"#{@bookmark.title}\" was successfully updated."
     end
 
-    respond_with @bookmark
+    redirect_to root_url
   end
 
 

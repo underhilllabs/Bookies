@@ -85,7 +85,8 @@ class UsersController < ApplicationController
     if session[:user_id] == @user.id
       respond_with @user
     else 
-      redirect_to root_url, :notice => "Sorry, you do not have permissions to edit that user!"
+      flash[:error] = "Sorry, you do not have permissions to edit that user!"
+      redirect_to root_url 
     end
   end
 

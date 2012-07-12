@@ -9,6 +9,12 @@ class BookmarksController < ApplicationController
     tags = tag_s.each do |tag|
       Tag.find_or_create_by_name_and_bookmark_id(:name => tag, :bookmark_id => params[:id])
     end
+    
+    # check if user has permission to edit bookmark
+    if session[:user_id] != @bookmark.user_id
+      flash[:error] = "Sorry, you do not have permission to edit another user's bookmarks!"
+      redirect_to root_url
+    end
 
     if @bookmark.update_attributes(:url => params[:bookmark][:url], :title => params[:bookmark][:title], 
                                    :desc => params[:bookmark][:desc], :private => params[:bookmark][:private])
@@ -85,13 +91,18 @@ class BookmarksController < ApplicationController
   # DELETE /users/1.xml
   def destroy
     @bookmark = Bookmark.find(params[:id])
-    @bookmark.destroy
-    # added these 2 lines because tags are not getting deleted!
-    # title = @bookmark.title
-    # Bookmark.destroy(params[:id])
-    # @bookmark.destroy
+    if session[:user_id] != @bookmark.user_id
+      flash[:error] = "Sorry, you do not have permission to delete this bookmark."
+      redirect_to root_url
+    else 
+      @bookmark.destroy
+      # added these 2 lines because tags are not getting deleted!
+      # title = @bookmark.title
+      # Bookmark.destroy(params[:id])
+      # @bookmark.destroy
 
-    redirect_to root_url, :notice => "#{@bookmark.title} was deleted!"
+      redirect_to root_url, :notice => "#{@bookmark.title} was deleted!"
+    end
   end
 
   # GET /bookmarks/new
@@ -133,7 +144,8 @@ class BookmarksController < ApplicationController
     if session[:user_id] == @bookmark.user_id
       respond_with @bookmark
     else 
-      redirect_to root_url, :notice => "Sorry, you do not have permissions to edit Bookmark!"
+      flash[:error] = "Sorry, you do not have permissions to edit Bookmark!"
+      redirect_to root_url
     end
   end
 end

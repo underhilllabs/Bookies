@@ -1,3 +1,5 @@
+<% content_for :head, auto_discovery_link_tag(:rss, bookmarks_url(format: "rss")) %>
+
 <h2>Welcome <%= session[:username] ? session[:username] : "Visitor" %> </h2>
 
 <div class="messages-wrapper">

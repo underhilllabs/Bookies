@@ -3,8 +3,8 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 $base-font-size:   16px;                                                                                                                    
-$base-line-height: 24px;                                                                                                                    
-                                                                                                                                            
+$base-line-height: 20px;
+
 $h1-font-size: 2    * $base-font-size;                                                                                                      
 $h2-font-size: 1.5  * $base-font-size;                                                                                                      
 $h3-font-size: 1.17 * $base-font-size;                                                                                                      
@@ -50,6 +50,7 @@ body, caption, th, td, input, textarea, select, option, legend, fieldset {
    border-bottom: 1px #777 dashed;
    .bookmark-title {
       font-size: $h3-font-size;
+      line-height: $base-line-height;
    }
    .bookmark-tags {
       font-size: $h5-font-size;

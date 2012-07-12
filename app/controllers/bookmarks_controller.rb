@@ -52,11 +52,7 @@ class BookmarksController < ApplicationController
   def user_bookmarks
     @bookmarks = Bookmark.find(:all, :conditions => {:user_id => session[:user_id]} )
 
-    respond_to do |format|
-      format.html # user_bookmarks.html.erb
-      format.xml  { render :xml => @bookmarks }
-      format.json  { render :json => @bookmarks }
-    end
+    respond_with @bookmarks
   end
 
   # POST /bookmarks

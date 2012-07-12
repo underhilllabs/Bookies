@@ -27,6 +27,7 @@ Bookies::Application.routes.draw do
   get "tags/user/:id" => "tags#user"
 
   get "bookmarks/user/:id" => "bookmarks#user"
+  get "user/:id/bookmarks" => "bookmarks#user"
   get "bookmarklet" => "bookmarks#bookmarklet"
   get "bookmarklet/success" => "bookmarks#success"
 

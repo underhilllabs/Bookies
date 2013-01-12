@@ -2,7 +2,7 @@ xml.instruct! :xml, version: "1.0"
 xml.rss version: "2.0" do
   xml.channel do
     xml.title "Bkmark.me Bookmarks"
-    xml.description "Bookmark feed from bkmark.me"
+    xml.description "Bookmark feed for bkmark.me"
     xml.link bookmarks_url
 
     @bookmarks.each do |bookmark|

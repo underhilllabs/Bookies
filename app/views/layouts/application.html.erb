@@ -54,6 +54,7 @@ $(function() {
 
 
 <div class="container">
+Page Rendered in <%= sprintf('%.3f', (Time.now.usec - @start_time).abs / 1000000.0) %> seconds
 <% flash.each do |name, msg| %>
   <div class="alert alert-<%= name == :notice ? "success" : "error" %>">
     <a class="close" data-dismiss="alert">x</a>

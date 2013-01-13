@@ -31,6 +31,10 @@ Bookies::Application.routes.draw do
   get "bookmarklet" => "bookmarks#bookmarklet"
   get "bookmarklet/success" => "bookmarks#success"
 
+  # for delicious API v1
+  get "api/posts/all" => "api#posts_all"
+  get "api/posts/:id" => "api#index"
+
   # # 1. returns a form with a single textfield labeled "new name" 
   # get "tag/:id/rename" => "tag#rename"
 

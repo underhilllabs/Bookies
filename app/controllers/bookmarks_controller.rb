@@ -17,7 +17,8 @@ class BookmarksController < ApplicationController
     end
 
     if @bookmark.update_attributes(:url => params[:bookmark][:url], :title => params[:bookmark][:title], 
-                                   :desc => params[:bookmark][:desc], :private => params[:bookmark][:private])
+                                   :desc => params[:bookmark][:desc], :private => params[:bookmark][:private],
+                                   :hashed_url => Digest::MD5.hexdigest(params[:bookmark][:url]) )
       # now delete tags not passed in
       t_missing = Tag.where("bookmark_id = ?", @bookmark.id).where("name not in (?)", tag_s).pluck(:id)
       Tag.destroy(t_missing)

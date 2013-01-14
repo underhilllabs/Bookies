@@ -15,7 +15,7 @@ class ApiController < ApplicationController
     if params[:id]
       current_id = params[:id]
     else 
-      current_id = sessions[:user_id]
+      current_id = session[:user_id]
     end
     @user = User.find(current_id)
     if(params[:tag])

@@ -1,7 +1,7 @@
 class SessionsController < ApplicationController
   def new
     if params[:message] == "invalid_credentials"
-      flash[:notice] = 'Invalid email or password'
+      flash[:error] = 'Invalid email or password'
     end
   end
 

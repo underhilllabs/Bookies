@@ -7,7 +7,8 @@ Bookies::Application.routes.draw do
 
   # for omniauth
   match 'auth/:provider/callback', to: 'sessions#create'
-  match 'auth/failure', to: redirect('/')
+  # match 'auth/failure', to: redirect('/')
+  match 'auth/failure' => 'sessions#new', :notice => "Email or password incorrect"
   match 'signout', to: 'sessions#destroy', as: 'signout'
 
   get "logout" => "sessions#destroy", :as => "logout"
@@ -33,6 +34,7 @@ Bookies::Application.routes.draw do
 
   # for delicious API v1
   get "api/posts/all" => "api#posts_all"
+  get "api/posts/all/:tag" => "api#posts_all"
   get "api/posts/:id" => "api#index"
 
   # # 1. returns a form with a single textfield labeled "new name" 

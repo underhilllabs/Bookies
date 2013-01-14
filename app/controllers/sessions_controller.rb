@@ -1,5 +1,8 @@
 class SessionsController < ApplicationController
   def new
+    if params[:message] == "invalid_credentials"
+      flash[:notice] = 'Invalid email or password'
+    end
   end
 
   def create
@@ -9,9 +12,7 @@ class SessionsController < ApplicationController
       session[:username] = user.username
       redirect_to root_url, notice: "Signed in!"
     else
-      flash.now.alert = "Invalid email or password"
-      flash[:error] = "Invalid email or password"
-      redirect_to root_url, error: "Invalid email or password"
+      redirect_to root_url, notice: "Invalid email or password"
     end   
   end
 

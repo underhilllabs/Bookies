@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120615233205) do
+ActiveRecord::Schema.define(:version => 20130114035250) do
 
   create_table "bookmarks", :force => true do |t|
     t.string   "url"
@@ -23,6 +23,7 @@ ActiveRecord::Schema.define(:version => 20120615233205) do
     t.datetime "created_at",                :null => false
     t.datetime "updated_at",                :null => false
     t.integer  "user_id",    :default => 1
+    t.string   "hashed_url"
   end
 
   create_table "followings", :force => true do |t|
@@ -55,15 +56,14 @@ ActiveRecord::Schema.define(:version => 20120615233205) do
   create_table "users", :force => true do |t|
     t.string   "username"
     t.string   "email"
-    t.string   "password_digest"
     t.string   "fullname"
     t.string   "website"
     t.text     "desc"
     t.string   "website2"
     t.string   "website3"
     t.string   "pic_url"
-    t.datetime "created_at",      :null => false
-    t.datetime "updated_at",      :null => false
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
     t.string   "provider"
     t.string   "uid"
   end

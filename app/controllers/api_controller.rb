@@ -1,8 +1,12 @@
 class ApiController < ApplicationController
-  respond_to :html, :json, :xml, :rss
+  respond_to :xml
 
   def index
-    @user = User.find(params[:id])
+    if(User.find(params[:id]))
+      @user = User.find(params[:id])
+    else 
+      @user.username = ""
+    end
     @bookmarks = @user.bookmarks.order("updated_at DESC")
     respond_with @bookmarks
   end
@@ -10,11 +14,17 @@ class ApiController < ApplicationController
   def posts_all
     if params[:id]
       current_id = params[:id]
-    else
-      current_id = session[:user_id]
+    else 
+      current_id = sessions[:user_id]
     end
     @user = User.find(current_id)
-    @bookmarks = @user.bookmarks.order("updated_at DESC")
+    if(params[:tag])
+      #@tags = params[:tag].split("+")
+      @tag = Tag.find(params[:tag])
+      @bookmarks = @user.bookmarks.order("updated_at DESC")
+    else
+      @bookmarks = @user.bookmarks.order("updated_at DESC")
+    end
     respond_with @bookmarks
   end
 end

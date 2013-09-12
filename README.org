@@ -6,10 +6,15 @@
 2. cd bookies
 3. bundle # run bundle to install required gems
 4. cp config/example.database.yml config/database.yml    # set up your database
-5. vim config/database.yml     # if using sqlite3 or postgresql, update the Gemfile with correct gems and run 'bundle' again).
+5. vim config/database.yml     
+# if using sqlite3 or postgresql, update the Gemfile with correct gems and run 'bundle' again).
 6. vim Gemfile && bundle
 7. rake db:reset
 8. rails g bootstrap:install
 9. rake assets:precompile # to compile all of the assets for the assets pipeline.
 10. rails server 
 
+*** Steps to Update 
+1. git pull origin master --rebase
+2. bundle update
+3. rake assets:precompile

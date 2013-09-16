@@ -6,10 +6,10 @@ Bookies::Application.routes.draw do
   resources :users, :bookmarks, :tags, :sessions, :identities
 
   # for omniauth
-  match 'auth/:provider/callback', to: 'sessions#create'
+  match 'auth/:provider/callback', to: 'sessions#create', via: :get
   # match 'auth/failure', to: redirect('/')
-  match 'auth/failure' => 'sessions#new', :notice => "Email or password incorrect"
-  match 'signout', to: 'sessions#destroy', as: 'signout'
+  match 'auth/failure' => 'sessions#new', :notice => "Email or password incorrect", via: :get
+  match 'signout', to: 'sessions#destroy', as: 'signout', via: :get
 
   get "logout" => "sessions#destroy", :as => "logout"
   get "login" => "sessions#new", :as => "login"
@@ -20,7 +20,7 @@ Bookies::Application.routes.draw do
 
   get "tag/:id" => "tag#show"
 
-  match "search" => "search#index" 
+  match "search" => "search#index", via: :get
 
   # show stream of bookmarks for specific tag
   get "tags/:id/bookmarks" => "tags#bookmarks"

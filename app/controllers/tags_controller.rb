@@ -30,7 +30,9 @@ class TagsController < ApplicationController
 
   def bookmarks
     tag = Tag.find(params[:id])
-    @bookmarks = Tag.find_all_by_name(tag.name).map(&:bookmark).order("updated_at DESC")
+    # deprecated in rails 4
+    # @bookmarks = Tag.find_all_by_name(tag.name).map(&:bookmark).order("updated_at DESC")
+    @bookmarks = Tag.where(name: tag.name).map(&:bookmark).order("updated_at DESC")
        
     respond_with @bookmarks
   end

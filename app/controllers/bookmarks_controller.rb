@@ -7,7 +7,7 @@ class BookmarksController < ApplicationController
       tag.strip
     end
     tags = tag_s.each do |tag|
-      Tag.find_or_create_by_name_and_bookmark_id(:name => tag, :bookmark_id => params[:id])
+      Tag.where(:name => tag, :bookmark_id => params[:id]).first_or_create
     end
     
     # check if user has permission to edit bookmark
@@ -69,7 +69,8 @@ class BookmarksController < ApplicationController
       Tag.new(:name => tag.strip)
     end
     # use find_or_create
-    @bookmark = Bookmark.find_or_create_by_user_id_and_url(:url => params[:bookmark][:url], :title => params[:bookmark][:title], :desc => params[:bookmark][:desc], :private => params[:bookmark][:private], :user_id => params[:bookmark][:user_id], :hashed_url => Digest::MD5.hexdigest(params[:bookmark][:url]) )
+    # @bookmark = Bookmark.find_or_create_by_user_id_and_url(:url => params[:bookmark][:url], :title => params[:bookmark][:title], :desc => params[:bookmark][:desc], :private => params[:bookmark][:private], :user_id => params[:bookmark][:user_id], :hashed_url => Digest::MD5.hexdigest(params[:bookmark][:url]) )
+    @bookmark = Bookmark.where(:url => params[:bookmark][:url], :title => params[:bookmark][:title], :desc => params[:bookmark][:desc], :private => params[:bookmark][:private], :user_id => params[:bookmark][:user_id], :hashed_url => Digest::MD5.hexdigest(params[:bookmark][:url]) ).first_or_create
     
     respond_to do |format|
       if @bookmark.save

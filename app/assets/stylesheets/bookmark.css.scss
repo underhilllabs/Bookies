@@ -36,6 +36,7 @@ body {
    background: $main-color;
    margin-top: 0px;
    margin: 0px 0px 0px 0px;
+   padding-top: 60px;
 }
 
 h1, h2, h3, h4 {                                                                                                                            
@@ -167,12 +168,12 @@ form.new_bookmark {
       }
    }
    .navbar-search {
-      border: 1px solid #151515;
+      xxx-border: 1px solid #151515;
       color: white;
       .input-text {
-         background-color: #626262;
-         border: 1px #151515 solid;
-         color: white;
+         xxx-background-color: #626262;
+         xxx-border: 1px #151515 solid;
+         xxx-color: white;
       }
    }
 }

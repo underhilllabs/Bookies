@@ -6,7 +6,10 @@ Bookies::Application.routes.draw do
   resources :users, :bookmarks, :tags, :sessions, :identities
 
   # for omniauth
-  match 'auth/:provider/callback', to: 'sessions#create', via: :get
+  post 'auth/:provider/callback', to: 'sessions#create'
+  # had to hardcode identity route in rails 4
+  post 'auth/identity/callback', to: 'sessions#create'
+  get 'auth/:provider/callback', to: 'sessions#create'
   # match 'auth/failure', to: redirect('/')
   match 'auth/failure' => 'sessions#new', :notice => "Email or password incorrect", via: :get
   match 'signout', to: 'sessions#destroy', as: 'signout', via: :get

@@ -41,7 +41,7 @@ gem 'capistrano'
 # gem 'ruby-debug19', :require => 'ruby-debug'
 
 # Gemfile for Rails 3, Sinatra, and Merb
-gem 'will_paginate'
+gem 'will_paginate', '>= 3.0.5'
 
 # gem 'bourbon'
 

@@ -7,7 +7,8 @@ class TagsController < ApplicationController
     # @tags = Tag.all
     # select name, count(1) from tags GROUP BY name;
     # @tags = Tag.count(:all, :group => 'name', :order => 'count_all DESC')
-    @tags = Tag.count(:all, :group => 'name', :order => 'count_all DESC').reject! {|k,v| v < cutoff }
+    # @tags = Tag.count(:all, :group => 'name', :order => 'count_all DESC').reject! {|k,v| v < cutoff }
+    @tags = Tag.group("name").having("count(name) > :cutoff", :cutoff => cutoff).order("count(name) DESC").count()
     respond_with @tags
   end
 

@@ -5,4 +5,5 @@ class Bookmark < ActiveRecord::Base
   validates_presence_of :url, :on => :create
   validates_presence_of :title, :on => :create
   validates :user_id, :presence => true
+  #scope :public, where("private != ?", true)
 end

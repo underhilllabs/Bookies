@@ -10,7 +10,7 @@ Bookies::Application.routes.draw do
   # had to hardcode identity route in rails 4
   post 'auth/identity/callback', to: 'sessions#create'
   # auth/../callback is post only 
-  # get 'auth/:provider/callback', to: 'sessions#create'
+  get 'auth/:provider/callback', to: 'sessions#create'
   # match 'auth/failure', to: redirect('/')
   match 'auth/failure' => 'sessions#new', :notice => "Email or password incorrect", via: :get
   match 'signout', to: 'sessions#destroy', as: 'signout', via: :get

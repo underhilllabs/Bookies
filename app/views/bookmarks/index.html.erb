@@ -5,7 +5,7 @@
 <p />
 <div class="main-wrapper">
 
- <% 
+ <%
   @bookmarks.each do |b|
     # this will make the number of bookmarks on page less than expected amount
     next if b.private == true and b.user_id != session[:user_id]
@@ -24,7 +24,7 @@
   <div class="bookmark-details">
     <% if b.updated_at != b.created_at %>
       <span class="bookmark-updated">Updated: <%= nice_date_form(b.updated_at) %></span>
-      <span class="bookmark-created">Created: <%= nice_date_form(b.created_at) %></span>    
+      <span class="bookmark-created">Created: <%= nice_date_form(b.created_at) %></span>
     <% else %>
       <span class="bookmark-created"><%= nice_date_form(b.created_at) %></span>
     <% end %>
@@ -32,13 +32,13 @@
     <% if b.user_id == session[:user_id] %>
       <span class="bookmark-ops">
         <span class="bookmark-edit"> <%= link_to "Edit", edit_bookmark_path(b) %> </span>
-        <span class="bookmark-delete"><a href="/bookmarks/<%= b.id %>/delete">Delete</a></span>
+        <span class="bookmark-delete"><%= link_to("Delete", b, :method => 'Delete', data: {:confirm => "Are you sure you want to delete that?"}) %></span>
       </span>
     <% end %>
     </span>
   </div>
  </div>
- <% 
+ <%
    end
  %>
 

@@ -55,3 +55,4 @@ gem 'omniauth-identity'
 
 gem 'protected_attributes'
 gem 'thin'
+gem 'nokogiri'

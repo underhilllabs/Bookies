@@ -40,5 +40,7 @@ Bookies::Application.routes.draw do
   get "api/posts/all" => "api#posts_all"
   get "api/posts/all/:tag" => "api#posts_all"
   get "api/posts/:id" => "api#index"
+  get "api/upload"   => "api#upload"
+  post "api/import"   => "api#import"
 
 end

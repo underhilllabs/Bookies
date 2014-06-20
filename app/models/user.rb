@@ -31,7 +31,8 @@ class User < ActiveRecord::Base
   def import_bookmarks(xml)
     doc = Nokogiri.XML(xml)
     doc.xpath('/posts/post').map do |p|
-      b = Bookmark.where(:url => p["href"], :title => p["description"], :desc => p["extended"], :user_id => id, :hashed_url => p["hash"] ).first_or_create
+      time = Time.parse(p["time"])
+      b = Bookmark.where(:url => p["href"], :title => p["description"], :desc => p["extended"], :user_id => id, :hashed_url => p["hash"], :created_at => time, :updated_at => time ).first_or_create
       if p["tag"] then
         tags = p["tag"]
         tags = tags.split(" ").map do |tag|

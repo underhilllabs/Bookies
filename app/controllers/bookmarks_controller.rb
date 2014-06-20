@@ -69,7 +69,6 @@ class BookmarksController < ApplicationController
       Tag.new(:name => tag.strip)
     end
     # use find_or_create
-    # @bookmark = Bookmark.find_or_create_by_user_id_and_url(:url => params[:bookmark][:url], :title => params[:bookmark][:title], :desc => params[:bookmark][:desc], :private => params[:bookmark][:private], :user_id => params[:bookmark][:user_id], :hashed_url => Digest::MD5.hexdigest(params[:bookmark][:url]) )
     @bookmark = Bookmark.where(:url => params[:bookmark][:url], :title => params[:bookmark][:title], :desc => params[:bookmark][:desc], :private => params[:bookmark][:private], :user_id => params[:bookmark][:user_id], :hashed_url => Digest::MD5.hexdigest(params[:bookmark][:url]) ).first_or_create
     
     respond_to do |format|
@@ -110,7 +109,7 @@ class BookmarksController < ApplicationController
   # GET /bookmarks/new
   # GET /bookmarks/new.xml
   def new
-    @bookmark = Bookmark.new(:tags => [Tag.new])
+    @bookmark = Bookmark.new()
 
     respond_to do |format|
       format.html # new.html.erb
@@ -122,7 +121,7 @@ class BookmarksController < ApplicationController
   # GET /bookmarks/new.xml
   def bookmarklet
     # @bookmark = Bookmark.new(:tags => [Tag.new])
-    @bookmark = Bookmark.where(:url => params[:address], :user_id => session[:user_id]).first_or_initialize(:tags => [Tag.new])
+    @bookmark = Bookmark.where(:url => params[:address], :user_id => session[:user_id]).first_or_initialize()
     respond_to do |format|
       format.html # bookmarklet.html.erb
       format.xml  { render :xml => @bookmark }

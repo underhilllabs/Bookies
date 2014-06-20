@@ -27,4 +27,26 @@ class User < ActiveRecord::Base
     end
   end
 
+  # import bookmarks files to users account 
+  def import_bookmarks(xml)
+    doc = Nokogiri.XML(xml)
+    doc.xpath('/posts/post').map do |p|
+      b = Bookmark.where(:url => p["href"], :title => p["description"], :desc => p["extended"], :user_id => id, :hashed_url => p["hash"] ).first_or_create
+      if p["tag"] then
+        tags = p["tag"]
+        tags = tags.split(" ").map do |tag|
+          Tag.new(:name => tag.strip)
+        end
+        if b.save then
+          tags.each { |t| t.bookmark_id = b.id; t.save }
+        end
+      else
+        b.save
+      end
+    end
+  end
+
+  # handle_asynchronously with delayed_job
+  # handle_asynchronously :import_bookmarks
+
 end

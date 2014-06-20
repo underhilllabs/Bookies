@@ -8,25 +8,25 @@ class ApiController < ApplicationController
     end
     myfile = params[:file]
     xml = myfile.read
-    doc = Nokogiri.XML(xml)
-    num_bs = 0
-    doc.xpath('/posts/post').map do |p|
-      b = Bookmark.new
-      b.title = p["description"]
-      b.url = p["href"]
-      b.desc = p["extended"]
-      b.user_id = session[:user_id]
-      tags = p["tags"].split(" ").map do |tag|
-          Tag.new(:name => tag.strip)
-      end
-      if b.save then
-        tags.each { |t| t.bookmark = b; t.save }
-      end
-      num_bs += 1
-    end
+    # u = User.find(session[:user_id])
+    @user = current_user
+    @user.import_bookmarks(xml)
+    # doc = Nokogiri.XML(xml)
+    # num_bs = 0
+    # doc.xpath('/posts/post').map do |p|
+    #   b = Bookmark.where(:url => p["href"], :title => p["description"], :desc => p["extended"],
+    #                      :user_id => session[:user_id], :hashed_url => p["hash"], :updated_at => p["time"]).first_or_create
+    #   tags = p["tags"].split(" ").map do |tag|
+    #       Tag.new(:name => tag.strip)
+    #   end
+    #   if b.save then
+    #     tags.each { |t| t.bookmark = b; t.save }
+    #   end
+    #   num_bs += 1
+    # end
     num_lines = xml.split("\n").size
-    flash[:notice] = "read in #{num_bs} bookmarks in #{num_lines} lines."
-    redirect_to root_url 
+    flash[:notice] = "Import job is in the queue! read in #{num_lines} lines."
+    redirect_to root_url
   end
 
   def upload
@@ -35,7 +35,7 @@ class ApiController < ApplicationController
   def index
     if(User.find(params[:id]))
       @user = User.find(params[:id])
-    else 
+    else
       @user.username = ""
     end
     @bookmarks = @user.bookmarks.order("updated_at DESC")
@@ -45,7 +45,7 @@ class ApiController < ApplicationController
   def posts_all
     if params[:id]
       current_id = params[:id]
-    else 
+    else
       current_id = session[:user_id]
     end
     @user = User.find(current_id)

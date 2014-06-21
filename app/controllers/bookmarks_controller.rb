@@ -34,16 +34,16 @@ class BookmarksController < ApplicationController
     @user = User.find(params[:id])
     # FIXME TODO
     if session[:user_id] == params[:id] 
-      @bookmarks = Bookmark.where(:user_id => params[:id]).page(params[:page]).per_page(10)
+      @bookmarks = Bookmark.where(:user_id => params[:id]).order("updated_at DESC").page(params[:page]).per_page(10)
     else
-      @bookmarks = Bookmark.where(:user_id => params[:id]).where(:private => false).page(params[:page]).per_page(10)
+      @bookmarks = Bookmark.where(:user_id => params[:id]).order("updated_at DESC").where(:private => nil).page(params[:page]).per_page(10)
     end
     respond_with @bookmarks
   end
 
 
   def show
-    @bookmark = Bookmark.find(params[:id])
+    @bookmark = Bookmark.find(params[:id]).order("updated_at DESC")
     
     respond_with @bookmark
   end
@@ -57,7 +57,9 @@ class BookmarksController < ApplicationController
   end
   
   def user_bookmarks
-    @bookmarks = Bookmark.find(:all, :conditions => {:user_id => session[:user_id]} )
+    #@user = current_user
+    #@bookmarks = @user.bookmarks.order("updated_at DESC")
+    @bookmarks = Bookmark.order("updated_at DESC").where(:user_id => current_user.id)
 
     respond_with @bookmarks
   end

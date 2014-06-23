@@ -2,6 +2,7 @@ class BookmarksController < ApplicationController
   respond_to :html, :json, :xml, :rss
 
   def update
+    # TODO: make this controller thinner!
     @bookmark = Bookmark.find(params[:id])
     tag_s = params[:bookmark][:tags].split(',').map do |tag|
       tag.strip
@@ -33,7 +34,7 @@ class BookmarksController < ApplicationController
   def user
     @user = User.find(params[:id])
     # FIXME TODO
-    if session[:user_id] == params[:id] 
+    if current_user && current_user.id == params[:id] 
       @bookmarks = Bookmark.where(:user_id => params[:id]).order("updated_at DESC").page(params[:page]).per_page(10)
     else
       @bookmarks = Bookmark.where(:user_id => params[:id]).order("updated_at DESC").where(:private => nil).page(params[:page]).per_page(10)

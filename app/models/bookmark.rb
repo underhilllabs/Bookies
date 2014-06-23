@@ -7,6 +7,6 @@ class Bookmark < ActiveRecord::Base
   validates_presence_of :title, :on => :create
   validates :user_id, :presence => true
 
-  scope :public, where(private: :nil)
-  scope :private, where(private: true)
+  scope :published, -> { where(private: :nil) }
+  scope :unpublished, -> { where(private: true) }
 end

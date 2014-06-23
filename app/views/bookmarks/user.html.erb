@@ -14,7 +14,7 @@
  <% 
   @bookmarks.each do |b|
  %>
- <div class="bookmark-wrapper">
+ <div class="bookmark-wrapper<%= b.private ? " private" :"" %>">
   <div class="bookmark-title"><a href="<%= b.url %>"><%= b.title %></a></div>
   <div class="bookmark-desc">
     <%= b.desc %>

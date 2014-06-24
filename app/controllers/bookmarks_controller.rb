@@ -7,7 +7,7 @@ class BookmarksController < ApplicationController
     tag_s = params[:bookmark][:tags].split(',').map do |tag|
       tag.strip
     end
-    tags = tag_s.each do |tag|
+    tag_s.each do |tag|
       Tag.where(:name => tag, :bookmark_id => params[:id]).first_or_create
     end
     
@@ -34,7 +34,7 @@ class BookmarksController < ApplicationController
   def user
     @user = User.find(params[:id])
     # FIXME TODO
-    if current_user && current_user.id == params[:id] 
+    if current_user && current_user.id.to_s == params[:id] 
       @bookmarks = Bookmark.where(:user_id => params[:id]).order("updated_at DESC").page(params[:page]).per_page(10)
     else
       @bookmarks = Bookmark.where(:user_id => params[:id]).order("updated_at DESC").where(:private => nil).page(params[:page]).per_page(10)
@@ -52,7 +52,12 @@ class BookmarksController < ApplicationController
   # GET /bookmarks
   # GET /bookmarks.xml
   def index
-    @bookmarks = Bookmark.order("updated_at DESC").page(params[:page]).per_page(10)
+    if params[:not_tags] then
+      not_tags = params[:not_tags].split("+")
+      @bookmarks = Bookmark.where.not(tags: not_tags).order(updated_at: :desc).page(params[:page]).per_page(10)
+    else 
+      @bookmarks = Bookmark.order("updated_at DESC").page(params[:page]).per_page(10)
+    end
 
     respond_with @bookmarks
   end
@@ -143,8 +148,10 @@ class BookmarksController < ApplicationController
   end
   
 
+  # get /bookmarks/:id/edit
   def edit
     @bookmark = Bookmark.find(params[:id])
+    @tags = @bookmark.tags
     if session[:user_id] == @bookmark.user_id
       respond_with @bookmark
     else 

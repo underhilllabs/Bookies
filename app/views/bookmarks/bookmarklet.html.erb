@@ -22,7 +22,7 @@ $(function() {
   
   <div class="field_tags input-text">
     <%= f.label :tags %>
-    <%= f.text_field :tags, :value => @bookmark.tags.join(", "), :size => 65 %>
+    <%= f.text_field :tags, :value => @bookmark.tags.to_a.join(", "), :size => 65 %>
   </div>
   
   <div class="field">

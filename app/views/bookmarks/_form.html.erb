@@ -16,7 +16,7 @@
   
   <div class="field_tags">
     <%= f.label :tags %>
-    <%= f.text_field :tags, :value => @bookmark.tags.join(", "), :size => 60 %>
+    <%= f.text_field :tags, :value => @bookmark.tags.to_a.join(", "), :size => 60 %>
   </div>
   
   <div class="field">

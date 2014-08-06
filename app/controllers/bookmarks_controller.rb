@@ -35,9 +35,9 @@ class BookmarksController < ApplicationController
     @user = User.find(params[:id])
     # FIXME TODO
     if current_user && current_user.id.to_s == params[:id] 
-      @bookmarks = Bookmark.where(:user_id => params[:id]).order("updated_at DESC").page(params[:page]).per_page(10)
+      @bookmarks = Bookmark.where(:user_id => params[:id]).order("updated_at DESC").page(params[:page]).per_page(20)
     else
-      @bookmarks = Bookmark.where(:user_id => params[:id]).order("updated_at DESC").where(:private => nil).page(params[:page]).per_page(10)
+      @bookmarks = Bookmark.where(:user_id => params[:id]).order("updated_at DESC").where(:private => nil).page(params[:page]).per_page(20)
     end
     respond_with @bookmarks
   end
@@ -54,9 +54,9 @@ class BookmarksController < ApplicationController
   def index
     if params[:not_tags] then
       not_tags = params[:not_tags].split("+")
-      @bookmarks = Bookmark.where.not(tags: not_tags).order(updated_at: :desc).page(params[:page]).per_page(10)
+      @bookmarks = Bookmark.where.not(tags: not_tags).order(updated_at: :desc).page(params[:page]).per_page(20)
     else 
-      @bookmarks = Bookmark.order("updated_at DESC").page(params[:page]).per_page(10)
+      @bookmarks = Bookmark.order("updated_at DESC").page(params[:page]).per_page(20)
     end
 
     respond_with @bookmarks

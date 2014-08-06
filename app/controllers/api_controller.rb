@@ -2,28 +2,18 @@ class ApiController < ApplicationController
   respond_to :xml, :html
 
   def import
-    unless session[:user_id] then
+    unless current_user then
       flash[:error] = "must be logged in"
       redirect_to root_url
     end
     myfile = params[:file]
     xml = myfile.read
     # u = User.find(session[:user_id])
-    @user = current_user
-    @user.import_bookmarks(xml)
-    # doc = Nokogiri.XML(xml)
-    # num_bs = 0
-    # doc.xpath('/posts/post').map do |p|
-    #   b = Bookmark.where(:url => p["href"], :title => p["description"], :desc => p["extended"],
-    #                      :user_id => session[:user_id], :hashed_url => p["hash"], :updated_at => p["time"]).first_or_create
-    #   tags = p["tags"].split(" ").map do |tag|
-    #       Tag.new(:name => tag.strip)
-    #   end
-    #   if b.save then
-    #     tags.each { |t| t.bookmark = b; t.save }
-    #   end
-    #   num_bs += 1
-    # end
+    user = current_user
+    # this is blowing up the database when xml file is too large
+    # So, instead pass in the filename and read file in function.
+    user.import_bookmarks(xml)
+    #user.import_bookmarks(xml)
     num_lines = xml.split("\n").size
     flash[:notice] = "Import job is in the queue! read in #{num_lines} lines."
     redirect_to root_url

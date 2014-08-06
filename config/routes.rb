@@ -31,6 +31,7 @@ Bookies::Application.routes.draw do
   get "tags/name/:name" => "tags#name"
   get "tags/user/:id" => "tags#user"
 
+  get "bookmarks/:id/delete" => 'bookmarks#destroy', :as => "delete_bookmark"
   get "bookmarks/user/:id" => "bookmarks#user"
   get "user/:id/bookmarks" => "bookmarks#user"
   get "bookmarklet" => "bookmarks#bookmarklet"

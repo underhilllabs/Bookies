@@ -10,7 +10,7 @@
 4. cp config/example.database.yml config/database.yml    # set up your database
 5. vim config/database.yml # if using sqlite3 or postgresql, update the Gemfile with correct gems and run 'bundle' again).
 6. vim Gemfile && bundle
-7. rake db:reset
+7. rake db:setup
 8. rails g bootstrap:install
 9. rake assets:precompile # to compile all of the assets for the assets pipeline.
 10. rails server 

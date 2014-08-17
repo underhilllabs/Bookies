@@ -44,7 +44,7 @@ class BookmarksController < ApplicationController
 
 
   def show
-    @bookmark = Bookmark.find(params[:id]).order("updated_at DESC")
+    @bookmark = Bookmark.find(params[:id])
     
     respond_with @bookmark
   end

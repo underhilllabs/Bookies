@@ -1,21 +1,21 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
 
-one:
-  username: MyString
-  email: MyString
+bossy:
+  username: bossy
+  email: bossy@gmail.com
   password_digest: MyString
-  fullname: MyString
+  fullname: Bossy Girl
   website: MyString
   desc: MyText
   website2: MyString
   website3: MyString
   pic_url: MyString
 
-two:
-  username: MyString
-  email: MyString
+seamus:
+  username: seamus
+  email: seamusmcgraw@gmail.com
   password_digest: MyString
-  fullname: MyString
+  fullname: Seamus McGraw
   website: MyString
   desc: MyText
   website2: MyString

@@ -1,17 +1,19 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
 
 one:
-  url: MyString
-  title: MyString
+  url: http://ripleys.com
+  title: "Ripleys Believe it or Not"
   desc: MyText
   created: 2012-06-06 16:42:10
   modified: 2012-06-06 16:42:10
   private: false
+  user: seamus
 
 two:
-  url: MyString
-  title: MyString
+  url: http://palin2015.com
+  title: Palin 2014
   desc: MyText
   created: 2012-06-06 16:42:10
   modified: 2012-06-06 16:42:10
+  user: bossy
   private: false

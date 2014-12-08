@@ -1,9 +1,11 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
 
 one:
-  name: MyString
-  bookmark: 
+  name: mystery
+  bookmark: one
+  user: seamus
 
 two:
-  name: MyString
-  bookmark: 
+  name: palin
+  bookmark: two
+  user: bossy

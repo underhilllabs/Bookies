@@ -1,0 +1,2 @@
+describe Bookmark do
+end

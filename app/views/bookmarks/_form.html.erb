@@ -25,11 +25,11 @@
   </div>
   
   <div class="field">
-    <%= f.label :archive %>
-    <%= f.check_box :archive %>
+    <%= f.label(:is_archived, 'archive url?') %>
+    <%= f.check_box :is_archived %>
   </div>
 
-   <%= f.hidden_field :user_id, :value => session[:user_id] %>
+  <%= f.hidden_field :user_id, :value => session[:user_id] %>
   
 
   <div class="actions">

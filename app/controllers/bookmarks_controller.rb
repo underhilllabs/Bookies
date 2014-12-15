@@ -78,7 +78,7 @@ class BookmarksController < ApplicationController
       Tag.new(:name => tag.strip)
     end
     # use find_or_create
-    @bookmark = Bookmark.where(:url => params[:bookmark][:url], :title => params[:bookmark][:title], :desc => params[:bookmark][:desc], :is_archived => [params][:bookmark][:archive], :private => params[:bookmark][:private], :user_id => params[:bookmark][:user_id], :hashed_url => Digest::MD5.hexdigest(params[:bookmark][:url]) ).first_or_create
+    @bookmark = Bookmark.where(:url => params[:bookmark][:url], :title => params[:bookmark][:title], :desc => params[:bookmark][:desc], :is_archived => params[:bookmark][:is_archived], :private => params[:bookmark][:private], :user_id => params[:bookmark][:user_id], :hashed_url => Digest::MD5.hexdigest(params[:bookmark][:url]) ).first_or_create
     
     respond_to do |format|
       if @bookmark.save

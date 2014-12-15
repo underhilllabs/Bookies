@@ -14,24 +14,24 @@
 ActiveRecord::Schema.define(version: 20141215163057) do
 
   create_table "bookmarks", force: true do |t|
-    t.string   "url"
+    t.string   "url",         limit: 2048
     t.string   "title"
     t.text     "desc"
     t.datetime "created"
     t.datetime "modified"
     t.boolean  "private"
-    t.datetime "created_at",              null: false
-    t.datetime "updated_at",              null: false
-    t.integer  "user_id",     default: 1
+    t.datetime "created_at",                           null: false
+    t.datetime "updated_at",                           null: false
+    t.integer  "user_id",                  default: 1
     t.string   "hashed_url"
     t.string   "archive_url"
     t.boolean  "is_archived"
   end
 
   create_table "delayed_jobs", force: true do |t|
-    t.integer  "priority",   default: 0, null: false
-    t.integer  "attempts",   default: 0, null: false
-    t.text     "handler",                null: false
+    t.integer  "priority",                    default: 0, null: false
+    t.integer  "attempts",                    default: 0, null: false
+    t.text     "handler",    limit: 16777215
     t.text     "last_error"
     t.datetime "run_at"
     t.datetime "locked_at"

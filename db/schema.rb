@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140619205154) do
+ActiveRecord::Schema.define(version: 20141215163057) do
 
   create_table "bookmarks", force: true do |t|
     t.string   "url"
@@ -20,10 +20,12 @@ ActiveRecord::Schema.define(version: 20140619205154) do
     t.datetime "created"
     t.datetime "modified"
     t.boolean  "private"
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
-    t.integer  "user_id",    default: 1
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
+    t.integer  "user_id",     default: 1
     t.string   "hashed_url"
+    t.string   "archive_url"
+    t.boolean  "is_archived"
   end
 
   create_table "delayed_jobs", force: true do |t|

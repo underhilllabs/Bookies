@@ -19,6 +19,7 @@ class BookmarksController < ApplicationController
 
     if @bookmark.update_attributes(:url => params[:bookmark][:url], :title => params[:bookmark][:title], 
                                    :desc => params[:bookmark][:desc], :private => params[:bookmark][:private],
+                                   :is_archived => params[:bookmark][:archive],
                                    :hashed_url => Digest::MD5.hexdigest(params[:bookmark][:url]) )
       # now delete tags not passed in
       t_missing = Tag.where("bookmark_id = ?", @bookmark.id).where("name not in (?)", tag_s).pluck(:id)
@@ -77,7 +78,7 @@ class BookmarksController < ApplicationController
       Tag.new(:name => tag.strip)
     end
     # use find_or_create
-    @bookmark = Bookmark.where(:url => params[:bookmark][:url], :title => params[:bookmark][:title], :desc => params[:bookmark][:desc], :private => params[:bookmark][:private], :user_id => params[:bookmark][:user_id], :hashed_url => Digest::MD5.hexdigest(params[:bookmark][:url]) ).first_or_create
+    @bookmark = Bookmark.where(:url => params[:bookmark][:url], :title => params[:bookmark][:title], :desc => params[:bookmark][:desc], :is_archived => [params][:bookmark][:archive], :private => params[:bookmark][:private], :user_id => params[:bookmark][:user_id], :hashed_url => Digest::MD5.hexdigest(params[:bookmark][:url]) ).first_or_create
     
     respond_to do |format|
       if @bookmark.save

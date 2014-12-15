@@ -30,6 +30,11 @@ $(function() {
     <%= f.check_box :private %>
   </div>
   
+  <div class="field">
+    <%= f.label :archive %>
+    <%= f.check_box :archive %>
+  </div>
+
   <%= f.hidden_field :is_popup, :value => 1 %>
   <%= f.hidden_field :user_id, :value => session[:user_id] %>
 

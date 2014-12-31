@@ -21,6 +21,11 @@
 
     <% end %>
   </div>
+  <% if @bookmark.is_archived? %>
+    <div class=bookmark-archive>
+      <a href="/archive/<%= @bookmark.id %>.html">View Archive</a>
+    </div>
+  <% end %>
   <div class="bookmark-details">
     <% if b.updated_at != b.created_at %>
       <span class="bookmark-updated">Updated: <%= nice_date_form(b.updated_at) %></span>

@@ -61,3 +61,5 @@ gem 'protected_attributes'
 gem 'thin'
 gem 'nokogiri'
 gem 'delayed_job_active_record'
+gem 'ruby-readability', :require => 'readability'
+

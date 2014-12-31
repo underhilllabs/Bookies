@@ -19,7 +19,7 @@ class BookmarksController < ApplicationController
 
     if @bookmark.update_attributes(:url => params[:bookmark][:url], :title => params[:bookmark][:title], 
                                    :desc => params[:bookmark][:desc], :private => params[:bookmark][:private],
-                                   :is_archived => params[:bookmark][:archive],
+                                   :is_archived => params[:bookmark][:is_archived],
                                    :hashed_url => Digest::MD5.hexdigest(params[:bookmark][:url]) )
       # now delete tags not passed in
       t_missing = Tag.where("bookmark_id = ?", @bookmark.id).where("name not in (?)", tag_s).pluck(:id)
@@ -27,6 +27,7 @@ class BookmarksController < ApplicationController
       
       flash[:notice] = "\"#{@bookmark.title}\" was successfully updated."
     end
+    @bookmark.archive_the_url if params[:bookmark][:is_archived]
 
     redirect_to root_url
   end
@@ -78,7 +79,9 @@ class BookmarksController < ApplicationController
       Tag.new(:name => tag.strip)
     end
     # use find_or_create
-    @bookmark = Bookmark.where(:url => params[:bookmark][:url], :title => params[:bookmark][:title], :desc => params[:bookmark][:desc], :is_archived => params[:bookmark][:is_archived], :private => params[:bookmark][:private], :user_id => params[:bookmark][:user_id], :hashed_url => Digest::MD5.hexdigest(params[:bookmark][:url]) ).first_or_create
+    @bookmark = Bookmark.where(:url => params[:bookmark][:url], :title => params[:bookmark][:title], :desc => params[:bookmark][:desc], :is_archived => params[:bookmark][:is_archived], :private => params[:bookmark][:private], :user_id => params[:bookmark][:user_id], :hashed_url => Digest::MD5.hexdigest(params[:bookmark][:url]) ).first_or_create 
+    # archive the url if checked
+    @bookmark.archive_the_url if params[:bookmark][:is_archived]
     
     respond_to do |format|
       if @bookmark.save

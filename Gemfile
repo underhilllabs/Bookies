@@ -59,7 +59,8 @@ gem 'omniauth-identity'
 
 gem 'protected_attributes'
 gem 'thin'
+gem 'mechanize'
 gem 'nokogiri'
 gem 'delayed_job_active_record'
 gem 'ruby-readability', :require => 'readability'
-
+gem 'responders', '~> 2.0'

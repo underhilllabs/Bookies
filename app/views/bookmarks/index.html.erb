@@ -33,11 +33,11 @@
       <span class="bookmark-ops">
         <span class="bookmark-edit"> <%= link_to "Edit", edit_bookmark_path(b) %> </span>
         <span class="bookmark-delete"><%= link_to("Delete", b, :method => 'Delete', data: {:confirm => "Are you sure you want to delete that?"}) %></span>
-      </span>
-    <% end %>
-    <% if b.is_archived? %>
-      <span class=bookmark-archive>
-        <a href="/archive/<%= b.id %>.html">View Archived Page</a>
+        <% if b.is_archived? %>
+          <span class=bookmark-archive>
+            <a href="/archive/<%= b.id %>.html">View Archived Page</a>
+          </span>
+        <% end %>
       </span>
     <% end %>
     </span>

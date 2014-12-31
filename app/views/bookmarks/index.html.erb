@@ -21,11 +21,6 @@
 
     <% end %>
   </div>
-  <% if @bookmark.is_archived? %>
-    <div class=bookmark-archive>
-      <a href="/archive/<%= @bookmark.id %>.html">View Archive</a>
-    </div>
-  <% end %>
   <div class="bookmark-details">
     <% if b.updated_at != b.created_at %>
       <span class="bookmark-updated">Updated: <%= nice_date_form(b.updated_at) %></span>
@@ -38,6 +33,11 @@
       <span class="bookmark-ops">
         <span class="bookmark-edit"> <%= link_to "Edit", edit_bookmark_path(b) %> </span>
         <span class="bookmark-delete"><%= link_to("Delete", b, :method => 'Delete', data: {:confirm => "Are you sure you want to delete that?"}) %></span>
+      </span>
+    <% end %>
+    <% if b.is_archived? %>
+      <span class=bookmark-archive>
+        <a href="/archive/<%= b.id %>.html">View Archived Page</a>
       </span>
     <% end %>
     </span>

@@ -11,17 +11,19 @@ class Bookmark < ActiveRecord::Base
   scope :unpublished, -> { where(private: true) }
   scope :archived, -> { where(is_archived: true) }
 
-  # archive the bookmark with readability
-  # archive url: /archive/#{bookmark_id}
-  def archive_url
+  # download and archive the bookmark
+  def archive_the_url
     mechanize = Mechanize.new
     source = mechanize.get(url).body
+    b = Bookmark.find(id)
     File.open("public/archive/#{id}.html", "w") do |f|
-      f.write(Readability::Document.new(source).content)
+      f.write("<h1>#{title}</h1>\n<hr />\n")
+      f.write(Readability::Document.new(source, :tags => %w[div p img a h2 h3 h1 h4], :attributes => %w[src href width height] ).content)
+      b.is_archived = true
+      b.archive_url = "/archive/#{id}.html"
+      b.save
     end
-    is_archived = True
-    archive_url = "/archive/#{id}.html"
   end
 
-  handle_asynchronously :archive_url
+  #handle_asynchronously :archive_the_url
 end

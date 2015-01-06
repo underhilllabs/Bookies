@@ -18,12 +18,12 @@ class Bookmark < ActiveRecord::Base
     b = Bookmark.find(id)
     File.open("public/archive/#{id}.html", "w") do |f|
       f.write("<h1>#{title}</h1>\n<hr />\n")
-      f.write(Readability::Document.new(source, :tags => %w[div p img a h2 h3 h1 h4], :attributes => %w[src href width height] ).content)
+      f.write(Readability::Document.new(source, :tags => %w[div p pre img a h2 h3 h1 h4 ul li ol], :attributes => %w[src href width height] ).content)
       b.is_archived = true
       b.archive_url = "/archive/#{id}.html"
       b.save
     end
   end
 
-  #handle_asynchronously :archive_the_url
+  handle_asynchronously :archive_the_url
 end

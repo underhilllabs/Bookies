@@ -22,3 +22,6 @@
 /config/secrets.yml
 
 /public/assets/*
+/public/archive/*.html
+
+.sass-cache

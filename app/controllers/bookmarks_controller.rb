@@ -37,9 +37,9 @@ class BookmarksController < ApplicationController
     @user = User.find(params[:id])
     # FIXME TODO
     if current_user && current_user.id.to_s == params[:id] 
-      @bookmarks = Bookmark.where(:user_id => params[:id]).order("updated_at DESC").page(params[:page]).per_page(20)
+      @bookmarks = Bookmark.where(user_id: params[:id]).order(updated_at: :desc).page(params[:page]).per_page(20)
     else
-      @bookmarks = Bookmark.where(:user_id => params[:id]).order("updated_at DESC").where(:private => nil).page(params[:page]).per_page(20)
+      @bookmarks = Bookmark.where(user_id: params[:id]).order(updated_at: :desc).where(private: nil).page(params[:page]).per_page(20)
     end
     respond_with @bookmarks
   end
@@ -99,6 +99,12 @@ class BookmarksController < ApplicationController
       end
     end
   end
+
+  # GET /bookmark/archive/1
+  def archive
+    @bookmark = Bookmark.find(params[:id])
+  end
+    
 
   # DELETE /users/1
   # DELETE /users/1.xml

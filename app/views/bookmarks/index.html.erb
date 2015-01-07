@@ -35,7 +35,7 @@
         <span class="bookmark-delete"><%= link_to("Delete", b, :method => 'Delete', data: {:confirm => "Are you sure you want to delete that?"}) %></span>
         <% if b.is_archived? %>
           <span class=bookmark-archive>
-            <a href="/archive/<%= b.id %>.html">View Archived Page</a>
+            <a href="/bookmarks/archive/<%= b.id %>">View Archived Page</a>
           </span>
         <% end %>
       </span>

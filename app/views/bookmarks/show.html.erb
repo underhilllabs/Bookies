@@ -27,4 +27,10 @@
   <div class=bookmark-tags>
     tags:  <%= @bookmark.tags.to_a.join(", ") %>
   </div>
+  <% if @bookmark.is_archived? %>
+    <div class=bookmark-archive>
+      <a href="/archive/<%= @bookmark.id %>.html">View Archive</a>
+    </div>
+  <% end %>
+
 </div>

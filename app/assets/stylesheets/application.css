@@ -13,3 +13,6 @@
 */
 
 /* @import "bourbon"; */
+body div.archive-main p {
+  font-size: 16px;
+}

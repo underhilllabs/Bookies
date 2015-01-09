@@ -1,0 +1,16 @@
+<div class="archive-main">
+<% 
+# archive_file = @bookmark.archive_url
+archive_file = "public/archive/#{@bookmark.id}.html"
+if File.exists? archive_file then 
+  content = File.open( archive_file ).read
+%>
+  <%= raw content %>
+<%
+else 
+%>
+  <%= "No archive saved" %>
+<%
+end
+%>
+</div>

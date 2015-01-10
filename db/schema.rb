@@ -13,77 +13,77 @@
 
 ActiveRecord::Schema.define(version: 20141215163057) do
 
-  create_table "bookmarks", force: true do |t|
-    t.string   "url",         limit: 2048
-    t.string   "title"
-    t.text     "desc"
+  create_table "bookmarks", force: :cascade do |t|
+    t.string   "url",         limit: 255
+    t.string   "title",       limit: 255
+    t.text     "desc",        limit: 65535
     t.datetime "created"
     t.datetime "modified"
-    t.boolean  "private"
-    t.datetime "created_at",                           null: false
-    t.datetime "updated_at",                           null: false
-    t.integer  "user_id",                  default: 1
-    t.string   "hashed_url"
-    t.string   "archive_url"
-    t.boolean  "is_archived"
+    t.boolean  "private",     limit: 1
+    t.datetime "created_at",                            null: false
+    t.datetime "updated_at",                            null: false
+    t.integer  "user_id",     limit: 4,     default: 1
+    t.string   "hashed_url",  limit: 255
+    t.string   "archive_url", limit: 255
+    t.boolean  "is_archived", limit: 1
   end
 
-  create_table "delayed_jobs", force: true do |t|
-    t.integer  "priority",                    default: 0, null: false
-    t.integer  "attempts",                    default: 0, null: false
-    t.text     "handler",    limit: 16777215
-    t.text     "last_error"
+  create_table "delayed_jobs", force: :cascade do |t|
+    t.integer  "priority",   limit: 4,     default: 0, null: false
+    t.integer  "attempts",   limit: 4,     default: 0, null: false
+    t.text     "handler",    limit: 65535,             null: false
+    t.text     "last_error", limit: 65535
     t.datetime "run_at"
     t.datetime "locked_at"
     t.datetime "failed_at"
-    t.string   "locked_by"
-    t.string   "queue"
+    t.string   "locked_by",  limit: 255
+    t.string   "queue",      limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   add_index "delayed_jobs", ["priority", "run_at"], name: "delayed_jobs_priority", using: :btree
 
-  create_table "followings", force: true do |t|
-    t.integer  "user_id"
-    t.integer  "following_id"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
+  create_table "followings", force: :cascade do |t|
+    t.integer  "user_id",      limit: 4
+    t.integer  "following_id", limit: 4
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
   end
 
-  create_table "identities", force: true do |t|
-    t.string   "name"
-    t.string   "email"
-    t.string   "password_digest"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
-    t.string   "username"
-    t.string   "nickname"
+  create_table "identities", force: :cascade do |t|
+    t.string   "name",            limit: 255
+    t.string   "email",           limit: 255
+    t.string   "password_digest", limit: 255
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
+    t.string   "username",        limit: 255
+    t.string   "nickname",        limit: 255
   end
 
-  create_table "tags", force: true do |t|
-    t.string   "name"
-    t.integer  "bookmark_id"
-    t.datetime "created_at",              null: false
-    t.datetime "updated_at",              null: false
-    t.integer  "user_id",     default: 1
+  create_table "tags", force: :cascade do |t|
+    t.string   "name",        limit: 255
+    t.integer  "bookmark_id", limit: 4
+    t.datetime "created_at",                          null: false
+    t.datetime "updated_at",                          null: false
+    t.integer  "user_id",     limit: 4,   default: 1
   end
 
   add_index "tags", ["bookmark_id"], name: "index_tags_on_bookmark_id", using: :btree
 
-  create_table "users", force: true do |t|
-    t.string   "username"
-    t.string   "email"
-    t.string   "fullname"
-    t.string   "website"
-    t.text     "desc"
-    t.string   "website2"
-    t.string   "website3"
-    t.string   "pic_url"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.string   "provider"
-    t.string   "uid"
+  create_table "users", force: :cascade do |t|
+    t.string   "username",   limit: 255
+    t.string   "email",      limit: 255
+    t.string   "fullname",   limit: 255
+    t.string   "website",    limit: 255
+    t.text     "desc",       limit: 65535
+    t.string   "website2",   limit: 255
+    t.string   "website3",   limit: 255
+    t.string   "pic_url",    limit: 255
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
+    t.string   "provider",   limit: 255
+    t.string   "uid",        limit: 255
   end
 
 end

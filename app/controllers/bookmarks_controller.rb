@@ -60,6 +60,7 @@ class BookmarksController < ApplicationController
     else 
       @bookmarks = Bookmark.order("updated_at DESC").page(params[:page]).per_page(20)
     end
+    # @cloud_tags = cloud_tags(20) 
 
     respond_with @bookmarks
   end

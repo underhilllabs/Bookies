@@ -29,4 +29,8 @@ module ApplicationHelper
   def nice_date_form(the_date)
     return the_date.strftime('%B %e, %Y')
   end
+
+  def cloud_tags(cutoff, user)
+    @tags = Tag.group("name").having("count(name) > :cutoff", :cutoff => cutoff).order("count(name) DESC").count()
+  end
 end

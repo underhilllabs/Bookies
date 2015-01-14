@@ -1,0 +1,5 @@
+<h3>Look at all these Tags!</h3>
+<hr />
+<% @cloud_tags.each do |name,count| %>
+   <div><a href="/tags/name/<%= "#{name}" %>"> <%= "#{name}"%></a> <%=" (#{count})" %></div>
+<% end %>

@@ -4,7 +4,7 @@
 <div class="user-div">
 <span class="profile-avatar"><a href="/users/<%= u.id
                                       %>">
-<%= u.provider == "twitter" ? (image_tag u.pic_url) : (image_tag avatar_url(u)) %></a></span>
+<%= u.provider == "twitter" ? "" : (image_tag avatar_url(u)) %></a></span>
 <span class="profile-username"><a href="/users/<%= u.id %>"><%= u.username %></a></span>
 <span class="profile-fullname"><%= u.fullname %></span>
 <span class="profile-fullname"><a href="/bookmarks/user/<%= u.id

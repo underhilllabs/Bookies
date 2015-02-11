@@ -1,7 +1,7 @@
 module ApplicationHelper
   def avatar_url(user, img_size=80)
     if user.provider == "twitter"
-      user.pic_url if user.pic_url?
+      # user.pic_url if user.pic_url?
     else 
       gravatar_id = Digest::MD5::hexdigest(user.email).downcase
       "http://gravatar.com/avatar/#{gravatar_id}.png?d=#{APP_CONFIG["gravatar_type"]}&s=#{img_size}" 
@@ -14,7 +14,7 @@ module ApplicationHelper
     end
     @user = User.find(user_id)
     if @user.provider == "twitter" 
-      @user.pic_url
+      # @user.pic_url
     else 
       gravatar_id = Digest::MD5::hexdigest(@user.email).downcase
       "http://gravatar.com/avatar/#{gravatar_id}.png?d=#{APP_CONFIG["gravatar_type"]}&s=#{img_size}"

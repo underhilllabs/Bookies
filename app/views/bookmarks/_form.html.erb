@@ -20,13 +20,13 @@
   </div>
   
   <div class="field">
-    <%= f.label :private %>
-    <%= f.check_box :private %>
+		<span><%= f.label :private %></span>
+		<span><%= f.check_box :private %></span>
   </div>
   
   <div class="field">
-    <%= f.label(:is_archived, 'archive url?') %>
-    <%= f.check_box :is_archived %>
+    <span><%= f.label(:is_archived, 'archive url?') %></span>
+    <span><%= f.check_box :is_archived %></span>
   </div>
 
   <%= f.hidden_field :user_id, :value => session[:user_id] %>

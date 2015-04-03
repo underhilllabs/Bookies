@@ -15,13 +15,14 @@ gem 'sass-rails',   '>= 4.0.0'
 gem 'coffee-rails', '>= 4.0.0'
 
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
-# gem 'therubyracer', :platform => :ruby
+#gem 'therubyracer', :platform => :ruby
 
 gem 'uglifier', '>= 1.3.0'
 # use 2.0.8 because there is a bug in 2.0.9 and 2.1.0
 gem "therubyracer"
 gem "less-rails", '2.3.3' #Sprockets (what Rails 3.1 uses for its asset pipeline) supports LESS
 gem 'twitter-bootstrap-rails', '2.2.6'
+
 
 gem 'jquery-rails'
 

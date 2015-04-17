@@ -1,9 +1,8 @@
 class BookmarksController < ApplicationController
+  before_action :set_bookmark, only: [:show, :edit, :update, :archive, :destroy]
   respond_to :html, :json, :xml, :rss
 
   def update
-    # TODO: make this controller thinner!
-    @bookmark = Bookmark.find(params[:id])
     tag_s = params[:bookmark][:tags].split(',').map do |tag|
       tag.strip
     end
@@ -45,7 +44,6 @@ class BookmarksController < ApplicationController
 
 
   def show
-    @bookmark = Bookmark.find(params[:id])
   end
 
   # GET /bookmarks
@@ -94,14 +92,12 @@ class BookmarksController < ApplicationController
 
   # GET /bookmark/archive/1
   def archive
-    @bookmark = Bookmark.find(params[:id])
   end
     
 
   # DELETE /users/1
   # DELETE /users/1.xml
   def destroy
-    @bookmark = Bookmark.find(params[:id])
     if session[:user_id] != @bookmark.user_id
       flash[:error] = "Sorry, you do not have permission to delete this bookmark."
       redirect_to root_url
@@ -152,7 +148,6 @@ class BookmarksController < ApplicationController
 
   # get /bookmarks/:id/edit
   def edit
-    @bookmark = Bookmark.find(params[:id])
     @tags = @bookmark.tags
     if session[:user_id] == @bookmark.user_id
       respond_with @bookmark
@@ -160,5 +155,10 @@ class BookmarksController < ApplicationController
       flash[:error] = "Sorry, you do not have permissions to edit Bookmark!"
       redirect_to root_url
     end
+  end
+
+  private
+  def set_bookmark
+    @bookmark = Bookmark.find(params[:id])
   end
 end

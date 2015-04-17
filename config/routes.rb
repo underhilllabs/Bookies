@@ -34,7 +34,7 @@ Bookies::Application.routes.draw do
   get "bookmarks/:id/delete" => 'bookmarks#destroy', :as => "delete_bookmark"
   get "bookmarks/user/:id" => "bookmarks#user"
   # show archive of URL if it exists
-  get "bookmarks/archive/:id" => "bookmarks#archive"
+  get "bookmarks/archive/:id" => "bookmarks#archive", :as => "archive_bookmark"
   get "user/:id/bookmarks" => "bookmarks#user"
   get "bookmarklet" => "bookmarks#bookmarklet"
   get "bookmarklet/success" => "bookmarks#success"

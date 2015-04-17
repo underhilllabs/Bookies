@@ -5,11 +5,11 @@
 <p />
 <div class="main-wrapper">
 
- <%
+<%
   @bookmarks.each do |b|
     # this will make the number of bookmarks on page less than expected amount
     next if b.private == true and b.user_id != session[:user_id]
- %>
+%>
  <div class="bookmark-wrapper<%= b.private ? " private" :"" %>">
     <div class="bookmark-title"><a href="<%= b.url %>"><%= b.title %></a></div>
     <div class="bookmark-desc">
@@ -34,19 +34,16 @@
           <span class="bookmark-edit"> <%= link_to "Edit", edit_bookmark_path(b) %> </span>
           <span class="bookmark-delete"><%= link_to("Delete", b, :method => 'Delete', data: {:confirm => "Are you sure you want to delete that?"}) %></span>
           <% if b.is_archived? %>
-            <span class=bookmark-archive>
-              <a href="/bookmarks/archive/<%= b.id %>">View Archived Page</a>
-            </span>
+            <span class=bookmark-archive><%= link_to "View Archive", archive_bookmark_path(b) %></span>
           <% end %>
         </span>
       <% end %>
       </span>
     </div>
  </div>
- <%
-   # end bookmarks.each
-   end
- %>
+<%
+  end
+%>
 
 
 <div class="flickr_pagination">

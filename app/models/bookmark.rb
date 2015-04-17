@@ -1,6 +1,6 @@
 class Bookmark < ActiveRecord::Base
-  @tags = %w[div p ul li ol pre img a h1 h2 h3 h4 h5]
-  @attributes = %w[src href width height]
+  @@archive_tags = %w[div p ul li ol pre img a h1 h2 h3 h4 h5]
+  @@archive_attributes = %w[src href width height]
   attr_accessible :desc, :private, :title, :url, :user_id, :tags, :hashed_url, :is_archived, :archive_url
   belongs_to :user
   has_many :tags, :dependent => :destroy

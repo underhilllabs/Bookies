@@ -46,4 +46,5 @@ Bookies::Application.routes.draw do
   get "api/upload"   => "api#upload"
   post "api/import"   => "api#import"
 
+  mount Resque::Server, :at => "/resque-web"
 end

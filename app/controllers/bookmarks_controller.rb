@@ -66,11 +66,7 @@ class BookmarksController < ApplicationController
   end
   
   def user_bookmarks
-    #@user = current_user
-    #@bookmarks = @user.bookmarks.order("updated_at DESC")
     @bookmarks = Bookmark.order("updated_at DESC").where(:user_id => current_user.id)
-
-    respond_with @bookmarks
   end
 
   # POST /bookmarks

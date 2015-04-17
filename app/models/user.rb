@@ -48,6 +48,6 @@ class User < ActiveRecord::Base
   end
 
   # handle_asynchronously with delayed_job
-  handle_asynchronously :import_bookmarks
+  #handle_asynchronously :import_bookmarks
 
 end

@@ -41,14 +41,11 @@ class BookmarksController < ApplicationController
     else
       @bookmarks = Bookmark.where(user_id: params[:id]).order(updated_at: :desc).where(private: nil).page(params[:page]).per_page(20)
     end
-    respond_with @bookmarks
   end
 
 
   def show
     @bookmark = Bookmark.find(params[:id])
-    
-    respond_with @bookmark
   end
 
   # GET /bookmarks
@@ -61,8 +58,6 @@ class BookmarksController < ApplicationController
       @bookmarks = Bookmark.order("updated_at DESC").page(params[:page]).per_page(20)
     end
     # @cloud_tags = cloud_tags(20) 
-
-    respond_with @bookmarks
   end
   
   def user_bookmarks

@@ -31,7 +31,6 @@ class BookmarksController < ApplicationController
     redirect_to root_url
   end
 
-
   def user
     @user = User.find(params[:id])
     # FIXME TODO
@@ -42,11 +41,10 @@ class BookmarksController < ApplicationController
     end
   end
 
-
+  # GET /bookmarks/:id
   def show
   end
 
-  # GET /bookmarks
   # GET /bookmarks.xml
   def index
     if params[:not_tags] then
@@ -133,18 +131,6 @@ class BookmarksController < ApplicationController
       format.xml  { render :xml => @bookmark }
     end
   end
-
-
-
-  def search
-    @bookmarks = Bookmark.find(:all, "test")
-    
-    respond_to do |format|
-      format.html # new.html.erb
-      format.xml  { render :xml => @bookmark }
-    end
-  end
-  
 
   # get /bookmarks/:id/edit
   def edit

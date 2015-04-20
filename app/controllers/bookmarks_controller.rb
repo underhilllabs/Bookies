@@ -62,10 +62,11 @@ class BookmarksController < ApplicationController
   # POST /bookmarks
   # POST /bookmarks.xml
   def create
-    tags = params[:bookmark][:tags]
-    tags = tags.split(%r{\s*,\s*})
-    tags.each do |tag|
-      Tag.new(:name => tag)
+    tag_str = params[:bookmark][:tags]
+    tag_str = tag_str.split(%r{\s*,\s*})
+    tags = []
+    tag_str.each do |tag|
+      tags << Tag.new(:name => tag)
     end
     # use find_or_create
     @bookmark = Bookmark.where(:url => params[:bookmark][:url], :title => params[:bookmark][:title], :desc => params[:bookmark][:desc], :is_archived => params[:bookmark][:is_archived], :private => params[:bookmark][:private], :user_id => params[:bookmark][:user_id], :hashed_url => Digest::MD5.hexdigest(params[:bookmark][:url]) ).first_or_create 

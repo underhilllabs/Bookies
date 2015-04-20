@@ -3,9 +3,8 @@ class BookmarksController < ApplicationController
   respond_to :html, :json, :xml, :rss
 
   def update
-    tags_in = params[:bookmark][:tags]
-    tag_s = tags_in.split(%r{\s*,\s*})
-    tag_s.each do |tag|
+    tags_arr = set_tags(params[:bookmark][:tags])
+    tags_arr.each do |tag|
       Tag.where(:name => tag, :bookmark_id => params[:id]).first_or_create
     end
     
@@ -46,13 +45,7 @@ class BookmarksController < ApplicationController
 
   # GET /bookmarks.xml
   def index
-    if params[:not_tags] then
-      not_tags = params[:not_tags].split("+")
-      @bookmarks = Bookmark.where.not(tags: not_tags).order(updated_at: :desc).page(params[:page]).per_page(20)
-    else 
-      @bookmarks = Bookmark.order("updated_at DESC").page(params[:page]).per_page(20)
-    end
-    # @cloud_tags = cloud_tags(20) 
+    @bookmarks = Bookmark.order("updated_at DESC").page(params[:page])
   end
   
   def user_bookmarks
@@ -62,9 +55,8 @@ class BookmarksController < ApplicationController
   # POST /bookmarks
   # POST /bookmarks.xml
   def create
-    tag_str = params[:bookmark][:tags]
-    tag_str = tag_str.split(%r{\s*,\s*})
     tags = []
+    tag_str = set_tags(params[:bookmark][:tags])
     tag_str.each do |tag|
       tags << Tag.new(:name => tag)
     end
@@ -137,6 +129,10 @@ class BookmarksController < ApplicationController
   end
 
   private
+  def set tags(tag_str)
+    tag_str.split(%r{,\s*})
+  end
+
   def set_bookmark
     @bookmark = Bookmark.find(params[:id])
   end

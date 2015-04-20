@@ -3,9 +3,8 @@ class BookmarksController < ApplicationController
   respond_to :html, :json, :xml, :rss
 
   def update
-    tag_s = params[:bookmark][:tags].split(',').map do |tag|
-      tag.strip
-    end
+    tags_in = params[:bookmark][:tags]
+    tag_s = tags_in.split(%r{\s*,\s*})
     tag_s.each do |tag|
       Tag.where(:name => tag, :bookmark_id => params[:id]).first_or_create
     end
@@ -63,8 +62,10 @@ class BookmarksController < ApplicationController
   # POST /bookmarks
   # POST /bookmarks.xml
   def create
-    tags = params[:bookmark][:tags].split(',').map do |tag|
-      Tag.new(:name => tag.strip)
+    tags = params[:bookmark][:tags]
+    tags = tags.split(%r{\s*,\s*})
+    tags.each do |tag|
+      Tag.new(:name => tag)
     end
     # use find_or_create
     @bookmark = Bookmark.where(:url => params[:bookmark][:url], :title => params[:bookmark][:title], :desc => params[:bookmark][:desc], :is_archived => params[:bookmark][:is_archived], :private => params[:bookmark][:private], :user_id => params[:bookmark][:user_id], :hashed_url => Digest::MD5.hexdigest(params[:bookmark][:url]) ).first_or_create 
@@ -114,11 +115,6 @@ class BookmarksController < ApplicationController
   # GET /bookmarks/new.xml
   def new
     @bookmark = Bookmark.new()
-
-    respond_to do |format|
-      format.html # new.html.erb
-      format.xml  { render :xml => @bookmark }
-    end
   end
 
   # GET /bookmarks/new
@@ -126,10 +122,6 @@ class BookmarksController < ApplicationController
   def bookmarklet
     # @bookmark = Bookmark.new(:tags => [Tag.new])
     @bookmark = Bookmark.where(:url => params[:address], :user_id => session[:user_id]).first_or_initialize()
-    respond_to do |format|
-      format.html # bookmarklet.html.erb
-      format.xml  { render :xml => @bookmark }
-    end
   end
 
   # get /bookmarks/:id/edit

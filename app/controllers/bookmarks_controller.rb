@@ -1,6 +1,6 @@
 class BookmarksController < ApplicationController
   before_action :set_bookmark, only: [:show, :edit, :update, :archive, :destroy]
-  respond_to :html, :json, :xml, :rss
+  respond_to :html
 
   def update
     tags_arr = set_tags(params[:bookmark][:tags])
@@ -46,6 +46,7 @@ class BookmarksController < ApplicationController
   # GET /bookmarks.xml
   def index
     @bookmarks = Bookmark.order("updated_at DESC").page(params[:page])
+    respond_with(@bookmarks)
   end
   
   def user_bookmarks
@@ -84,6 +85,7 @@ class BookmarksController < ApplicationController
 
   # GET /bookmark/archive/1
   def archive
+    render layout: "archive"
   end
     
 
@@ -129,7 +131,7 @@ class BookmarksController < ApplicationController
   end
 
   private
-  def set tags(tag_str)
+  def set_tags(tag_str)
     tag_str.split(%r{,\s*})
   end
 

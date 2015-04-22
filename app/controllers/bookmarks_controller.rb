@@ -19,7 +19,7 @@ class BookmarksController < ApplicationController
                                    :is_archived => params[:bookmark][:is_archived],
                                    :hashed_url => Digest::MD5.hexdigest(params[:bookmark][:url]) )
       # now delete tags not passed in
-      t_missing = Tag.where("bookmark_id = ?", @bookmark.id).where("name not in (?)", tag_s).pluck(:id)
+      t_missing = Tag.where("bookmark_id = ?", @bookmark.id).where("name not in (?)", tags_arr).pluck(:id)
       Tag.destroy(t_missing)
       
       flash[:notice] = "\"#{@bookmark.title}\" was successfully updated."
@@ -137,5 +137,10 @@ class BookmarksController < ApplicationController
 
   def set_bookmark
     @bookmark = Bookmark.find(params[:id])
+  end
+
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def bookmark_params
+    params.require(:bookmark).permit(:url, :title, :desc, :is_archived, :hashed_url)
   end
 end

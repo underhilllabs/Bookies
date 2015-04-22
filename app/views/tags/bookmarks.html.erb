@@ -14,28 +14,7 @@
  <% 
   @bookmarks.each do |b|
  %>
- <div class="bookmark-wrapper">
-  <div class="bookmark-title"><a href="<%= b.url %>"><%= b.title %></a></div>
-  <div class="bookmark-desc">
-    <%= b.desc %>
-  </div>
-  <div class="bookmark-tags">
-    <% b.tags.each do |t| %>
-      <a href="/tags/<%= t.id %>/bookmarks"><%= t.name %></a>
-
-    <% end %>
-  </div>
-  <div class="bookmark-details">
-    <span class="bookmark-created"><%= nice_date_form(b.created_at) %></span>
-    <% if b.user_id == session[:user_id] %>
-      <span class="bookmark-ops">
-        <span class="bookmark-edit"> <%= link_to "Edit", edit_bookmark_path(b) %> </span>
-        <span class="bookmark-delete"><a href="/bookmarks/<%= b.id %>/delete">Delete</a></span>
-      </span>
-    <% end %>
-    </span>
-  </div>
- </div>
+ <%= render partial: 'bookmarks/bookmark', locals: { b: b} %>
  <% 
    end
  %>

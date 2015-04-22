@@ -1,0 +1,31 @@
+ <div class="bookmark-wrapper<%= b.private ? " private" :"" %>">
+    <div class="bookmark-title"><a href="<%= b.url %>"><%= b.title %></a></div>
+    <div class="bookmark-desc">
+      <%= b.desc %>
+    </div>
+    <div class="bookmark-tags">
+      <% b.tags.each do |t| %>
+        <a href="/tags/name/<%= t.name %>"><%= t.name %></a>
+
+      <% end %>
+    </div>
+    <div class="bookmark-details">
+      <% if b.updated_at != b.created_at %>
+        <span class="bookmark-updated">Updated: <%= nice_date_form(b.updated_at) %></span>
+        <span class="bookmark-created">Created: <%= nice_date_form(b.created_at) %></span>
+      <% else %>
+        <span class="bookmark-created"><%= nice_date_form(b.created_at) %></span>
+      <% end %>
+      <span class="bookmark-owner">by <a href="users/<%= b.user_id %>"><%= b.user.username %></a>
+      <% if b.user_id == session[:user_id] %>
+        <span class="bookmark-ops">
+          <span class="bookmark-edit"> <%= link_to "Edit", edit_bookmark_path(b) %> </span>
+          <span class="bookmark-delete"><%= link_to("Delete", b, :method => 'Delete', data: {:confirm => "Are you sure you want to delete that?"}) %></span>
+          <% if b.is_archived? %>
+            <span class=bookmark-archive><%= link_to "View Archive", archive_bookmark_path(b) %></span>
+          <% end %>
+        </span>
+      <% end %>
+      </span>
+    </div>
+ </div>

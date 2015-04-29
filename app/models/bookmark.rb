@@ -3,11 +3,13 @@ class Bookmark < ActiveRecord::Base
   belongs_to :user
   has_many :tags, :dependent => :destroy
 
-  validates_presence_of :url, :on => :create
-  validates_presence_of :title, :on => :create
+  validates_presence_of :url, :presence => true
+  validates_presence_of :title, :presence => true
   validates :user_id, :presence => true
 
   scope :published, -> { where(private: :nil) }
+  scope :my_bookmarks, ->(user_id) { where(user_id: user_id) }
+  # scope :published_or_mine,->(user_id) find_by_sql(.. UNION ..)
   scope :unpublished, -> { where(private: true) }
   scope :archived, -> { where(is_archived: true) }
 

@@ -17,9 +17,20 @@ describe User do
     end
 
     it "fails wihout unique email" do
-      user2 = User.new email: "test@test.com", username: "test"
+      user2 = User.new
+      user2.email = "test@test.com"
       user.email = "test@test.com"
       expect(user).to_not be_valid
+    end
+    it "fails wih invalid email" do
+      user.email = "test@ucdenver"
+      user.username = "tester"
+      expect(user).to_not be_valid
+    end
+    it "succeeds wih valid email" do
+      user.email = "test.user@ucdenver.edu"
+      user.username = "tester"
+      expect(user).to be_valid
     end
   end
 end

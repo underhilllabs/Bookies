@@ -48,7 +48,10 @@ gem 'will_paginate', '>= 3.0.5'
 
 #gem 'rspec-rails', :group => [:test, :development]
 group :development, :test do
-  gem 'rspec-rails', '~> 3.0.0'
+  gem 'rspec-rails', '~> 3.0'
+end
+group :test do
+  gem 'capybara'
 end
 
 

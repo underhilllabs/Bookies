@@ -7,13 +7,12 @@ class BookmarksController < ApplicationController
     tags_arr.each do |tag|
       Tag.where(:name => tag, :bookmark_id => params[:id]).first_or_create
     end
-    
     # check if user has permission to edit bookmark
     if session[:user_id] != @bookmark.user_id
       flash[:error] = "Sorry, you do not have permission to edit another user's bookmarks!"
       redirect_to root_url
     end
-
+    # warning: update_attributes side-steps validation
     if @bookmark.update_attributes(:url => params[:bookmark][:url], :title => params[:bookmark][:title], 
                                    :desc => params[:bookmark][:desc], :private => params[:bookmark][:private],
                                    :is_archived => params[:bookmark][:is_archived],
@@ -21,11 +20,8 @@ class BookmarksController < ApplicationController
       # now delete tags not passed in
       t_missing = Tag.where("bookmark_id = ?", @bookmark.id).where("name not in (?)", tags_arr).pluck(:id)
       Tag.destroy(t_missing)
-      
       flash[:notice] = "\"#{@bookmark.title}\" was successfully updated."
     end
-    @bookmark.archive_the_url if params[:bookmark][:is_archived]
-
     redirect_to root_url
   end
 
@@ -57,12 +53,9 @@ class BookmarksController < ApplicationController
   # POST /bookmarks.xml
   def create
     tag_str = set_tags(params[:bookmark][:tags])
-    
     # use find_or_create
-    @bookmark = Bookmark.where(:url => params[:bookmark][:url], :title => params[:bookmark][:title], :desc => params[:bookmark][:desc], :is_archived => params[:bookmark][:is_archived], :private => params[:bookmark][:private], :user_id => params[:bookmark][:user_id], :hashed_url => Digest::MD5.hexdigest(params[:bookmark][:url]) ).first_or_create 
-    # archive the url if checked
-    @bookmark.archive_the_url if params[:bookmark][:is_archived]
-    
+    @bookmark = Bookmark.where(:user_id => params[:bookmark][:user_id], :hashed_url => Digest::MD5.hexdigest(params[:bookmark][:url]) ).first_or_initialize 
+    @bookmark.update(title: params[:bookmark][:title], url: params[:bookmark][:url], title: params[:bookmark][:title], desc: params[:bookmark][:desc], is_archived: params[:bookmark][:is_archived], private: params[:bookmark][:private], user_id: params[:bookmark][:user_id]) 
     if @bookmark.save
       # create the tags
       save_tags(tag_str)

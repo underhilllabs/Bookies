@@ -66,20 +66,17 @@ class BookmarksController < ApplicationController
     # archive the url if checked
     @bookmark.archive_the_url if params[:bookmark][:is_archived]
     
-    respond_to do |format|
-      if @bookmark.save
-        # add bookmark id to each tag we created
-        tags.each { |t| t.bookmark_id = @bookmark.id; t.save}
-        if params[:bookmark][:is_popup]
-          format.html { redirect_to(@bookmark, :notice => 'Close the Window!', :locals => {:close_window => 1}) }
-        else  
-          format.html { redirect_to(@bookmark, :notice => 'Bookmark was successfully created.') }
-          format.xml  { render :xml => @bookmark, :status => :created, :location => @bookmark }
-        end
-      else
-        format.html { render :action => "new" }
-        format.xml  { render :xml => @bookmark.errors, :status => :unprocessable_entity }
+    if @bookmark.save
+      # add bookmark id to each tag we created
+      tags.each { |t| t.bookmark_id = @bookmark.id; t.save}
+      if params[:bookmark][:is_popup]
+        redirect_to(@bookmark, :notice => 'Close the Window!', :locals => {:close_window => 1})
+      else  
+        redirect_to(@bookmark, :notice => 'Bookmark was successfully created.')
       end
+    else
+      flash[:warning] = "There was a problem saving that bookmark."
+      render :action => "new" 
     end
   end
 

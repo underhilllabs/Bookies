@@ -22,5 +22,5 @@
 
 *** Set up the archive page feature
 1. install redis
-2. run `QUEUE='*' rake resque:work`
+2. run: RAILS_ENV=production QUEUE=bookmark_archive_queue rake environment resque:work
 

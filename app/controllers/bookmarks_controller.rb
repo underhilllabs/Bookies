@@ -56,19 +56,16 @@ class BookmarksController < ApplicationController
   # POST /bookmarks
   # POST /bookmarks.xml
   def create
-    tags = []
     tag_str = set_tags(params[:bookmark][:tags])
-    tag_str.each do |tag|
-      tags << Tag.new(:name => tag)
-    end
+    
     # use find_or_create
     @bookmark = Bookmark.where(:url => params[:bookmark][:url], :title => params[:bookmark][:title], :desc => params[:bookmark][:desc], :is_archived => params[:bookmark][:is_archived], :private => params[:bookmark][:private], :user_id => params[:bookmark][:user_id], :hashed_url => Digest::MD5.hexdigest(params[:bookmark][:url]) ).first_or_create 
     # archive the url if checked
     @bookmark.archive_the_url if params[:bookmark][:is_archived]
     
     if @bookmark.save
-      # add bookmark id to each tag we created
-      tags.each { |t| t.bookmark_id = @bookmark.id; t.save}
+      # create the tags
+      save_tags(tag_str)
       if params[:bookmark][:is_popup]
         redirect_to(@bookmark, :notice => 'Close the Window!', :locals => {:close_window => 1})
       else  
@@ -128,6 +125,13 @@ class BookmarksController < ApplicationController
   end
 
   private
+  # save each of the tags with the @bookmark.id
+  def save_tags(tag_str)
+    tag_str.each do |t| 
+      Tag.create(name: t, bookmark_id: @bookmark.id)
+    end
+  end
+
   def set_tags(tag_str)
     tag_str.split(%r{,\s*})
   end

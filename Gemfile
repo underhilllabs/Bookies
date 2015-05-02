@@ -44,16 +44,13 @@ gem 'capistrano'
 # Gemfile for Rails 3, Sinatra, and Merb
 gem 'will_paginate', '>= 3.0.5'
 
-# gem 'bourbon'
-
-#gem 'rspec-rails', :group => [:test, :development]
 group :development, :test do
   gem 'rspec-rails', '~> 3.0'
 end
 group :test do
   gem 'capybara'
 end
-
+gem 'simplecov', :require => false, :group => :test
 
 gem 'mysql2'
 
@@ -65,9 +62,6 @@ gem 'protected_attributes'
 gem 'thin'
 gem 'mechanize'
 gem 'nokogiri'
-gem 'daemons'
-# gem 'delayed_job'
-# gem 'delayed_job_active_record'
 gem 'resque', :require => "resque/server"
 gem 'ruby-readability', :require => 'readability'
 gem 'responders', '~> 2.0'

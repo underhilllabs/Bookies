@@ -1,4 +1,5 @@
 class BookmarksController < ApplicationController
+  before_action :require_login, only: [:update, :edit, :bookmarklet]
   before_action :set_bookmark, only: [:show, :edit, :update, :archive, :destroy]
   respond_to :html
 
@@ -118,6 +119,13 @@ class BookmarksController < ApplicationController
   end
 
   private
+  def require_login
+    unless session[:user_id]
+      flash[:info] = "Please Sign In."
+      redirect_to login_url
+    end
+  end
+
   # save each of the tags with the @bookmark.id
   def save_tags(tag_str)
     tag_str.each do |t| 

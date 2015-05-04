@@ -42,7 +42,7 @@ class ApiController < ApplicationController
     if(params[:tag])
       #@tags = params[:tag].split("+")
       @tag = Tag.find(params[:tag])
-      @bookmarks = @user.bookmarks.order("updated_at DESC")
+      @bookmarks = @user.bookmarks.where(tag: @tag).order("updated_at DESC")
     else
       @bookmarks = @user.bookmarks.order("updated_at DESC")
     end

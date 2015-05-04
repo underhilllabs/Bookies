@@ -14,10 +14,7 @@ class BookmarksController < ApplicationController
       redirect_to root_url
     end
     # warning: update_attributes side-steps validation
-    if @bookmark.update_attributes(:url => params[:bookmark][:url], :title => params[:bookmark][:title], 
-                                   :desc => params[:bookmark][:desc], :private => params[:bookmark][:private],
-                                   :is_archived => params[:bookmark][:is_archived],
-                                   :hashed_url => Digest::MD5.hexdigest(params[:bookmark][:url]) )
+    if @bookmark.update(bookmark_params)
       # now delete tags not passed in
       t_missing = Tag.where("bookmark_id = ?", @bookmark.id).where("name not in (?)", tags_arr).pluck(:id)
       Tag.destroy(t_missing)
@@ -143,6 +140,6 @@ class BookmarksController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def bookmark_params
-    params.require(:bookmark).permit(:url, :title, :desc, :is_archived, :hashed_url)
+    params.require(:bookmark).permit(:url, :title, :private, :desc, :is_archived, :hashed_url)
   end
 end

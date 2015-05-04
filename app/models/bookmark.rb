@@ -1,5 +1,5 @@
 class Bookmark < ActiveRecord::Base
-  before_save :archive_the_url
+  before_save :archive_the_url, :hash_url
   attr_accessible :desc, :private, :title, :url, :user_id, :tags, :hashed_url, :is_archived, :archive_url
   belongs_to :user
   has_many :tags, :dependent => :destroy
@@ -18,5 +18,9 @@ class Bookmark < ActiveRecord::Base
       logger.info "Queued the archiving of the url"
       Resque.enqueue(BookmarkArchiver, id)
     end
+  end
+ 
+  def hash_url
+    hashed_url = Digest::MD5.hexdigest(url)
   end
 end

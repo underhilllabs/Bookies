@@ -52,8 +52,8 @@ class BookmarksController < ApplicationController
   def create
     tag_str = set_tags(params[:bookmark][:tags])
     # use find_or_create
-    @bookmark = Bookmark.where(:user_id => params[:bookmark][:user_id], :hashed_url => Digest::MD5.hexdigest(params[:bookmark][:url]) ).first_or_initialize 
-    @bookmark.update(title: params[:bookmark][:title], url: params[:bookmark][:url], title: params[:bookmark][:title], desc: params[:bookmark][:desc], is_archived: params[:bookmark][:is_archived], private: params[:bookmark][:private], user_id: params[:bookmark][:user_id]) 
+    @bookmark = Bookmark.where(:user_id => params[:bookmark][:user_id], :url => params[:bookmark][:url] ).first_or_initialize
+    @bookmark.update(bookmark_params)
     if @bookmark.save
       # create the tags
       save_tags(tag_str)
@@ -140,6 +140,6 @@ class BookmarksController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def bookmark_params
-    params.require(:bookmark).permit(:url, :title, :private, :desc, :is_archived, :hashed_url)
+    params.require(:bookmark).permit(:url, :title, :private, :desc, :is_archived)
   end
 end

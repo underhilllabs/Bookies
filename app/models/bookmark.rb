@@ -21,6 +21,6 @@ class Bookmark < ActiveRecord::Base
   end
  
   def hash_url
-    hashed_url = Digest::MD5.hexdigest(url)
+    self.hashed_url = Digest::MD5.hexdigest(url)
   end
 end

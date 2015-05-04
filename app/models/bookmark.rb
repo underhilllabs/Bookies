@@ -4,9 +4,7 @@ class Bookmark < ActiveRecord::Base
   belongs_to :user
   has_many :tags, :dependent => :destroy
 
-  validates_presence_of :url, :presence => true
-  validates_presence_of :title, :presence => true
-  validates_presence_of :user_id, :presence => true
+  validates_presence_of :url, :title, :user_id
 
   scope :published, -> { where(private: :nil) }
   scope :my_bookmarks, ->(user_id) { where(user_id: user_id) }

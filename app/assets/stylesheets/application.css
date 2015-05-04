@@ -20,3 +20,7 @@ body div.archive-main p {
 body.body-archive {
   background: #fdf6e3;
 }
+body.body-archive p {
+  margin-top: 2em;
+  margin-bottom: 2em;
+}

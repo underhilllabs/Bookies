@@ -23,5 +23,12 @@ describe Tag do
       expect(tag).to_not be_valid
     end
 
+    it "succeeds with a user, name and bookmark" do
+      tag.name = "test"
+      tag.bookmark_id = 1
+      tag.user_id = 1
+      expect(tag).to be_valid
+    end
+
   end
 end

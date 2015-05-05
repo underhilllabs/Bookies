@@ -9,7 +9,7 @@ class UserTest < ActiveSupport::TestCase
 
   test "validates email presence" do
     @user1 = users(:bossy)
-    @user1.email = ''
+    @user1.email = nil
     assert_not @user1.valid?
   end
 

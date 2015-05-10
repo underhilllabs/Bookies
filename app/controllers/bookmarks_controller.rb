@@ -3,6 +3,53 @@ class BookmarksController < ApplicationController
   before_action :set_bookmark, only: [:show, :edit, :update, :archive, :destroy]
   respond_to :html
 
+  # GET /bookmarks.xml
+  def index
+    @bookmarks = Bookmark.order("updated_at DESC").page(params[:page])
+  end
+  
+  # GET /bookmarks/new
+  # GET /bookmarks/new.xml
+  def new
+    @bookmark = Bookmark.new()
+  end
+
+  # GET /bookmarks/:id
+  def show
+  end
+
+  # get /bookmarks/:id/edit
+  def edit
+    @tags = @bookmark.tags
+    if session[:user_id] == @bookmark.user_id
+      respond_with @bookmark
+    else 
+      flash[:error] = "Sorry, you do not have permissions to edit Bookmark!"
+      redirect_to root_url
+    end
+  end
+ 
+  # POST /bookmarks
+  # POST /bookmarks.xml
+  def create
+    tag_str = set_tags(params[:bookmark][:tags])
+    # use find_or_create
+    @bookmark = Bookmark.where(:user_id => params[:bookmark][:user_id], :url => params[:bookmark][:url] ).first_or_initialize
+    @bookmark.update(bookmark_params)
+    if @bookmark.save
+      # create the tags
+      save_tags(tag_str)
+      if params[:bookmark][:is_popup]
+        redirect_to(@bookmark, :notice => 'Close the Window!', :locals => {:close_window => 1})
+      else  
+        redirect_to(@bookmark, :notice => 'Bookmark was successfully created.')
+      end
+    else
+      flash[:warning] = "There was a problem saving that bookmark."
+      render :action => "new" 
+    end
+  end
+
   def update
     tags_arr = set_tags(params[:bookmark][:tags])
     tags_arr.each do |tag|
@@ -33,46 +80,14 @@ class BookmarksController < ApplicationController
     end
   end
 
-  # GET /bookmarks/:id
-  def show
-  end
-
-  # GET /bookmarks.xml
-  def index
-    @bookmarks = Bookmark.order("updated_at DESC").page(params[:page])
-    respond_with(@bookmarks)
-  end
-  
   def user_bookmarks
     @bookmarks = Bookmark.order("updated_at DESC").where(:user_id => current_user.id)
-  end
-
-  # POST /bookmarks
-  # POST /bookmarks.xml
-  def create
-    tag_str = set_tags(params[:bookmark][:tags])
-    # use find_or_create
-    @bookmark = Bookmark.where(:user_id => params[:bookmark][:user_id], :url => params[:bookmark][:url] ).first_or_initialize
-    @bookmark.update(bookmark_params)
-    if @bookmark.save
-      # create the tags
-      save_tags(tag_str)
-      if params[:bookmark][:is_popup]
-        redirect_to(@bookmark, :notice => 'Close the Window!', :locals => {:close_window => 1})
-      else  
-        redirect_to(@bookmark, :notice => 'Bookmark was successfully created.')
-      end
-    else
-      flash[:warning] = "There was a problem saving that bookmark."
-      render :action => "new" 
-    end
   end
 
   # GET /bookmark/archive/1
   def archive
     render layout: "archive"
   end
-    
 
   # DELETE /users/1
   # DELETE /users/1.xml
@@ -93,26 +108,9 @@ class BookmarksController < ApplicationController
 
   # GET /bookmarks/new
   # GET /bookmarks/new.xml
-  def new
-    @bookmark = Bookmark.new()
-  end
-
-  # GET /bookmarks/new
-  # GET /bookmarks/new.xml
   def bookmarklet
     # @bookmark = Bookmark.new(:tags => [Tag.new])
     @bookmark = Bookmark.where(:url => params[:address], :user_id => session[:user_id]).first_or_initialize()
-  end
-
-  # get /bookmarks/:id/edit
-  def edit
-    @tags = @bookmark.tags
-    if session[:user_id] == @bookmark.user_id
-      respond_with @bookmark
-    else 
-      flash[:error] = "Sorry, you do not have permissions to edit Bookmark!"
-      redirect_to root_url
-    end
   end
 
   private

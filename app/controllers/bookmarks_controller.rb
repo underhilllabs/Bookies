@@ -5,7 +5,7 @@ class BookmarksController < ApplicationController
 
   # GET /bookmarks.xml
   def index
-    @bookmarks = Bookmark.order("updated_at DESC").page(params[:page])
+    @bookmarks = Bookmark.all.page(params[:page])
   end
   
   # GET /bookmarks/new
@@ -70,18 +70,19 @@ class BookmarksController < ApplicationController
     redirect_to root_url
   end
 
+  # GET /bookmarks/user/:id
   def user
     @user = User.find(params[:id])
     # FIXME TODO
     if current_user && current_user.id.to_s == params[:id] 
-      @bookmarks = Bookmark.where(user_id: params[:id]).order(updated_at: :desc).page(params[:page]).per_page(20)
+      @bookmarks = Bookmark.where(user_id: params[:id]).page(params[:page]).per_page(20)
     else
-      @bookmarks = Bookmark.where(user_id: params[:id]).order(updated_at: :desc).where(private: nil).page(params[:page]).per_page(20)
+      @bookmarks = Bookmark.where(user_id: params[:id]).where(private: nil).page(params[:page]).per_page(20)
     end
   end
 
   def user_bookmarks
-    @bookmarks = Bookmark.order("updated_at DESC").where(:user_id => current_user.id)
+    @bookmarks = Bookmark.where(:user_id => current_user.id)
   end
 
   # GET /bookmark/archive/1

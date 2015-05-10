@@ -6,6 +6,8 @@ class Bookmark < ActiveRecord::Base
 
   validates_presence_of :url, :title, :user_id
 
+  # Set default order: most recently updated
+  default_scope { order('updated_at DESC') }
   scope :published, -> { where(private: :nil) }
   scope :my_bookmarks, ->(user_id) { where(user_id: user_id) }
   # scope :published_or_mine,->(user_id) find_by_sql(.. UNION ..)

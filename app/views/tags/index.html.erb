@@ -1,5 +1,5 @@
 <h1>All the Tags!</h1>
-<% @tags.each do |name,count| %>
-   <div><a href="/tags/name/<%= "#{name}" %>"> <%= "#{name}"%></a> <%=" (#{count})" %></div>
+<% @tags.each do |t| %>
+   <div><a href="/tags/name/<%= "#{t.name}" %>"> <%= "#{t.name}"%></a> <%=" (#{t.taggings_count})" %></div>
 <% end %>
 

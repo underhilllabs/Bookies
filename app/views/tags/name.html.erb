@@ -1,5 +1,4 @@
 <h2>Tagged: <%= @name %></h2>
-
 <div class="messages-wrapper">
     <% flash.each do |name, msg| %>
       <%= content_tag :div, msg, :id => "flash_#{name}" %>
@@ -20,9 +19,8 @@
     <%= b.desc %>
   </div>
   <div class="bookmark-tags">
-    <% b.tags.each do |t| %>
-      <a href="/tags/name/<%= t.name %>"><%= t.name %></a>
-
+    <% b.tag_list.each do |t| %>
+      <a href="/tags/name/<%= t %>"><%= t %></a>
     <% end %>
   </div>
   <div class="bookmark-details">

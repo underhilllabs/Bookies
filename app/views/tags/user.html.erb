@@ -1,5 +1,4 @@
-<h1>All the Tags from <%= @user.username %>!</h1>
-<% @tags.each do |k,v| %>
-   <div><a href="tags/name/<%= "#{k}" %>"> <%= "#{k}"%></a> <%=" (#{v})" %></div>
-
+<h1>Popular Tags from <%= @user.username %>!</h1>
+<% @tags.each do |t| %>
+   <div><a href="tags/name/<%= "#{t.name}" %>"> <%= "#{t.name}"%></a> <%=" (#{t.taggings_count})" %></div>
 <% end %>

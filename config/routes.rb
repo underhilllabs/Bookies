@@ -3,7 +3,7 @@ Bookies::Application.routes.draw do
   root :to => 'bookmarks#index'
 
   # resources creates CRUD routes for these models
-  resources :users, :bookmarks, :tags, :sessions, :identities
+  resources :users, :bookmarks, :sessions, :identities
 
   # for omniauth
   post 'auth/:provider/callback', to: 'sessions#create'
@@ -22,14 +22,13 @@ Bookies::Application.routes.draw do
 
   get "my_bookmarks" => "bookmarks#user_bookmarks", :as => "my_bookmarks"
 
-  get "tag/:id" => "tag#show"
-
   match "search" => "search#index", via: :get
 
+  get "tags/" => "tags#index", :as => "tags"
   # show stream of bookmarks for specific tag
-  get "tags/:id/bookmarks" => "tags#bookmarks"
-  get "tags/name/:name" => "tags#name"
-  get "tags/user/:id" => "tags#user"
+  get "tags/name/:name" => "bookmarks#tag", :as => "tags_name"
+  # show Most popular tags of user
+  get "tags/user/:id" => "tags#user", :as => "tags_user"
 
   get "bookmarks/:id/delete" => 'bookmarks#destroy', :as => "delete_bookmark"
   get "bookmarks/user/:id" => "bookmarks#user"

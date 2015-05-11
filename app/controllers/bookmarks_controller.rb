@@ -53,8 +53,15 @@ class BookmarksController < ApplicationController
     # warning: update_attributes side-steps validation
     if @bookmark.update(bookmark_params)
       flash[:notice] = "\"#{@bookmark.title}\" was successfully updated."
+      if params[:bookmark][:is_popup]
+        redirect_to(@bookmark, :notice => 'Close the Window!', :locals => {:close_window => 1})
+      else  
+        redirect_to(@bookmark, :notice => 'Bookmark was successfully created.')
+      end
+    else 
+      flash[:notice] = "Unable to update bookmark."
+      redirect_to root_url
     end
-    redirect_to root_url
   end
 
   # GET /bookmarks/user/:id

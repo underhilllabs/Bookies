@@ -65,3 +65,6 @@ gem 'nokogiri'
 gem 'resque', :require => "resque/server"
 gem 'ruby-readability', :require => 'readability'
 gem 'responders', '~> 2.0'
+
+# 
+gem 'acts-as-taggable-on'

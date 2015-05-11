@@ -25,7 +25,7 @@
     <%= @bookmark.desc %>
   </div>
   <div class=bookmark-tags>
-    tags:  <%= @bookmark.tags.to_a.join(", ") %>
+    tags:  <%= @bookmark.tag_list.to_a.join(", ") %>
   </div>
   <% if @bookmark.is_archived? %>
     <div class=bookmark-archive>

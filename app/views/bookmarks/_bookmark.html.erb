@@ -4,9 +4,8 @@
       <%= b.desc %>
     </div>
     <div class="bookmark-tags">
-      <% b.tags.each do |t| %>
-        <a href="/tags/name/<%= t.name %>"><%= t.name %></a>
-
+      <% b.tag_list.each do |t| %>
+        <a href="/tags/name/<%= t %>"><%= t %></a>
       <% end %>
     </div>
     <div class="bookmark-details">

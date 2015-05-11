@@ -20,7 +20,6 @@ class BookmarksController < ApplicationController
 
   # get /bookmarks/:id/edit
   def edit
-    @tags = @bookmark.tags
     if session[:user_id] == @bookmark.user_id
       respond_with @bookmark
     else 
@@ -30,15 +29,10 @@ class BookmarksController < ApplicationController
   end
  
   # POST /bookmarks
-  # POST /bookmarks.xml
   def create
-    tag_str = set_tags(params[:bookmark][:tags])
-    # use find_or_create
     @bookmark = Bookmark.where(:user_id => params[:bookmark][:user_id], :url => params[:bookmark][:url] ).first_or_initialize
     @bookmark.update(bookmark_params)
     if @bookmark.save
-      # create the tags
-      save_tags(tag_str)
       if params[:bookmark][:is_popup]
         redirect_to(@bookmark, :notice => 'Close the Window!', :locals => {:close_window => 1})
       else  
@@ -51,10 +45,6 @@ class BookmarksController < ApplicationController
   end
 
   def update
-    tags_arr = set_tags(params[:bookmark][:tags])
-    tags_arr.each do |tag|
-      Tag.where(:name => tag, :bookmark_id => params[:id]).first_or_create
-    end
     # check if user has permission to edit bookmark
     if session[:user_id] != @bookmark.user_id
       flash[:error] = "Sorry, you do not have permission to edit another user's bookmarks!"
@@ -62,9 +52,6 @@ class BookmarksController < ApplicationController
     end
     # warning: update_attributes side-steps validation
     if @bookmark.update(bookmark_params)
-      # now delete tags not passed in
-      t_missing = Tag.where("bookmark_id = ?", @bookmark.id).where("name not in (?)", tags_arr).pluck(:id)
-      Tag.destroy(t_missing)
       flash[:notice] = "\"#{@bookmark.title}\" was successfully updated."
     end
     redirect_to root_url
@@ -98,11 +85,6 @@ class BookmarksController < ApplicationController
       redirect_to root_url
     else 
       @bookmark.destroy
-      # added these 2 lines because tags are not getting deleted!
-      # title = @bookmark.title
-      # Bookmark.destroy(params[:id])
-      # @bookmark.destroy
-
       redirect_to root_url, :notice => "#{@bookmark.title} was deleted!"
     end
   end
@@ -110,8 +92,12 @@ class BookmarksController < ApplicationController
   # GET /bookmarks/new
   # GET /bookmarks/new.xml
   def bookmarklet
-    # @bookmark = Bookmark.new(:tags => [Tag.new])
     @bookmark = Bookmark.where(:url => params[:address], :user_id => session[:user_id]).first_or_initialize()
+  end
+
+  def tag
+    @bookmarks = Bookmark.tagged_with(params[:name]).page(params[:page]) 
+    @name = params[:name]
   end
 
   private
@@ -122,23 +108,12 @@ class BookmarksController < ApplicationController
     end
   end
 
-  # save each of the tags with the @bookmark.id
-  def save_tags(tag_str)
-    tag_str.each do |t| 
-      Tag.create(name: t, bookmark_id: @bookmark.id)
-    end
-  end
-
-  def set_tags(tag_str)
-    tag_str.split(%r{,\s*})
-  end
-
   def set_bookmark
     @bookmark = Bookmark.find(params[:id])
   end
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def bookmark_params
-    params.require(:bookmark).permit(:url, :title, :private, :desc, :is_archived)
+    params.require(:bookmark).permit(:url, :title, :private, :desc, :is_archived, :tag_list)
   end
 end

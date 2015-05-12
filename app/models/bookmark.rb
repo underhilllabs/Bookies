@@ -15,6 +15,7 @@ class Bookmark < ActiveRecord::Base
   scope :unpublished, -> { where(private: true) }
   scope :archived, -> { where(is_archived: true) }
 
+  private
   # download and archive the bookmark
   def archive_the_url
     if is_archived?

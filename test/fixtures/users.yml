@@ -3,7 +3,6 @@
 bossy:
   username: bossy
   email: bossy@gmail.com
-  password_digest: MyString
   fullname: Bossy Girl
   website: MyString
   desc: MyText
@@ -14,7 +13,6 @@ bossy:
 seamus:
   username: seamus
   email: seamusmcgraw@gmail.com
-  password_digest: MyString
   fullname: Seamus McGraw
   website: MyString
   desc: MyText

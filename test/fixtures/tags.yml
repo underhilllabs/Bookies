@@ -1,11 +1,11 @@
-# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
-
-one:
-  name: mystery
-  bookmark: one
-  user: seamus
-
-two:
-  name: palin
-  bookmark: two
-  user: bossy
+# # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+# 
+# one:
+#   name: mystery
+#   bookmark: one
+#   user: seamus
+# 
+# two:
+#   name: palin
+#   bookmark: two
+#   user: bossy

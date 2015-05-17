@@ -1,12 +1,13 @@
 class User < ActiveRecord::Base
   attr_accessible :desc, :email, :fullname, :pic_url, :username, :website, :website2, :website3, :password, :password_confirmation
+  acts_as_tagger
   # has_secure_password
   has_many :bookmarks, :dependent => :destroy
-  has_many :tags
-  has_many :followings, :dependent => :destroy 
+  has_many :old_tags
+  #has_many :followings, :dependent => :destroy 
   # validates_presence_of :password, :on => :create
-  validates_presence_of :email, :presence => true, :uniqueness => true, :email_format => true
-  validates_presence_of :username
+  validates :email, :presence => true, :uniqueness => true
+  validates :username, :presence => true, length: { minimum: 2} 
   validates :email, format: { with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i, on: :create }
 
   def self.from_omniauth(auth)

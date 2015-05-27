@@ -3,6 +3,7 @@ class Bookmark < ActiveRecord::Base
   attr_accessible :desc, :private, :title, :url, :user_id, :tag_list, :hashed_url, :is_archived, :archive_url
   belongs_to :user
   has_many :old_tags, :dependent => :destroy
+  has_one :archive, :dependent => :destroy
   acts_as_taggable
 
   validates_presence_of :url, :title, :user_id
@@ -19,7 +20,7 @@ class Bookmark < ActiveRecord::Base
   # download and archive the bookmark
   def archive_the_url
     if is_archived?
-      logger.info "Queued the archiving of the url"
+      logger.info "Queued the archiving of the url with id: #{id}"
       Resque.enqueue(BookmarkArchiver, id)
     end
   end

@@ -4,11 +4,12 @@ class User < ActiveRecord::Base
   # has_secure_password
   has_many :bookmarks, :dependent => :destroy
   has_many :old_tags
+  has_many :archives
   #has_many :followings, :dependent => :destroy 
   # validates_presence_of :password, :on => :create
-  validates :email, :presence => true, :uniqueness => true
+  #validates :email, :presence => true, :uniqueness => true
   validates :username, :presence => true, length: { minimum: 2} 
-  validates :email, format: { with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i, on: :create }
+  #validates :email, format: { with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i, on: :create }
 
   def self.from_omniauth(auth)
     where(:provider => auth[:provider], :uid => auth[:uid]).first || create_from_omniauth(auth)
@@ -25,7 +26,6 @@ class User < ActiveRecord::Base
       else 
         user.email = auth["info"]["email"]
       end
-
     end
   end
 
@@ -51,5 +51,4 @@ class User < ActiveRecord::Base
 
   # handle_asynchronously with delayed_job
   #handle_asynchronously :import_bookmarks
-
 end

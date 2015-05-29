@@ -3,6 +3,7 @@ module ApplicationHelper
     if user.provider == "twitter"
       # user.pic_url if user.pic_url?
     else 
+      user.email ||= "fake@fail.edu"
       gravatar_id = Digest::MD5::hexdigest(user.email).downcase
       "http://gravatar.com/avatar/#{gravatar_id}.png?d=#{APP_CONFIG["gravatar_type"]}&s=#{img_size}" 
     end

@@ -9,4 +9,12 @@ module BookmarkHelper
     @Bookmark.hashed_url = Digest::MD5.hexdigest(href)
     @Bookmark.save
   end
+
+  def bookmark_archive_link(b)
+    if /html/.match(b.archive_url)
+      archive_bookmark_path(b)
+    else
+      b.archive_url
+    end
+  end
 end

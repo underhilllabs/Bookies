@@ -1,0 +1,24 @@
+<h2>Tagged: <%= @name %></h2>
+<p />
+<div class="main-wrapper">
+
+<%
+  @bookmarks.each do |b|
+    # this will make the number of bookmarks on page less than expected amount
+    next if b.private == true and b.user_id != session[:user_id]
+%>
+  <%= render partial: 'bookmark', locals: { b: b} %>
+<%
+  end
+%>
+
+
+<div class="flickr_pagination">
+  <div clas="page_info">
+    <%= page_entries_info @bookmarks %>
+  </div>
+  <%= will_paginate @bookmarks, :container => false %>
+</div>
+
+
+</div>

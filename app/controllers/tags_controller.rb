@@ -4,18 +4,11 @@ class TagsController < ApplicationController
   respond_to :html, :json
 
   def index
-    #cutoff = 20
-    # @tags = Tag.all
-    # select name, count(1) from tags GROUP BY name;
-    # @tags = Tag.count(:all, :group => 'name', :order => 'count_all DESC')
-    # @tags = Tag.count(:all, :group => 'name', :order => 'count_all DESC').reject! {|k,v| v < cutoff }
-    #@tags = Tag.group("name").having("count(name) > :cutoff", :cutoff => cutoff).order("count(name) DESC").count()
     @tags = Bookmark.tag_counts_on(:tags).order("taggings_count DESC").limit(60)
   end
 
   def user
     @user = User.find(params[:id])
-    #@tags = Tag.where(:user_id => params[:id]).count(:all, :group => 'name', :order => 'count_all DESC')
     @tags = Bookmark.where(:user_id => params[:id]).tag_counts_on(:tags).order("taggings_count DESC").limit(60)
   end
 
@@ -71,7 +64,4 @@ class TagsController < ApplicationController
   end
 
   private
-  def set_tag
-    @tag = Tag.find(params[:id])
-  end
 end

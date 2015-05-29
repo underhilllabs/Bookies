@@ -33,11 +33,12 @@ class BookmarksController < ApplicationController
     @bookmark = Bookmark.where(:user_id => params[:bookmark][:user_id], :url => params[:bookmark][:url] ).first_or_initialize
     @bookmark.update(bookmark_params)
     if @bookmark.save
-      if params[:bookmark][:is_popup]
-        redirect_to(@bookmark, :notice => 'Close the Window!', :locals => {:close_window => 1})
-      else  
-        redirect_to(@bookmark, :notice => 'Bookmark was successfully created.')
-      end
+      redirect_to(@bookmark, :notice => 'Bookmark was successfully created.', :locals => {:close_window => params[:bookmark][:is_popup]})
+      # if params[:bookmark][:is_popup]
+      #   redirect_to(@bookmark, :notice => 'Close the Window!', :locals => {:close_window => 1})
+      # else  
+      #   redirect_to(@bookmark, :notice => 'Bookmark was successfully created.')
+      # end
     else
       flash[:warning] = "There was a problem saving that bookmark."
       render :action => "new" 
@@ -71,7 +72,7 @@ class BookmarksController < ApplicationController
     if current_user && current_user.id.to_s == params[:id] 
       @bookmarks = Bookmark.where(user_id: params[:id]).page(params[:page]).per_page(20)
     else
-      @bookmarks = Bookmark.where(user_id: params[:id]).where(private: nil).page(params[:page]).per_page(20)
+      @bookmarks = Bookmark.where(user_id: params[:id]).where(private: nil).page(params[:page]).per_page(19)
     end
   end
 

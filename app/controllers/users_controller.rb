@@ -47,7 +47,8 @@ class UsersController < ApplicationController
     @user = User.new(params[:user])
     
     if @user.save
-      redirect_to root_url, :notice => 'Successfully signed up!'
+      flash[:notice] = "Successfully signed up!"
+      redirect_to root_url
     else
       render "new"
     end
@@ -95,7 +96,7 @@ class UsersController < ApplicationController
     # FIXME -- This takes a lotta time, may scrap it
     @bookmarks = @user.bookmarks.order(:updated_at).reverse_order.first(10)
     #@tags = @user.tags.count(:all, :group => 'name', :order => 'count_all DESC').first(10)
-    @tags = @user.tags.group(:name).count.sort_by{|k,v|v}.reverse.first(10)
+    @tags = @user.old_tags.group(:name).count.sort_by{|k,v|v}.reverse.first(10)
     respond_to do |format|
       format.html #show.html.haml
       format.xml  { head :ok }

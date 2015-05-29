@@ -10,7 +10,8 @@ class SessionsController < ApplicationController
     if user 
       session[:user_id] = user.id
       session[:username] = user.username
-      redirect_to root_url, notice: "Signed in!"
+      flash[:notice] = "Signed in!"
+      redirect_to root_url
     else
       redirect_to root_url, notice: "Invalid email or password"
     end   

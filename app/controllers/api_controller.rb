@@ -12,9 +12,10 @@ class ApiController < ApplicationController
     user = current_user
     # this is blowing up the database when xml file is too large
     # So, instead pass in the filename and read file in function.
-    user.import_bookmarks(xml)
+    Resque.enqueue(BookmarkImporter, user.id, myfile)
+    # user.import_bookmarks(xml)
     #user.import_bookmarks(xml)
-    num_lines = xml.split("\n").size
+    #num_lines = xml.split("\n").size
     flash[:notice] = "Import job is in the queue! read in #{num_lines} lines."
     redirect_to root_url
   end
@@ -40,7 +41,6 @@ class ApiController < ApplicationController
     end
     @user = User.find(current_id)
     if(params[:tag])
-      #@tags = params[:tag].split("+")
       @tag = Tag.find(params[:tag])
       @bookmarks = @user.bookmarks.where(tag: @tag).order("updated_at DESC")
     else

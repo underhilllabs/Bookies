@@ -3,7 +3,7 @@
 <h1>Profile of <%= @user.username %></h1>
 <div id=user-wrapper>
   <div id=userpic-wrapper><span>
-      <%= @user.provider == "twitter" ? (image_tag @user.pic_url) : (image_tag avatar_url(@user)) %>
+      <%= @user.provider == "twitter" ? (image_tag @user.pic_url) : (image_tag avatar_url(@user, img_size=160)) %>
   </span></div>
   <div id=username-wrapper><span class=username>Full Name: </spon><span><%= @user.fullname %></span></div>
   <div id=view-bookmarks><span class="profile-fullname"><a href="/bookmarks/user/<%= @user.id %>">View bookmarks</a></span></div>

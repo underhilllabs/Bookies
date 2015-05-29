@@ -5,8 +5,8 @@
 <span class="profile-avatar"><a href="/users/<%= u.id
                                       %>">
 <%= u.provider == "twitter" ? "" : (image_tag avatar_url(u)) %></a></span>
-<span class="profile-username"><a href="/users/<%= u.id %>"><%= u.username %></a></span>
-<span class="profile-fullname"><%= u.fullname %></span>
+<span class="profile-username"><a href="/users/<%= u.id %>"><%= u.try(:username) %></a></span>
+<span class="profile-fullname"><%= u.try(:fullname) %></span>
 <span class="profile-fullname"><a href="/bookmarks/user/<%= u.id
                                         %>">View bookmarks (<%= u.bookmarks.count %>)</a></span>
 <% if u.id == session[:user_id] %>

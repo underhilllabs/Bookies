@@ -24,5 +24,11 @@ describe Bookmark do
       expect(bookmark).to_not be_valid
     end
 
+    it "saves hashed_url when saved" do
+      bookmark.title = "test"
+      bookmark.url =  "http://github.com"
+      bookmark.user = nil
+      expect(bookmark).to_not be_valid
+    end
   end
 end

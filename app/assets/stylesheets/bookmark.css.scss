@@ -2,30 +2,27 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-$base-font-size:   16px;                                                                                                                    
+$base-font-size:   16px;
 $base-line-height: 20px;
-
-$h1-font-size: 2    * $base-font-size;                                                                                                      
-$h2-font-size: 1.5  * $base-font-size;                                                                                                      
-$h3-font-size: 1.17 * $base-font-size;                                                                                                      
-$h4-font-size: 1    * $base-font-size;                                                                                                      
-$h5-font-size: 0.83 * $base-font-size;                                                                                                      
+$h1-font-size: 2    * $base-font-size;
+$h2-font-size: 1.5  * $base-font-size;
+$h3-font-size: 1.17 * $base-font-size;
+$h4-font-size: 1    * $base-font-size;
+$h5-font-size: 0.83 * $base-font-size;
 $h6-font-size: 0.75 * $base-font-size;
-
 $times-new-roman: "Times New Roman", Times, Georgia, "DejaVu Serif", serif;
-$times:           Times, "Times New Roman", Georgia, "DejaVu Serif", serif;                                                                 
-$georgia:         Georgia, "Times New Roman", "DejaVu Serif", serif;                                                            
-$verdana:         Verdana, Tahoma, "DejaVu Sans", sans-serif;                                                                               
-$tahoma:          Tahoma, Verdana, "DejaVu Sans", sans-serif;                                                                               
-$helvetica:       Helvetica, Arial, "Nimbus Sans L", sans-serif;                                                                            
-$arial:           Arial, Helvetica, "Nimbus Sans L", sans-serif;                                                                            
-$lucinda:         "Lucida Grande","DejaVu Sans","Bitstream Vera Sans",Verdana,Arial,sans-serif;                                             
-$neue:            "Helvetica Neue",Helvetica,Arial,sans-serif;   
+$times:Times, "Times New Roman", Georgia, "DejaVu Serif", serif; 
+$georgia: Georgia, "Times New Roman", "DejaVu Serif", serif;
+$verdana:Verdana, Tahoma, "DejaVu Sans", sans-serif;
+$tahoma:Tahoma, Verdana, "DejaVu Sans", sans-serif;
+$helvetica:Helvetica, Arial, "Nimbus Sans L", sans-serif;
+$arial:Arial, Helvetica, "Nimbus Sans L", sans-serif;
+$lucinda: "Lucida Grande","DejaVu Sans","Bitstream Vera Sans",Verdana,Arial,sans-serif;                                             
+$neue:"Helvetica Neue",Helvetica,Arial,sans-serif;   
 $header-color: #300A24;
 $header-bgcolor: darken(#f4ff6f,40%);
 $header-color: adjust_hue($header-bgcolor, -180);
 $border-color: adjust_hue($header-color, -10);
-
 
 $main-color: #efefef;
 
@@ -36,11 +33,11 @@ body {
    background: $main-color;
    margin-top: 0px;
    margin: 0px 0px 0px 0px;
-   padding-top: 60px;
+   xxx-padding-top: 60px;
 }
 
-body div.archive-main p {
-  font-size: 16px;
+body div.row {
+  padding: 0 .5em 0 .5em;
 }
 h1, h2, h3, h4 {                                                                                                                            
   font-family: $neue;
@@ -267,7 +264,7 @@ form.new_bookmark {
 .navbar {
    li {
       img {
-         padding-top: 0.7em;
+         padding-top: 0.2em;
          /* @include border-radius(3px); */
       }
    }
@@ -282,7 +279,7 @@ form.new_bookmark {
    }
 }
 
-.bookmarklet {
+div.bookmarklet {
   a {
      text-decoration: none;
      &:hover {

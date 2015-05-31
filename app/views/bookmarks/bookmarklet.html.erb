@@ -36,7 +36,7 @@ $(function() {
   </div>
 
   <%= f.hidden_field :user_id, :value => session[:user_id] %>
-  <%= f.hidden_field :is_popup, :value => is_bookmarklet %>
+  <%= f.hidden_field :is_popup, :value => 1 %>
 
   <div class="actions">
     <%= f.submit %>

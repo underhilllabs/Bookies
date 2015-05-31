@@ -1,36 +1,34 @@
-<%= form_for(@bookmark) do |f| %>
-
+<%= form_for @bookmark, html: { class: "form"} do |f| %>
   
-  <div class="field">
+  <div class="form-group">
     <%= f.label :address %>
-    <%= f.text_field :url, :size => 60 %>
+    <%= f.text_field :url, :size => 60, class: "form-control" %>
   </div>
-  <div class="field">
+  <div class="form-group">
     <%= f.label :title %>
-    <%= f.text_field :title, :size => 60 %>
+    <%= f.text_field :title, :size => 60, class: "form-control" %>
   </div>
-  <div class="field">
-    <%= f.label :desc %>
-    <%= f.text_field :desc, :size => 60 %>
+  <div class="form-group field">
+    <%= f.label :desc, "Description" %>
+    <%= f.text_area :desc, rows: 4, :size => 60, class: "form-control" %>
   </div>
   
-  <div class="field_tags">
+  <div class="form-group field_tags">
     <%= f.label :tags %>
-    <%= f.text_field :tag_list, :size => 60 %>
+    <%= f.text_field :tag_list, :size => 60, class: "form-control" %>
   </div>
   
-  <div class="field">
-		<span><%= f.label :private %></span>
-		<span><%= f.check_box :private %></span>
+  <div class="form-group field">
+		<%= f.label :private %>
+		<%= f.check_box :private %>
   </div>
   
-  <div class="field">
-    <span><%= f.label(:is_archived, 'archive url?') %></span>
-    <span><%= f.check_box :is_archived %></span>
+  <div class="form-group field">
+    <%= f.label(:is_archived, 'archive url?') %>
+    <%= f.check_box :is_archived %>
   </div>
 
   <%= f.hidden_field :user_id, :value => session[:user_id] %>
-  
 
   <div class="actions">
     <%= f.submit %>

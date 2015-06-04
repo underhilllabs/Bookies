@@ -70,4 +70,5 @@ gem 'responders', '~> 2.0'
 
 # 
 gem 'acts-as-taggable-on'
+gem 'foreman'
 gem 'puma'

@@ -1,28 +1,28 @@
-<h1>New Bookmark</h1>
+<div class="bookmarklet">
 <script type="text/javascript">
 $(function() {
   $('#bookmark_tags').focus();
 });
 </script>
  
-<%= form_for @bookmark, html: { class: "form-horizontal"} do |f| %>
+<%= form_for @bookmark, html: { class: "form"} do |f| %>
   
   <div class="form-group">
     <%= f.label :address %>
-    <%= f.text_field :url, :size => 60, :value => params[:address], class: "uh-form-control" %>
+    <%= f.text_field :url, :size => 60, :value => params[:address], class: "form-control" %>
   </div>
   <div class="form-group">
     <%= f.label :title %>
-    <%= f.text_field :title, :size => 60, :value => params[:title], class: "uh-form-control" %>
+    <%= f.text_field :title, :size => 60, :value => params[:title], class: "form-control" %>
   </div>
   <div class="form-group field">
     <%= f.label :desc, "Description" %>
-    <%= f.text_field :desc, :size => 60, :value => params[:description], class: "uh-form-control" %>
+    <%= f.text_field :desc, :size => 60, :value => params[:description], class: "form-control" %>
   </div>
   
   <div class="form-group field_tags">
-    <%= f.label :tags %>
-    <%= f.text_field :tag_list, :size => 60, class: "uh-form-control" %>
+    <%= f.label :tag_list, "Tags" %>
+    <%= f.text_field :tag_list, :size => 60, class: "form-control" %>
   </div>
   
   <div class="form-group field">
@@ -31,7 +31,7 @@ $(function() {
   </div>
   
   <div class="form-group field">
-    <%= f.label(:is_archived, 'archive url?') %>
+    <%= f.label(:is_archived, 'Archive Page') %>
     <%= f.check_box :is_archived %>
   </div>
 
@@ -42,3 +42,4 @@ $(function() {
     <%= f.submit %>
   </div>
 <% end %>
+</div>

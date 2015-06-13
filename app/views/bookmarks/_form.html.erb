@@ -15,7 +15,7 @@
   
   <div class="form-group field_tags">
     <%= f.label :tag_list, "Tags" %>
-    <%= f.text_field :tag_list, :size => 60, class: "form-control" %>
+    <%= f.text_field :tag_list, :value => @bookmark.tag_list.to_s, :size => 60, class: "form-control" %>
   </div>
   
   <div class="form-group field">

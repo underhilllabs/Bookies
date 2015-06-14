@@ -8,44 +8,7 @@
 </head>
 <body class="body-archive">
 
-<div class="navbar navbar-fixed-top">
-  <div class="navbar-inner">
-    <div class="container">
-      <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </a>
-      <a class="brand" href="/">Bkmark.me</a>
-      <div class="nav-collapse">
-        <ul class="nav">
-          <% if session[:user_id] %>          
-            <li><%= link_to "My Bookmarks", "/bookmarks/user/#{session[:user_id]}" %></li> 
-          <% end %>
-          <li><%= link_to "Users", users_path %></li>
-          <li><%= link_to "Tags", tags_path %></li>
-          <% if session[:user_id] %>          
-            <li><%= link_to "Add a Bookmark", "/bookmarks/new" %></li>
-          <% end %>
-        </ul>
-        <form class="navbar-search pull-left" action="/search/" name=navsearch>
-          <input type="text" class="span2 input-text" name="keywords" value="search">
-        </form>
-        <ul class="nav pull-right">
-          <% if session[:user_id] %>
-            <li><%= image_tag(avatar_url_from_id(session[:user_id],20), :size => '20x20') %> <li>
-            <li><a href="/users/<%= session[:user_id]%>"><%= session[:username] %></a> </li>
-            <li><%= link_to "Logout", "/logout" %></li>
-          <% else %>
-            <li><a href="/login">Login with twitter or github</a></li>
-          <% end %>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </div>
-</div>
-
+<%= render :partial => 'shared/header' %>
 
 <div class="container">
 <div class=row>

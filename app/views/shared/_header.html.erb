@@ -1,0 +1,32 @@
+
+<div class="navbar navbar-default navbar-static-top">
+  <div class="container">
+    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>  
+      <span class="icon-bar"></span>  
+    </button>                  
+    <a class="navbar-brand" href="/">Bkmark.me</a>
+    <div class="navbar-collapse collapse navbar-responsive-collapse">
+      <ul class="nav navbar-nav">   
+        <% if session[:user_id] %>          
+          <li><%= link_to "My Bookmarks", "/bookmarks/user/#{session[:user_id]}" %></li> 
+        <% end %>
+        <li><%= link_to "Users", users_path  %></li>
+        <li><%= link_to "Tags", tags_path  %></li>
+        <% if session[:user_id] %>          
+          <li><%= link_to "Add a Bookmark", "/bookmarks/new" %></li>
+        <% end %>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <% if session[:user_id] %>
+          <li><%= image_tag(avatar_url_from_id(session[:user_id],40), :size => '40x40') %> <li>
+          <li><a href="/users/<%= session[:user_id]%>"><%= session[:username] %></a> </li>
+          <li><%= link_to "Logout", "/logout" %></li>
+        <% else %>
+          <li><a href="/login">Login with twitter or github</a></li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+</div> 

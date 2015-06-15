@@ -92,6 +92,7 @@ class BookmarksController < ApplicationController
       flash[:error] = "Sorry, you do not have permission to delete this bookmark."
       redirect_to root_url
     else 
+      @bookmark.archive.destroy
       @bookmark.destroy
       redirect_to root_url, :notice => "#{@bookmark.title} was deleted!"
     end
@@ -100,7 +101,7 @@ class BookmarksController < ApplicationController
   # GET /bookmarks/new
   # GET /bookmarks/new.xml
   def bookmarklet
-    @bookmark = Bookmark.where(:url => params[:address], :user_id => session[:user_id]).first_or_initialize()
+    @bookmark = Bookmark.find_or_create_by(:url => params[:address], :user_id => session[:user_id])
   end
 
   def tag

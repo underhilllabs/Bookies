@@ -73,4 +73,4 @@ gem 'acts-as-taggable-on'
 gem 'foreman'
 gem 'puma'
 
-gem 'devise_token_auth'
+#gem 'devise_token_auth'

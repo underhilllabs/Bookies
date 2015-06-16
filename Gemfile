@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'rails', '>= 4.1.1'
+gem 'rails', '>= 4.2.2'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
@@ -72,3 +72,5 @@ gem 'responders', '~> 2.0'
 gem 'acts-as-taggable-on'
 gem 'foreman'
 gem 'puma'
+
+gem 'devise_token_auth'

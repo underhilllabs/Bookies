@@ -92,7 +92,7 @@ class BookmarksController < ApplicationController
       flash[:error] = "Sorry, you do not have permission to delete this bookmark."
       redirect_to root_url
     else 
-      @bookmark.archive.destroy
+      @bookmark.archive.destroy if @bookmark.archive
       @bookmark.destroy
       redirect_to root_url, :notice => "#{@bookmark.title} was deleted!"
     end

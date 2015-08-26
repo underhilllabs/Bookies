@@ -23,5 +23,6 @@
 
 /public/assets/*
 /public/archive/*.html
+/public/archive/*
 
 .sass-cache

@@ -1,4 +1,9 @@
 class User < ActiveRecord::Base
+  # Include default devise modules.
+  # devise :database_authenticatable, :registerable,
+  #         :recoverable, :rememberable, :trackable, :validatable,
+  #         :confirmable, :omniauthable
+  # include DeviseTokenAuth::Concerns::User
   attr_accessible :desc, :email, :fullname, :pic_url, :username, :website, :website2, :website3, :password, :password_confirmation
   acts_as_tagger
   # has_secure_password
@@ -9,9 +14,13 @@ class User < ActiveRecord::Base
   # validates_presence_of :password, :on => :create
   #validates :email, :presence => true, :uniqueness => true
   validates :username, :presence => true, length: { minimum: 2} 
+  validates :api_token, presence: true, uniqueness: true
+  before_validation :generate_api_token
+
   #validates :email, format: { with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i, on: :create }
 
   def self.from_omniauth(auth)
+    auth ||= {}
     where(:provider => auth[:provider], :uid => auth[:uid]).first || create_from_omniauth(auth)
   end
 
@@ -51,4 +60,12 @@ class User < ActiveRecord::Base
 
   # handle_asynchronously with delayed_job
   #handle_asynchronously :import_bookmarks
+  def generate_api_token
+    return if api_token.present?
+
+    loop do
+      self.api_token = SecureRandom.hex
+      break unless User.exists? api_token: api_token
+    end
+  end
 end

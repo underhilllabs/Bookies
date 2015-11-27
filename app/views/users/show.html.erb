@@ -57,8 +57,8 @@ bookmark the current page:
 
   <p />
   <h2>Authentication Token</h2>
-  Cut and paste this into mobile app:<br>
-  <%= @user.api_token %>
+  User ID: <%= @user.id %><br>
+  API Token: <%= @user.api_token %>
   <p />
   <a href="/user/regenerate_token">Regenerate token</a>
   <p />

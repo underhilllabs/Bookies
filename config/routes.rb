@@ -22,7 +22,7 @@ Bookies::Application.routes.draw do
 
   get "my_bookmarks" => "bookmarks#user_bookmarks", :as => "my_bookmarks"
 
-  match "search" => "search#index", via: :get
+  get "search" => "search#index"
 
   get "tags/" => "tags#index", :as => "tags"
   # show stream of bookmarks for specific tag
@@ -44,6 +44,7 @@ Bookies::Application.routes.draw do
   get "api/posts/:id" => "api#index"
   get "api/upload"   => "api#upload"
   post "api/import"   => "api#import"
+  post "api/posts/add"   => "api#posts_add"
 
   mount Resque::Server, :at => "/resque-web"
 end

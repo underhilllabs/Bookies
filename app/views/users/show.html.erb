@@ -56,6 +56,12 @@ bookmark the current page:
   <a href="/api/posts/all.xml">Download all posts in an xml file</a>
 
   <p />
+  <h2>Authentication Token</h2>
+  Cut and paste this into mobile app:<br>
+  <%= @user.api_token %>
+  <p />
+  <a href="/user/regenerate_token">Regenerate token</a>
+  <p />
   <hr />
   <p />
   <%= link_to 'Edit', edit_user_path(@user) %> |

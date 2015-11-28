@@ -1,6 +1,6 @@
 class ApiController < ApplicationController
   skip_before_filter :verify_authenticity_token, :if =>lambda{ params[:api_key].present?}
-  respond_to :xml, :html
+  respond_to :xml, :html, :json
 
   def import
     unless current_user then
@@ -52,13 +52,23 @@ class ApiController < ApplicationController
 
   # POST /api/posts/add
   def posts_add
-    u = User.find(params[:user_id])
-    if (u && u.api_token == params[:api_token])
-      @bookmark = Bookmark.where(user_id: params[:user_id], url: params[:url] ).first_or_initialize
-      @bookmark.update(bookmark_params)
-      @bookmark.save
+    if(params[:format] == "json") 
+      hash = ActiveSupport::JSON.decode(request.body.read)
+      u = User.find(hash['user_id'])
+      if (u && u.api_token == hash['api_token'])
+        @bookmark = Bookmark.where(user_id: hash['user_id'], url: hash['url'] ).first_or_initialize
+        @bookmark.update(title: hash['title'], private: hash['private'], desc: hash['desc'], tag_list: hash['tag_list'], is_archived: hash['is_archived'])
+        @bookmark.save
+      end
+    else
+      u = User.find(params[:user_id])
+      if (u && u.api_token == params[:api_token])
+        @bookmark = Bookmark.where(user_id: hash['user_id'], url: hash['url'] ).first_or_initialize
+        @bookmark.update(bookmark_params)
+        @bookmark.save
+      end
     end
-    redirect_to root_url
+    respond_with @bookmark
   end
     
   # Never trust parameters from the scary internet, only allow the white list through.

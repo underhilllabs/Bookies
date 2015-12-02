@@ -19,6 +19,7 @@ Bookies::Application.routes.draw do
   get "login" => "sessions#new", :as => "login"
   get "register" => "users#new", :as => "register"
   get "signup" => "users#new", :as => "signup"
+  get "user/regenerate_token" => "users#regenerate_token"
 
   get "my_bookmarks" => "bookmarks#user_bookmarks", :as => "my_bookmarks"
 

@@ -21,9 +21,15 @@ class BookmarkArchiver
         f.write(Readability::Document.new( source, :tags => @@archive_tags, :attributes => @@archive_attributes ).content)
       end
     end
-    Archive.find_or_create_by(bookmark_id: b.id, location: b.archive_url, user_id: b.user_id, url: b.url, filetype: ext)
+    Archive.find_or_create_by(bookmark_id: b.id) do |a|
+      a.location = b.archive_url
+      a.user_id  = b.user_id
+      a.url      = b.url
+      a.filetype = ext
+    end
     b.is_archived = true
     b.archive_url = "/archive/#{b.id}.#{ext}"
+    # and THIS is why you don't queue BookmarkArchiver with before_save callback!!
     b.save
   end
   
@@ -34,7 +40,11 @@ class BookmarkArchiver
       f.write(Readability::Document.new( source, :tags => @@archive_tags, :attributes => @@archive_attributes ).content)
       b.is_archived = true
       b.archive_url = "/archive/#{b.id}.html"
-      Archive.find_or_create_by(bookmark_id: b.id, location: b.archive_url, user_id: b.user_id, url: b.url)
+      Archive.find_or_create_by(bookmark_id: b.id) do |a|
+        a.location = b.archive_url
+        a.user_id = b.user_id
+        a.url =  b.url
+      end
       b.save
     end
   end
@@ -42,7 +52,11 @@ class BookmarkArchiver
   def save_binary_file(b)
     source = mechanize.get(b.url).body
     File.open("public/archive/#{b.id}.html", "w") do |f|
-      Archive.find_or_create_by(bookmark_id: b.id, location: b.archive_url, user_id: b.user_id, url: b.url)
+      Archive.find_or_create_by(bookmark_id: b.id) do |a|
+        a.location = b.archive_url
+        a.user_id  = b.user_id
+        a.url      = b.url
+      end
     end
   end
 end

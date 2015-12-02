@@ -11,19 +11,16 @@ gem 'rails', '>= 4.2.2'
 
 # Gems used only for assets and not required
 # in production environments by default.
-gem 'coffee-rails'
-#gem 'bootstrap-sass'
-gem 'sass-rails'
-
+gem 'coffee-rails', :group => :development
+gem 'sass-rails', :group => :development
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 #gem 'therubyracer', :platform => :ruby
-
 gem 'uglifier'
 # use 2.0.8 because there is a bug in 2.0.9 and 2.1.0
 gem "therubyracer" 
 #gem "less-rails", '2.3.3' #Sprockets (what Rails 3.1 uses for its asset pipeline) supports LESS
 #gem 'twitter-bootstrap-rails', '2.2.6'
-gem "twitter-bootstrap-rails"
+gem "twitter-bootstrap-rails", :group => :development
 
 
 gem 'jquery-rails'
@@ -38,7 +35,7 @@ gem 'bcrypt-ruby', '~> 3.1.2'
 # gem 'unicorn'
 
 # Deploy with Capistrano
-gem 'capistrano'
+gem 'capistrano', :group => :development
 
 # To use debugger
 # gem 'ruby-debug19', :require => 'ruby-debug'

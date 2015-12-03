@@ -102,5 +102,13 @@ class UsersController < ApplicationController
       format.xml  { head :ok }
     end    
   end
+  
+  def regenerate_token
+    if session[:user_id]
+      u = User.find(session[:user_id])
+      u.regenerate_api_token
+    end
+    redirect_to root_url
+  end
 
 end

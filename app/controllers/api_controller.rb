@@ -52,13 +52,16 @@ class ApiController < ApplicationController
 
   # POST /api/posts/add
   def posts_add
+    logger.error "params: #{params}"
     if(params[:format] == "json") 
       hash = ActiveSupport::JSON.decode(request.body.read)
       u = User.find(hash['user_id'])
-      if (u && u.api_token == hash['api_token'])
+      if (u && u.api_token == hash['token'])
         @bookmark = Bookmark.where(user_id: hash['user_id'], url: hash['url'] ).first_or_initialize
         @bookmark.update(title: hash['title'], private: hash['private'], desc: hash['desc'], tag_list: hash['tag_list'], is_archived: hash['is_archived'])
         @bookmark.save
+      else
+        logger.error "user not found : #{u} #{u.api_token}"
       end
     else
       u = User.find(params[:user_id])

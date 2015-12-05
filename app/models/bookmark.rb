@@ -1,5 +1,5 @@
 class Bookmark < ActiveRecord::Base
-  before_save :archive_the_url, :hash_url
+  before_save :hash_url
   attr_accessible :desc, :private, :title, :url, :user_id, :tag_list, :hashed_url, :is_archived, :archive_url
   belongs_to :user
   #has_many :old_tags, :dependent => :destroy
@@ -17,7 +17,6 @@ class Bookmark < ActiveRecord::Base
   scope :unpublished, -> { where(private: true) }
   scope :archived, -> { where(is_archived: true) }
 
-  private
   # download and archive the bookmark
   def archive_the_url
     if is_archived?
@@ -25,6 +24,7 @@ class Bookmark < ActiveRecord::Base
       Resque.enqueue(BookmarkArchiver, id)
     end
   end
+  private
  
   def hash_url
     self.hashed_url = Digest::MD5.hexdigest(url)

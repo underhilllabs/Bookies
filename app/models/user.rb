@@ -68,4 +68,12 @@ class User < ActiveRecord::Base
       break unless User.exists? api_token: api_token
     end
   end
+
+  # handle_asynchronously with delayed_job
+  def regenerate_api_token
+    loop do
+      self.api_token = SecureRandom.hex
+      break unless User.exists? api_token: api_token
+    end
+  end
 end

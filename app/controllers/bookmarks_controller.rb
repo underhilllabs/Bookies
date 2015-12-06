@@ -33,6 +33,8 @@ class BookmarksController < ApplicationController
     @bookmark = Bookmark.where(:user_id => params[:bookmark][:user_id], :url => params[:bookmark][:url] ).first_or_initialize
     @bookmark.update(bookmark_params)
     if @bookmark.save
+      # call the archive method here only
+      @bookmark.archive_the_url
       redirect_to(@bookmark, :notice => 'Bookmark was successfully created.', :locals => {:close_window => params[:bookmark][:is_popup]})
       # if params[:bookmark][:is_popup]
       #   redirect_to(@bookmark, :notice => 'Close the Window!', :locals => {:close_window => 1})
@@ -53,6 +55,8 @@ class BookmarksController < ApplicationController
     end
     # warning: update_attributes side-steps validation
     if @bookmark.update(bookmark_params)
+      # call the archive method here only
+      @bookmark.archive_the_url
       flash[:notice] = "\"#{@bookmark.title}\" was successfully updated."
       if params[:bookmark][:is_popup]
         redirect_to(@bookmark, :notice => 'Close the Window!', :locals => {:close_window => 1})
@@ -93,6 +97,7 @@ class BookmarksController < ApplicationController
       redirect_to root_url
     else 
       @bookmark.archive.destroy if @bookmark.archive
+      # @bookmark.archive.try(:destroy)
       @bookmark.destroy
       redirect_to root_url, :notice => "#{@bookmark.title} was deleted!"
     end

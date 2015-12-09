@@ -13,6 +13,9 @@
  *= require_self
 */
 
+html>body, html>body.body-archive {
+  padding-top: 0;
+}
 
 body div.archive-main p {
   font-size: 16px;

@@ -22,7 +22,7 @@
 </div>
 <div class=bookmark-details>
   <div class=bookmark-desc>
-    <%= @bookmark.desc %>
+    <pre><%= @bookmark.desc %></pre>
   </div>
   <div class=bookmark-tags>
     tags:  <%= @bookmark.tag_list.to_a.join(", ") %>

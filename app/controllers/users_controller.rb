@@ -26,7 +26,7 @@ class UsersController < ApplicationController
   def login
     respond_to do |format|
       format.html { redirect_to(users_url) }
-    end    
+    end
   end
 
   # GET /users/new

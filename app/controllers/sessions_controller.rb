@@ -3,6 +3,9 @@ class SessionsController < ApplicationController
     if params[:message] == "invalid_credentials"
       flash[:error] = 'Invalid email or password'
     end
+    if params[:bookmarklet] == true
+      redirect_to new_bookmark_url(url: params[:url])
+    end
   end
 
   def create
@@ -11,7 +14,15 @@ class SessionsController < ApplicationController
       session[:user_id] = user.id
       session[:username] = user.username
       flash[:notice] = "Signed in!"
-      redirect_to root_url
+      #flash[:notice] = " with Bookmarklet #{params[:bookmarklet]}" if params[:bookmarklet]
+      if params[:bookmarklet]
+        redirect_to new_bookmark_url(url: params[:url])
+      end
+      if session[:return_to]
+        redirect_to session[:return_to] 
+      else 
+        redirect_to :back
+      end
     else
       redirect_to root_url, notice: "Invalid email or password"
     end   

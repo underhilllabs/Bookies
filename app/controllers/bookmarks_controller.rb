@@ -1,5 +1,5 @@
 class BookmarksController < ApplicationController
-  before_action :require_login, only: [:update, :edit, :bookmarklet]
+  before_action :require_login, only: [:update, :edit]
   before_action :set_bookmark, only: [:show, :edit, :update, :archive, :destroy]
   respond_to :html
 
@@ -106,6 +106,11 @@ class BookmarksController < ApplicationController
   # GET /bookmarks/new
   # GET /bookmarks/new.xml
   def bookmarklet
+    unless session[:user_id] 
+      flash[:info] = "Please Sign In."
+      session[:return_to] = request.fullpath
+      redirect_to login_url
+    end
     @bookmark = Bookmark.find_or_create_by(:url => params[:address], :user_id => session[:user_id])
   end
 

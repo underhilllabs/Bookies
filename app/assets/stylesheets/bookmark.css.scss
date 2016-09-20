@@ -115,10 +115,10 @@ form.new_bookmark {
 }
 
 .pagination {
-    display: inline-block;
-      padding-left: 0;
-        margin: 20px 0;
-          border-radius: 4px;
+  display: inline-block;
+  padding-left: 0;
+  margin: 20px 0;
+  border-radius: 4px;
 }
 
 .pagination > li {
@@ -127,27 +127,27 @@ form.new_bookmark {
 
 .pagination > li > a,
 .pagination > li > span {
-    position: relative;
-      float: left;
-        padding: 6px 12px;
-          margin-left: -1px;
-            line-height: 1.428571429;
-              text-decoration: none;
-                background-color: #ffffff;
-                  border: 1px solid #dddddd;
+  position: relative;
+  float: left;
+  padding: 6px 12px;
+  margin-left: -1px;
+  line-height: 1.428571429;
+  text-decoration: none;
+  background-color: #ffffff;
+  border: 1px solid #dddddd;
 }
 
 .pagination > li:first-child > a,
 .pagination > li:first-child > span {
-    margin-left: 0;
-      border-bottom-left-radius: 4px;
-        border-top-left-radius: 4px;
+  margin-left: 0;
+  border-bottom-left-radius: 4px;
+  border-top-left-radius: 4px;
 }
 
 .pagination > li:last-child > a,
 .pagination > li:last-child > span {
-    border-top-right-radius: 4px;
-      border-bottom-right-radius: 4px;
+  border-top-right-radius: 4px;
+  border-bottom-right-radius: 4px;
 }
 
 .pagination > li > a:hover,
@@ -163,91 +163,90 @@ form.new_bookmark {
 .pagination > .active > span:hover,
 .pagination > .active > a:focus,
 .pagination > .active > span:focus {
-    z-index: 2;
-      color: #ffffff;
-        cursor: default;
-          background-color: #428bca;
-            border-color: #428bca;
+  z-index: 2;
+  color: #ffffff;
+  cursor: default;
+  background-color: #428bca;
+  border-color: #428bca;
 }
 
 .pagination > .disabled > span,
 .pagination > .disabled > a,
 .pagination > .disabled > a:hover,
 .pagination > .disabled > a:focus {
-    color: #999999;
-      cursor: not-allowed;
-        background-color: #ffffff;
-          border-color: #dddddd;
+  color: #999999;
+  cursor: not-allowed;
+  background-color: #ffffff;
+  border-color: #dddddd;
 }
 
 .pagination-lg > li > a,
 .pagination-lg > li > span {
-    padding: 10px 16px;
-      font-size: 18px;
+  padding: 10px 16px;
+  font-size: 18px;
 }
 
 .pagination-lg > li:first-child > a,
 .pagination-lg > li:first-child > span {
-    border-bottom-left-radius: 6px;
-      border-top-left-radius: 6px;
+  border-bottom-left-radius: 6px;
+  border-top-left-radius: 6px;
 }
 
 .pagination-lg > li:last-child > a,
 .pagination-lg > li:last-child > span {
-    border-top-right-radius: 6px;
-      border-bottom-right-radius: 6px;
+  border-top-right-radius: 6px;
+  border-bottom-right-radius: 6px;
 }
 
 .pagination-sm > li > a,
 .pagination-sm > li > span {
-    padding: 5px 10px;
-      font-size: 12px;
+  padding: 5px 10px;
+  font-size: 12px;
 }
 
 .pagination-sm > li:first-child > a,
 .pagination-sm > li:first-child > span {
-    border-bottom-left-radius: 3px;
-      border-top-left-radius: 3px;
+  border-bottom-left-radius: 3px;
+  border-top-left-radius: 3px;
 }
 
 .pagination-sm > li:last-child > a,
 .pagination-sm > li:last-child > span {
-    border-top-right-radius: 3px;
-      border-bottom-right-radius: 3px;
+  border-top-right-radius: 3px;
+  border-bottom-right-radius: 3px;
 }
 .flickr_pagination {
-   
-   text-align: center;
-   padding: 1.3em;
-   cursor: default;
-   a, span, em {
-      padding: 0.2em 0.5em;
-   }
-   .disabled {
-      color: #aaaaaa;
-   }
-   .current {
-      font-style: normal;
-      font-weight: bold;
-      color: #ff0084;
-   }
-   a {
-      border: 1px solid #dddddd;
-      color: #0063dc;
-      text-decoration: none;
-      &:hover, &:focus {
-         border-color: #003366;
-         background: #0063dc;
-         color: white;
-      }
-   }
-   .page_info {
-      color: #aaaaaa;
-      padding-top: 0.8em;
-   }
-   .previous_page, .next_page {
+  text-align: center;
+  padding: 1.3em;
+  cursor: default;
+  a, span, em {
+    padding: 0.2em 0.5em;
+  }
+  .disabled {
+    color: #aaaaaa;
+  }
+  .current {
+    font-style: normal;
+    font-weight: bold;
+    color: #ff0084;
+  }
+  a {
+    border: 1px solid #dddddd;
+    color: #0063dc;
+    text-decoration: none;
+    &:hover, &:focus {
+      border-color: #003366;
+      background: #0063dc;
+      color: white;
+    }
+  }
+ .page_info {
+     color: #aaaaaa;
+     padding-top: 0.8em;
+  }
+  .previous_page, .next_page {
     border-width: 2px;
-   }
+  }
   .previous_page {
      margin-right: 1em;
   }

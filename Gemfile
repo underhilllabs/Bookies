@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'rails', '>= 4.2.5'
+gem 'rails', '>= 5.0.0'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
@@ -11,8 +11,8 @@ gem 'rails', '>= 4.2.5'
 
 # Gems used only for assets and not required
 # in production environments by default.
-gem 'coffee-rails', :group => :development
-gem 'sass-rails', :group => :development
+#gem 'coffee-rails', :group => :development
+#gem 'sass-rails', :group => :development
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 #gem 'therubyracer', :platform => :ruby
 gem 'uglifier'
@@ -23,7 +23,7 @@ gem "therubyracer"
 gem "twitter-bootstrap-rails", :group => :development
 
 
-gem 'jquery-rails'
+#gem 'jquery-rails'
 
 # To use ActiveModel has_secure_password
 gem 'bcrypt-ruby', '~> 3.1.2'
@@ -43,25 +43,27 @@ gem 'capistrano', :group => :development
 # Gemfile for Rails 3, Sinatra, and Merb
 gem 'will_paginate', '>= 3.0.5'
 
-group :development, :test do
-  gem 'rspec-rails', '~> 3.0'
-end
-group :test do
-  gem 'capybara'
-end
-gem 'simplecov', :require => false, :group => :test
+#group :development, :test do
+#  gem 'rspec-rails', '~> 3.0'
+#end
+#group :test do
+#  gem 'capybara'
+#end
+#gem 'simplecov', :require => false, :group => :test
 
 gem 'mysql2'
 
-gem 'omniauth-twitter'
-gem 'omniauth-github'
-gem 'omniauth-identity'
+gem 'omniauth-github', github: 'intridea/omniauth-github'
+gem 'omniauth-identity', github: 'intridea/omniauth-identity'
+gem 'omniauth-twitter', github: 'arunagw/omniauth-twitter'
 
-gem 'protected_attributes'
-gem 'thin'
+#
+#gem 'thin'
 gem 'mechanize'
 gem 'nokogiri'
 gem 'resque', :require => "resque/server"
+#gem 'resque'
+gem 'sinatra', github: 'sinatra/sinatra', branch: 'master'
 gem 'ruby-readability', :require => 'readability'
 gem 'responders', '~> 2.0'
 

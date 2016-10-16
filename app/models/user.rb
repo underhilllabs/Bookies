@@ -4,7 +4,7 @@ class User < ActiveRecord::Base
   #         :recoverable, :rememberable, :trackable, :validatable,
   #         :confirmable, :omniauthable
   # include DeviseTokenAuth::Concerns::User
-  attr_accessible :desc, :email, :fullname, :pic_url, :username, :website, :website2, :website3, :password, :password_confirmation
+  #attr_accessible :desc, :email, :fullname, :pic_url, :username, :website, :website2, :website3, :password, :password_confirmation
   acts_as_tagger
   # has_secure_password
   has_many :bookmarks, :dependent => :destroy

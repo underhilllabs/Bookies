@@ -1,6 +1,6 @@
 class Bookmark < ActiveRecord::Base
   before_save :hash_url
-  attr_accessible :desc, :private, :title, :url, :user_id, :tag_list, :hashed_url, :is_archived, :archive_url
+  #attr_accessible :desc, :private, :title, :url, :user_id, :tag_list, :hashed_url, :is_archived, :archive_url
   belongs_to :user
   #has_many :old_tags, :dependent => :destroy
   #has_one :archive, :dependent => :delete

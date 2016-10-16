@@ -1,5 +1,5 @@
 class Identity < OmniAuth::Identity::Models::ActiveRecord
-  attr_accessible :email, :username, :nickname, :name, :password, :password_confirmation
+  #attr_accessible :email, :username, :nickname, :name, :password, :password_confirmation
   # validates_presence_of :username
   validates_uniqueness_of :email
   # recommend use: /\A .. \z/ in regexp instead of /^ .. $/ the 2nd doesn't match newlines

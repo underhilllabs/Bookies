@@ -22,7 +22,7 @@
         <% if session[:user_id] %>
           <li><%= image_tag(avatar_url_from_id(session[:user_id],40), :size => '40x40') %> <li>
           <li><a href="/users/<%= session[:user_id]%>"><%= session[:username] %></a> </li>
-          <li><%= link_to "Logout", "/logout" %></li>
+          <li><%= link_to "Logout", "/logout", method: "delete" %></li>
         <% else %>
           <li><a href="/login">Login with twitter or github</a></li>
         <% end %>

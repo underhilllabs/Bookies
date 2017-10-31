@@ -20,6 +20,8 @@ $arial:Arial, Helvetica, "Nimbus Sans L", sans-serif;
 $lucinda: "Lucida Grande","DejaVu Sans","Bitstream Vera Sans",Verdana,Arial,sans-serif;                                             
 $neue:"Helvetica Neue",Helvetica,Arial,sans-serif;   
 $header-color: #300A24;
+$salmon: #ffdcdc;
+$burnt-orange: #CC4900;
 $header-bgcolor: darken(#f4ff6f,40%);
 $header-color: adjust_hue($header-bgcolor, -180);
 $border-color: adjust_hue($header-color, -10);
@@ -57,7 +59,7 @@ body, caption, th, td, input, textarea, select, option, legend, fieldset {
       font-size: $h5-font-size;
       a {
          padding-right: 0.35em;
-         color: #CC4900;
+         color: $burnt-orange;
       }
    }
    .bookmark-updated {
@@ -83,9 +85,9 @@ body, caption, th, td, input, textarea, select, option, legend, fieldset {
 }
 .private {
    /* border-left: 2px red solid; */
-   background: #ffdcdc;
+   background: $salmon;
    .bookmark-updated {
-      background-color: #ffdcdc; /**/
+      background-color: $salmon; /**/
       padding-left: 0px;
    }
 }

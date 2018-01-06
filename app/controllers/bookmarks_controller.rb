@@ -11,7 +11,7 @@ class BookmarksController < ApplicationController
   # GET /bookmarks/new
   # GET /bookmarks/new.xml
   def new
-    @bookmark = Bookmark.new()
+    @bookmark = Bookmark.new
   end
 
   # GET /bookmarks/:id
@@ -30,7 +30,7 @@ class BookmarksController < ApplicationController
  
   # POST /bookmarks
   def create
-    @bookmark = Bookmark.where(:user_id => params[:bookmark][:user_id], :url => params[:bookmark][:url] ).first_or_initialize
+    @bookmark = Bookmark.find_or_initialize_by(:user_id => params[:bookmark][:user_id], :url => params[:bookmark][:url] )
     @bookmark.update(bookmark_params)
     if @bookmark.save
       # call the archive method here only

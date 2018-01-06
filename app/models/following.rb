@@ -1,4 +1,4 @@
-class Following < ActiveRecord::Base
+class Following < ApplicationRecord
   #attr_accessible :following_id, :user_id
   belongs_to :user_id
   validates_presence_of :user_id

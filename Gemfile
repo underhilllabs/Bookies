@@ -43,13 +43,13 @@ gem 'capistrano', :group => :development
 # Gemfile for Rails 3, Sinatra, and Merb
 gem 'will_paginate', '>= 3.0.5'
 
-#group :development, :test do
-#  gem 'rspec-rails', '~> 3.0'
-#end
-#group :test do
-#  gem 'capybara'
-#end
-#gem 'simplecov', :require => false, :group => :test
+group :development, :test do
+  gem 'rspec-rails'
+end
+group :test do
+  gem 'capybara'
+end
+gem 'simplecov', :require => false, :group => :test
 
 gem 'mysql2'
 

@@ -1,4 +1,4 @@
-class OldTag < ActiveRecord::Base
+class OldTag < ApplicationRecord
   belongs_to :bookmark
   belongs_to :user
   #attr_accessible :name, :bookmark_id

@@ -30,6 +30,7 @@ describe User do
     it "succeeds wih valid email" do
       user.email = "test.user@ucdenver.edu"
       user.username = "tester"
+      user.password_digest="89niu8nu8yhy9um08u8b8umu8uuex544deed"
       expect(user).to be_valid
     end
   end

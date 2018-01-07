@@ -135,7 +135,4 @@ ActiveRecord::Schema.define(version: 20150825160609) do
     t.text     "tokens",          limit: 65535
     t.string   "api_token",       limit: 255
   end
-
-  add_foreign_key "archives", "bookmarks"
-  add_foreign_key "archives", "users"
 end

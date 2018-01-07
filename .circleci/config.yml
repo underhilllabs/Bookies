@@ -10,8 +10,8 @@ jobs:
        - image: circleci/ruby:2.4.1-node-browsers
          environment:
            - MYSQL_DB=bookies_test
-           - MYSQL_DATABASE=bookies_test
-           - MYSQL_USER=ubuntu
+           - MYSQL_DATABASE=bookiLes_test
+           - MYSQL_USER=bookies
            - MYSQL_PASSWORD=s3kr3t!
            - MYSQL_ROOT_HOST=%
            - MYSQL_ROOT_PASSWORD=
@@ -24,7 +24,7 @@ jobs:
          environment:
            - MYSQL_DB=bookies_test
            - MYSQL_DATABASE=bookies_test
-           - MYSQL_USER=ubuntu
+           - MYSQL_USER=bookies
            - MYSQL_PASSWORD=s3kr3t!
            - MYSQL_ROOT_HOST=%
            - MYSQL_ROOT_PASSWORD=

@@ -11,7 +11,7 @@ default: &default
   pool: 5
   username: <%= ENV['MYSQL_USER'] || 'root' %>
   password: <%= ENV['MYSQL_PASSWORD'] %>
-  host: <%= ENV['DB_HOST'] || '127.0.0.1' %>
+  host: <%= ENV['MYSQL_ROOT_HOST'] || '127.0.0.1' %>
 
 
 test:

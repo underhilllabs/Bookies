@@ -20,6 +20,7 @@
 
 /config/database.yml
 /config/secrets.yml
+.env
 
 /public/assets/*
 /public/archive/*.html

@@ -18,6 +18,7 @@ jobs:
            - MYSQL_DB=bookies_test
            - MYSQL_USER=ubuntu
            - MYSQL_PASSWORD=s3kr3t!
+           - MYSQL_ROOT_HOST=%
 
     working_directory: ~/bookies
 

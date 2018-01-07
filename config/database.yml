@@ -38,7 +38,7 @@ default: &default
   # For details on connection pooling, see rails configuration guide
   # http://guides.rubyonrails.org/configuring.html#database-pooling
   pool: 5
-  host: <%= ENV['DB_HOST'] || ENV['MYSQL_ROOT_HOST'] || 'localhost' %>
+  host: 127.0.0.1
 
 
 development:

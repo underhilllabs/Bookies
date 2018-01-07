@@ -38,8 +38,8 @@ gem 'bcrypt'
 # Deploy with Capistrano
 group :development do
   gem 'capistrano'
-  gem 'pry-rails'
   gem 'listen'
+  gem 'pry-rails'
 end
 
 # To use debugger
@@ -52,6 +52,7 @@ group :development, :test do
   gem 'rspec'
   gem 'dotenv-rails'
   gem 'rspec-rails'
+  gem 'rspec_junit_formatter'
 end
 group :test do
   gem 'capybara'

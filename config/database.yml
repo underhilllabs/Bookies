@@ -30,6 +30,7 @@
 #   Ensure the SQLite 3 gem is defined in your Gemfile
 #   gem 'sqlite3'
 
+
 default: &default
   adapter: mysql2
   port: 3306

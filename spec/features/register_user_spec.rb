@@ -10,6 +10,7 @@ def register_an_account
 end
 
 feature 'User registers an account' do
+  before { skip }
   scenario "they register with email" do
     visit new_identity_path 
     fill_in 'Nickname', with: "tester"
@@ -21,6 +22,7 @@ feature 'User registers an account' do
   end
 end
 feature 'User signs in' do
+  before { skip }
   scenario "they successfully sign in" do
     email = "tester@test.com"
     password = "s3cr3t"

@@ -4,21 +4,23 @@
 default: &default
   adapter: mysql2
   encoding: unicode
+  port: 3306
   # For details on connection pooling, see rails configuration guide
   # http://guides.rubyonrails.org/configuring.html#database-pooling
   pool: 5
+  username: <%= ENV['MYSQL_USERNAME'] || 'root' %>
+  password: <%= ENV['MYSQL_PASSWORD'] %>
+  host: <%= ENV['DB_HOST'] || '127.0.0.1' %>
 
 
 test:
-  adapter: mysql2
+  <<: *defaults
   database: bookies_test
   username:  <%= ENV['MYSQL_USER'] %> 
   password:  <%= ENV['MYSQL_PASSWORD'] %> 
-  host: localhost
 
 development:
-  adapter: mysql2
+  <<: *defaults  
   database: bookies_dev
   username:  <%= ENV['MYSQL_USER'] %> 
-  password:  <%= ENV['MYSQL_PASSWORD'] %> 
-  host: localhost
+  password:  <%= ENV['MYSQL_PASSWORD'] %>

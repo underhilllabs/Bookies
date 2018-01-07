@@ -1,5 +1,5 @@
 # This migration comes from acts_as_taggable_on_engine (originally 1)
-class ActsAsTaggableOnMigration < ActiveRecord::Migration
+class ActsAsTaggableOnMigration < ActiveRecord::Migration[5.1]
   def self.up
     create_table :tags do |t|
       t.string :name
@@ -20,8 +20,8 @@ class ActsAsTaggableOnMigration < ActiveRecord::Migration
       t.datetime :created_at
     end
 
-    add_index :taggings, :tag_id
-    add_index :taggings, [:taggable_id, :taggable_type, :context]
+    add_index :taggings, :tag_id, :length => { :tag_id => 255 }
+    add_index :taggings, [:taggable_id, :taggable_type, :context],:length => { :taggable_id => 255 }
   end
 
   def self.down

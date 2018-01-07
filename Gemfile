@@ -35,7 +35,10 @@ gem 'bcrypt'
 # gem 'unicorn'
 
 # Deploy with Capistrano
-gem 'capistrano', :group => :development
+group :development do
+  gem 'capistrano'
+  gem 'listen'
+end
 
 # To use debugger
 # gem 'ruby-debug19', :require => 'ruby-debug'

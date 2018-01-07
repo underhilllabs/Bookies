@@ -9,16 +9,16 @@ default: &default
   # For details on connection pooling, see rails configuration guide
   # http://guides.rubyonrails.org/configuring.html#database-pooling
   pool: 5
-  username: <%= ENV['MYSQL_USER'] || 'root' %>
-  password: <%= ENV['MYSQL_PASSWORD'] %>
+  username: root
+  password: 
   host: <%= ENV['MYSQL_ROOT_HOST'] || '127.0.0.1' %>
 
 
 test:
   <<: *default
-  database: bookies_test
+  database: circle_test
 
 development:
   <<: *default  
-  database: bookies_test
+  database: circle_test
 

@@ -5,6 +5,7 @@ default: &default
   adapter: mysql2
   encoding: unicode
   port: 3306
+  encoding: utf8
   # For details on connection pooling, see rails configuration guide
   # http://guides.rubyonrails.org/configuring.html#database-pooling
   pool: 5

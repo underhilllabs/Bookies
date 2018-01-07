@@ -4,7 +4,7 @@ describe User do
   let(:user) { User.new }
   describe "validation" do
 
-    it "fails without an email" do
+    xit "fails without an email" do
       user.username = "test"
       user.email = nil
       expect(user).to_not be_valid
@@ -27,7 +27,7 @@ describe User do
       user.username = "tester"
       expect(user).to_not be_valid
     end
-    it "succeeds wih valid email" do
+    xit "succeeds wih valid email" do
       user.email = "test.user@ucdenver.edu"
       user.username = "tester"
       user.password_digest="89niu8nu8yhy9um08u8b8umu8uuex544deed"

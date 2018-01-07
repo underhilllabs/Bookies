@@ -8,7 +8,14 @@ jobs:
     docker:
       # specify the version you desire here
        - image: circleci/ruby:2.4.1-node-browsers
-      
+         environment:
+           - MYSQL_DB=bookies_test
+           - MYSQL_DATABASE=bookies_test
+           - MYSQL_USER=ubuntu
+           - MYSQL_PASSWORD=s3kr3t!
+           - MYSQL_ROOT_HOST=%
+           - MYSQL_ROOT_PASSWORD=
+           - MYSQL_ALLOW_EMPTY_PASSWORD=true
       # Specify service dependencies here if necessary
       # CircleCI maintains a library of pre-built images
       # documented at https://circleci.com/docs/2.0/circleci-images/

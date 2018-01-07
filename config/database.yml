@@ -16,9 +16,9 @@ default: &default
 
 test:
   <<: *default
-  database: circle_test
+  database: bookies_test
 
 development:
   <<: *default  
-  database: circle_test
+  database: bookies_test
 

@@ -22,6 +22,6 @@ test:
 
 development:
   <<: *default  
-  database: bookies_dev
+  database: bookies_test
   username:  <%= ENV['MYSQL_USER'] %> 
   password:  <%= ENV['MYSQL_PASSWORD'] %>

@@ -38,6 +38,7 @@ gem 'bcrypt'
 group :development do
   gem 'capistrano'
   gem 'listen'
+  gem 'pry-rails'
 end
 
 # To use debugger
@@ -47,6 +48,7 @@ end
 gem 'will_paginate', '>= 3.0.5'
 
 group :development, :test do
+  gem 'rspec'
   gem 'rspec-rails'
 end
 group :test do

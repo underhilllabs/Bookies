@@ -11,8 +11,9 @@ gem 'rails', '>= 5.0.0'
 
 # Gems used only for assets and not required
 # in production environments by default.
-#gem 'coffee-rails', :group => :development
-#gem 'sass-rails', :group => :development
+gem 'jquery-rails'
+gem 'coffee-rails', :group => :development
+gem 'sass-rails', :group => :development
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 #gem 'therubyracer', :platform => :ruby
 gem 'uglifier'
@@ -35,7 +36,12 @@ gem 'bcrypt'
 # gem 'unicorn'
 
 # Deploy with Capistrano
-gem 'capistrano', :group => :development
+group :development do
+  gem 'capistrano'
+  gem 'pry-rails'
+  gem 'listen'
+end
+
 
 # To use debugger
 # gem 'ruby-debug19', :require => 'ruby-debug'

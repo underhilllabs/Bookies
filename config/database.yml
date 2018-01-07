@@ -56,11 +56,11 @@ test:
   adapter: mysql2
   database: bookies_test
   username: <%= ENV['TEST_DB_USER'] %>
-  password: <%= ENV['TEST_DB_USER'] %>
+  password: <%= ENV['TEST_DB_PASSWORD'] %>
 
 production:
   <<: *default
   adapter: mysql2
   database: bookies_prod
-  username: <%= ENV['TEST_DB_USER'] %>
-  password: <%= ENV['TEST_DB_USER'] %>
+  username: <%= ENV['PROD_DB_USER'] %>
+  password: <%= ENV['PROD_DB_PASSWORD'] %>

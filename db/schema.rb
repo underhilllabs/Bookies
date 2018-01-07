@@ -15,10 +15,10 @@ ActiveRecord::Schema.define(version: 20150825160609) do
 
   create_table "archives", force: :cascade do |t|
     t.string   "url",         limit: 255
-    t.integer  "bookmark_id", limit: 4
+    t.integer  "bookmark_id"
     t.string   "filetype",    limit: 255
     t.string   "location",    limit: 255
-    t.integer  "user_id",     limit: 4
+    t.integer  "user_id"
     t.datetime "created_at",              null: false
     t.datetime "updated_at",              null: false
   end

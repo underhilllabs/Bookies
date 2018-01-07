@@ -50,6 +50,7 @@ gem 'will_paginate', '>= 3.0.5'
 group :development, :test do
   gem 'rspec'
   gem 'rspec-rails'
+  gem 'rspec_junit_formatter'
 end
 group :test do
   gem 'capybara'

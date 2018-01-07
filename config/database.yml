@@ -17,11 +17,8 @@ default: &default
 test:
   <<: *default
   database: bookies_test
-  username:  <%= ENV['MYSQL_USER'] %> 
-  password:  <%= ENV['MYSQL_PASSWORD'] %> 
 
 development:
   <<: *default  
   database: bookies_test
-  username:  <%= ENV['MYSQL_USER'] %> 
-  password:  <%= ENV['MYSQL_PASSWORD'] %>
+

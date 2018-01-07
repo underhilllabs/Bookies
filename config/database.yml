@@ -9,9 +9,9 @@ default: &default
   # For details on connection pooling, see rails configuration guide
   # http://guides.rubyonrails.org/configuring.html#database-pooling
   pool: 5
-  username: root
-  password: 
-  host: <%= ENV['MYSQL_ROOT_HOST'] || '127.0.0.1' %>
+  username: bookies
+  password: s3kr3t!
+  host: '127.0.0.1'
 
 
 test:

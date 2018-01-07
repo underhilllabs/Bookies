@@ -14,13 +14,13 @@ default: &default
 
 
 test:
-  <<: *defaults
+  <<: *default
   database: bookies_test
   username:  <%= ENV['MYSQL_USER'] %> 
   password:  <%= ENV['MYSQL_PASSWORD'] %> 
 
 development:
-  <<: *defaults  
+  <<: *default  
   database: bookies_dev
   username:  <%= ENV['MYSQL_USER'] %> 
   password:  <%= ENV['MYSQL_PASSWORD'] %>

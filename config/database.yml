@@ -44,7 +44,7 @@ default: &default
 development:
   <<: *default
   adapter: mysql2
-  database: bookies_dev
+  database: <%= ENV['DEV_DB'] %>
   username: <%= ENV['DEV_DB_USER'] %>
   password: <%= ENV['DEV_DB_PASSWORD'] %>
 
@@ -54,7 +54,7 @@ development:
 test:
   <<: *default
   adapter: mysql2
-  database: bookies_test
+  database: <%= ENV['TEST_DB'] %>
   username: <%= ENV['TEST_DB_USER'] %>
   password: <%= ENV['TEST_DB_PASSWORD'] %>
 

@@ -41,7 +41,7 @@ describe Bookmark do
       bookmark.url =  "http://github.com"
       bookmark.user = user
       bookmark.save
-      expect(bookmark.hash_url).to_not be_nil
+      expect(bookmark.hashed_url).to_not be_nil
     end
   end
 end

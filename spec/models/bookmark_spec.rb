@@ -33,5 +33,15 @@ describe Bookmark do
       bookmark.save
       expect(bookmark).to be_valid
     end
+
+  end
+  describe "on save" do
+    it "saves creates a url hash on save" do
+      bookmark.title = "test"
+      bookmark.url =  "http://github.com"
+      bookmark.user = user
+      bookmark.save
+      expect(bookmark.hash_url).to_not be_nil
+    end
   end
 end

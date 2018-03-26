@@ -49,6 +49,7 @@ end
 gem 'will_paginate', '>= 3.0.5'
 
 group :development, :test do
+  gem 'simplecov'
   gem 'rspec'
   gem 'dotenv-rails'
   gem 'rspec-rails'
@@ -57,7 +58,6 @@ end
 group :test do
   gem 'capybara'
 end
-gem 'simplecov', :require => false, :group => :test
 
 gem 'mysql2'
 

@@ -362,7 +362,7 @@ DEPENDENCIES
   omniauth-twitter!
   pry-rails
   puma
-  rails (>= 5.0.0)
+  rails (>= 5.2.0)
   responders (~> 2.0)
   resque
   rspec
@@ -378,4 +378,4 @@ DEPENDENCIES
   will_paginate (>= 3.0.5)
 
 BUNDLED WITH
-   1.16.2
+   1.17.2

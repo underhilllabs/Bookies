@@ -1,6 +1,6 @@
 * Bookies, a social bookmarking app built with Ruby on Rails
 
-** Master Branch is Rails 4.0
+** Master Branch is Rails 5.2
 
 ** try it out
 *** Steps to Deploy the Bookies Web Application
